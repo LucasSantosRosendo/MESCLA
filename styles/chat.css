@@ -24,7 +24,11 @@ html {
 }
 
 .msg_card_body {
-	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: calc(100% - 70px);
+	padding: 0;
 }
 
 .card-header {
@@ -35,10 +39,6 @@ html {
 .card-footer {
 	border-radius: 0 0 15px 15px !important;
 	border-top: 0 !important;
-}
-
-.container {
-	align-content: center;
 }
 
 .search {
@@ -53,29 +53,68 @@ html {
 	outline: 0px !important;
 }
 
-.type_msg {
-	background-color: rgba(0, 0, 0, 0.3) !important;
-	border: 0 !important;
-	color: #3cca94 !important;
-	height: 40px !important;
-	overflow-y: auto;
+#sendMsg {
+	display: flex;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 15px;
+	padding: 0 5px;
+	height: 50px;
 }
 
-.type_msg:focus {
+#attachBtn {
+	background-color: transparent;
+	border: 0;
+	color: #3cca94;
+	cursor: pointer;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
+}
+
+#msgTxt {
+	background-color: transparent;
+	border: 0;
+	color: #3cca94;
+	padding: 10px;
+	flex: 1;
+	box-sizing: border-box;
+}
+
+#msgTxt:focus {
 	box-shadow: none !important;
 	outline: 0px !important;
 }
 
-.attach_btn {
-	border-radius: 15px 0 0 15px !important;
-	background-color: rgba(0, 0, 0, 0.3) !important;
-	border: 0 !important;
-	color: #3cca94 !important;
+#msgBtn {
+	background-color: transparent;
+	border: 0;
+	color: #3cca94;
 	cursor: pointer;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
 }
 
-.send_btn {
-	border-radius: 0 15px 15px 0 !important;
+.attach_btn i,
+.send_btn i {
+	color: #3cca94 !important;
+	font-size: 20px;
+}
+
+.send_btn:hover,
+.attach_btn:hover {
+	background-color: rgba(0, 0, 0, 0.4) !important;
+	border-radius: 15px;
+	transform: scale(1.1);
+}
+
+.attach_btn {
+	border-radius: 15px 0 0 15px !important;
 	background-color: rgba(0, 0, 0, 0.3) !important;
 	border: 0 !important;
 	color: #3cca94 !important;
@@ -112,22 +151,10 @@ html {
 	cursor: pointer;
 }
 
-.user_img_msg {
-	height: 40px;
-	width: 40px;
-	border: 1.5px solid #f5f6fa;
-	cursor: pointer;
-}
-
 .img_cont {
 	position: relative;
 	height: 70px;
 	width: 70px;
-}
-
-.img_cont_msg {
-	height: 40px;
-	width: 40px;
 }
 
 .user_info {
@@ -147,12 +174,6 @@ html {
 .user_info span:hover {
 	transform: scale(1.1);
 }
-
-.user_info p {
-	font-size: 10px;
-	color: rgba(255, 255, 255, 0.6);
-}
-
 
 .msg_cotainer {
 	margin-top: auto;
@@ -192,74 +213,6 @@ html {
 	font-size: 10px;
 }
 
-.msg_head {
-	position: relative;
-}
-
-#action_menu_btn {
-	position: absolute;
-	right: 10px;
-	top: 20px;
-	color: #3cca94;
-	cursor: pointer;
-	font-size: 20px;
-}
-
-.action_menu {
-	z-index: 1;
-	position: absolute;
-	padding: 15px 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: #3cca94;
-	border-radius: 15px;
-	top: 30px;
-	right: 15px;
-	display: none;
-}
-
-.action_menu ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.action_menu ul li {
-	width: 100%;
-	padding: 10px 15px;
-	margin-bottom: 5px;
-}
-
-.action_menu ul li i {
-	padding-right: 10px;
-}
-
-.action_menu ul li:hover {
-	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-::-webkit-scrollbar-track {
-	background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-	background: #3cca94;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: #2d926b;
-}
-
-@media(max-width: 576px) {
-	.contacts_card {
-		margin-bottom: 15px !important;
-	}
-}
-
 .empty_chat_message {
 	display: flex;
 	flex-direction: column;
@@ -269,123 +222,132 @@ html {
 	text-align: center;
 	color: #888;
 	font-size: 1.5rem;
-  }
-  
-  .empty_chat_message img {
+}
+
+.empty_chat_message img {
 	max-width: 300px;
 	height: auto;
 	margin-bottom: 10px;
-  }
+}
 
-  .back-button {
-	position: absolute;
+.back-button {
+	position: fixed;
 	top: 20px;
 	left: 20px;
 	z-index: 1000;
-  }
-  
-  .btn-back {
+}
+
+.btn-back {
 	display: flex;
 	align-items: center;
 	color: #3cca94;
 	text-decoration: none;
 	font-size: 1.2rem;
-  }
-  
-  .btn-back i {
-	margin-right: 8px;
-	font-size: 1.5rem;
-  }
-
-  .back-button {
-	position: fixed;
-	top: 20px;
-	left: 20px;
-	z-index: 1000;
-  }
-  
-  .btn-back {
-	display: flex;
-	align-items: center;
-	color: #3cca94;
-	text-decoration: none; 
-	font-size: 1.2rem; 
 	transition: transform 0.3s ease, color 0.3s ease;
-  }
-  
-  .btn-back i {
+}
+
+.btn-back i {
 	margin-right: 8px;
 	font-size: 1.5rem;
-  }
+}
 
-  .btn-back:hover {
+.btn-back:hover {
 	color: #31a377;
 	transform: scale(1.1);
-  }
+}
 
-  .hidden {
+.hidden {
 	display: none;
-  }
+}
 
-  .hidden {
-	display: none;
-  }
-  
-  .chat_window {
+.chat_window {
 	height: calc(100% - 10px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 0;
-  }
-  
-  .chat_window .user_info {
+}
+
+.chat_window .user_info {
 	display: flex;
 	align-items: center;
 	padding: 10px;
 	border-bottom: 2px solid #0f0f0f;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
-	
-  }
-  
-  .chat_window .user_info img {
+}
+
+.chat_window .user_info img {
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
-  }
-  
-  .chat_window .messages {
+}
+
+.chat_window #messages {
 	flex-grow: 1;
 	padding: 10px;
 	overflow-y: auto;
 	border-bottom: 2px solid #0f0f0f;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
-  }
-  
-  .chat_window .message_input {
-	padding: 10px;
-	border-top: none;
-	
-  }
-  
-  .msg_card_body {
+}
+
+.send_btn {
+	border-radius: 0 15px 15px 0 !important;
+	background-color: rgba(0, 0, 0, 0.3) !important;
+	border: 0 !important;
+	color: #3cca94 !important;
+	cursor: pointer;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: calc(100% - 70px);
-	padding: 0;
-  }
-  
-  .message_input {
-	padding: 0;
-  }
-  
-  .message_input .input-group {
-	margin: 0;
-  }
-  
-  .message_input .input-group-append {
-	border-top: none;
-  }
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.send_btn i {
+	color: #3cca94 !important;
+}
+
+.send_btn:hover {
+	background-color: rgba(0, 0, 0, 0.4) !important;
+	transform: scale(1.1);
+}
+
+.outer {
+	display: flex;
+	margin: 10px 0;
+}
+
+#inner {
+	padding: 10px;
+	border-radius: 15px;
+	max-width: 80%;
+	word-wrap: break-word;
+	color: #fff;
+}
+
+.me {
+	background-color: #3cca94;
+	margin-left: auto;
+}
+
+.notMe {
+	background-color: #2a9d8f;
+	margin-right: auto;
+}
+
+.button-delete {
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.button-delete:hover {
+	background-color: #d32f2f;
+	transform: scale(1.1);
+}
