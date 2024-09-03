@@ -8,30 +8,35 @@
    <link href="/styles/media.css" rel="stylesheet">
    <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
    <script type="module" src="register.js" defer></script>
-   <title>Cadastro / MESCLA</title>
+   <title>Cadastro  / MESCLA</title>
 </head>
 <body>
    <form id="form">
        <h2 class="title">Cadastrar</h2>
-       <label for="nome">Nome</label>
+       <label for="nome">Empresa</label>
        <div class="input">
-           <i class="fa-solid fa-user-large"></i>
-           <input id="nome" name="username" placeholder="Usuário" type="text" required>
+           <i class="fa-solid fa-building"></i>
+           <input id="nome" name="username" placeholder="Nome" type="text" required>
        </div>
-       <label for="cpf">CPF</label>
+       <label for="cnpj">CNPJ</label>
        <div class="input">
            <i class="fa-solid fa-address-card"></i>
-           <input id="cpf" name="cpf" placeholder="000.000.000-00" type="number" required>
+           <input id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" type="number" required>
        </div>
-       <label for="cidade">Cidade</label>
+       <label for="cidade">Email Corporativo</label>
        <div class="input">
            <i class="fa-solid fa-location-dot"></i>
            <input id="cidade" name="cidade" placeholder="Cidade" type="text" required>
        </div>
-       <label for="email">Email</label>
+       <label for="email">Setor de Atuação</label>
        <div class="input">
-           <i class="fa-solid fa-envelope"></i>
+           <i class="fa-solid fa-tag"></i>
            <input id="email" name="email" placeholder="nome@email.com" type="email" required>
+       </div>
+       <label for="setorAtuacao">Setor de Atuação</label>
+       <div class="input">
+           <i class="fa-solid fa-tag"></i>
+           <input id="setorAtuacao" name="setorAtuacao" placeholder="Setor de Atuação" type="text" required>
        </div>
        <label for="senha">Senha</label>
        <div class="input">
@@ -46,10 +51,6 @@
        <p>
         <i class="fa-solid fa-circle-info"></i> Já tem uma conta? <a href="login.html">Clique aqui</a>
        </p>
-    </div>
-    <p>
-     <i class="fa-solid fa-circle-info"></i> Cadastre-se como <a href="cadastroEmpresa.html">empresa</a> ou <a href="cadastroPrefeitura.html">prefeitura</a>
-    </p>
        <button id="submit" type="submit">Cadastrar</button>
    </form>
 </body>
