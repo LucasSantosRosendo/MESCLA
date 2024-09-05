@@ -28,15 +28,15 @@ a:hover {
   transition: 0.3s all;
 }
 
-#Cadastre-se-btn {
+#Cadastre-se-btn{
+  border: 2px solid rgb(60,202,148);
   padding: 10px;
   border-radius: 15px;
 }
 
-#Cadastre-se-btn:hover {
+#Cadastre-se-btn:hover{
   background-color: rgb(60, 202, 148);
   color: white;
-  transform: scale(1.05);
 }
 
 li {

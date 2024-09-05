@@ -9,13 +9,13 @@ body{
 }
 
 #form{
-    position: relative;
-    top: 50%;
+    position:relative;
+    top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 50px;
     width: min-content;
     align-items: center;
     color: rgb(0, 0, 0);
@@ -24,13 +24,15 @@ body{
 }
 
 .title{
-    font-size: 1.8pm;
     color:rgb(60, 202, 148);
     margin-bottom: 10%;
+    text-align: center;
+    font-size: 50px;
+    margin: 0px 0px -10px 0px;
 }
 
 .input{
-    min-width: 280px;
+    min-width: 340px;
     border-radius: 22px;
     border: 2px #6fe solid;
     padding: 5px;
@@ -44,7 +46,7 @@ body{
 }
 
 .input input{
-    width: 80%;
+    width: 88%;
     border: none;
     outline: none;
     font-family: poppinsmedium;
