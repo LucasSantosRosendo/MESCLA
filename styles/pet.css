@@ -1,0 +1,493 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #222222;
+    font-family: poppinslight;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-family: poppinsmedium;
+    color: #ffff;
+    line-height: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  background: rgba(252, 95, 17, 0.979);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.4);
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.search-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-container input{
+    flex: 1;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    outline: none;
+}
+
+.search-container button {
+    background: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: -45px;
+  }
+  
+  .search-container button i {
+    color: #fc5f11
+    ;
+  }
+  
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 200px;
+    background: #222222;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 25px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.menu-item:hover {
+    background: #fc5f11;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.menu-item h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.menu-item span {
+    font-size: 15px;
+}
+
+.content {
+  margin-left: 230px;
+  padding: 20px;
+  padding-top: 70px;
+}
+
+
+.publish-button {
+    background: #fc5f11;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.publish-button:hover {
+    background: rgba(252, 95, 17, 0.979);
+    transform: scale(1.05);
+}
+
+.main {
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+div.newPost {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 20px 0;
+    padding: 25px;
+    background: #1d1d1d;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+div.newPost div.infoUser {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+div.newPost div.infoUser div.imgUser {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background: #ffff;
+}
+
+div.newPost div.infoUser strong {
+    font-size: 18px;
+    color: #fc5f11;
+    margin-left: 10px;
+}
+
+div.newPost form.formPost {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+div.newPost form.formPost textarea {
+    background: #222222;
+    margin: 15px 0;
+    padding: 25px;
+    border-radius: 10px;
+    resize: none;
+    border: 2px solid #141313;
+    height: 120px;
+    outline: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: poppinslight;
+}
+
+div.newPost form.formPost textarea:focus {
+    border: 2px solid #fc5f11;
+
+}
+
+div.newPost form.formPost div.iconsAndButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.newPost form.formPost div.iconsAndButton div.icons {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.newPost form.formPost div.iconsAndButton div.icons button {
+    outline: none;
+    margin-right: 15px;
+    border: 0;
+    background: #222222;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.newPost form.formPost div.iconsAndButton button.btnSubmitForm {
+    background: #fc5f11;
+    padding: 10px 60px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+div.newPost form.formPost div.iconsAndButton button.btnSubmitForm:hover {
+    background: rgba(252, 95, 17, 0.979);
+    transform: scale(1.05);
+}
+
+ul.posts {
+  padding: 0;
+  margin: 0;
+}
+
+ul.posts li.post {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  background: #1d1d1d;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.05);
+}
+
+ul.posts li.post div.infoUserPost {
+    display: flex;
+    align-items: center;
+}
+
+ul.posts li.post div.infoUserPost div.nameAndHour {
+    margin-left: 12px;
+}
+
+ul.posts li.post div.infoUserPost div.nameAndHour > strong {
+    color: #fc5f11;
+}
+
+ul.posts li.post div.infoUserPost div.nameAndHour > p {
+    color: #d1d1d1;
+    font-size: 15px;
+    height: 50px;
+}
+
+ul.posts li.post > p {
+    width: 100%;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #727272;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+ul.posts li.post div.actionBtnPost {
+    display: flex;
+    align-items: center;
+}
+
+ul.posts li.post div.actionBtnPost button.filesPost {
+    padding: 10px 25px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+ul.posts li.post div.actionBtnPost button.filesPost img {
+    margin-right: 5px;
+}
+
+.like {
+    background: #ff6b6b;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.like:hover {
+    background: rgb(248, 75, 75);
+    transform: scale(1.05);
+}
+
+.comment {
+    background: #ffc320;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.comment:hover {
+    background: rgb(245, 180, 0);
+    transform: scale(1.05);
+}
+
+.share {
+    background: #fc5f11;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.share:hover {
+    background: rgba(209, 88, 28, 0.979);
+    transform: scale(1.05);
+}
+
+.janela-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal {
+    background-color: #1d1d1d;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #141313;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: animatetop 0.4s;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
+}
+
+.close {
+    color: #f44336;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -15px;
+    margin-right: -15px;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #d32f2f; 
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s; 
+}
+
+.janela-modal .formPost {
+    display: flex;
+    flex-direction: column;
+}
+
+.janela-modal .formPost textarea {
+    resize: none;
+    border: 2px solid #141313;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #2b2b2b;
+    color: white;
+    height: 100px;
+}
+
+.janela-modal .iconsAndButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.janela-modal .icons {
+    display: flex;
+    gap: 10px;
+}
+
+.janela-modal .btnFileForm {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.janela-modal .btnFileForm img {
+    width: 24px;
+    height: 24px;
+}
+
+.janela-modal .btnSubmitForm {
+    background-color: #fc5f11;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.janela-modal .btnSubmitForm:hover {
+    background-color: #d64f0c;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px; 
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

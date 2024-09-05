@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/styles/cadastro.css" rel="stylesheet" />
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <link href="/styles/media.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/b432763f75.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="register.js" defer></script>
+    <title>Cadastro / MESCLA</title>
+  </head>
+  <body>
+    <form id="form">
+      <h2 class="title">Cadastrar</h2>
+      <label for="nome">Empresa</label>
+      <div class="input">
+        <i class="fa-solid fa-building"></i>
+        <input
+          id="nome"
+          name="username"
+          placeholder="Nome"
+          type="text"
+          required
+        />
+      </div>
+      <label for="cnpj">CNPJ</label>
+      <div class="input">
+        <i class="fa-solid fa-address-card"></i>
+        <input
+          id="cnpj"
+          name="cnpj"
+          placeholder="00.000.000/0000-00"
+          type="number"
+          required
+        />
+      </div>
+      <label for="cidade">Email Corporativo</label>
+      <div class="input">
+        <i class="fa-solid fa-location-dot"></i>
+        <input
+          id="cidade"
+          name="cidade"
+          placeholder="Cidade"
+          type="text"
+          required
+        />
+      </div>
+      <label for="email">Setor de Atuação</label>
+      <div class="input">
+        <i class="fa-solid fa-tag"></i>
+        <input
+          id="email"
+          name="email"
+          placeholder="nome@email.com"
+          type="email"
+          required
+        />
+      </div>
+      <label for="setorAtuacao">Setor de Atuação</label>
+      <div class="input">
+        <i class="fa-solid fa-tag"></i>
+        <input
+          id="setorAtuacao"
+          name="setorAtuacao"
+          placeholder="Setor de Atuação"
+          type="text"
+          required
+        />
+      </div>
+      <label for="senha">Senha</label>
+      <div class="input">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          id="senha"
+          name="senha"
+          placeholder="Senha"
+          type="password"
+          required
+        />
+      </div>
+      <label for="senha2">Confirmar senha</label>
+      <div class="input">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          id="senha2"
+          name="senha2"
+          placeholder="Confirme sua senha"
+          type="password"
+          required
+        />
+      </div>
+      <p>
+        <i class="fa-solid fa-circle-info"></i> Já tem uma conta?
+        <a href="login.html">Clique aqui</a>
+      </p>
+      <button id="submit" type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>
