@@ -10,7 +10,7 @@ body{
 
 #form{
     position:relative;
-    top: 85%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
@@ -95,6 +95,10 @@ a:hover {
     color: black;
     transition: 0.3s all;
     transform: scale(1.05);
+}
+
+#submit:active {
+    opacity: 0.5;
 }
 
 @keyframes iniciar{
