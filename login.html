@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="/styles/login.css" rel="stylesheet">
-   <link href="/styles/fonts.css" rel="stylesheet">
-   <link href="/styles/media.css" rel="stylesheet">
-   <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
-   <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
-   <title>Login / MESCLA</title>
-</head>
-<body>
-   <div id="form">
-       <form id="login-form" action="" onsubmit="login(event)">
-           <h2 class="title">Logar</h2>
-           <label for="">Email</label>
-           <div class="input">
-               <i class="fa-solid fa-envelope"></i>
-               <input id="email" name="email" placeholder="Email" type="text">
-           </div>
-           <label for="">Senha</label>
-           <div class="input">
-               <i class="fa-solid fa-lock"></i>
-               <input id="senha" name="senha" placeholder="Senha" type="password">
-           </div>
-           <p>
-           <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta? <a href="cadastro.html">Clique aqui</a>
-           </p>
-           <div id="btn">
-               <button type="submit">Login</button>
-           </div>
-       </form>
-   </div>
-   <script>
-    const firebaseConfig = {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/styles/login.css" rel="stylesheet" />
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <link href="/styles/media.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/b432763f75.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <title>Login / MESCLA</title>
+  </head>
+  <body>
+    <div id="form">
+      <form id="login-form" action="" onsubmit="login(event)">
+        <h2 class="title">Logar</h2>
+        <label for="">Email</label>
+        <div class="input">
+          <i class="fa-solid fa-envelope"></i>
+          <input id="email" name="email" placeholder="Email" type="text" />
+        </div>
+        <label for="">Senha</label>
+        <div class="input">
+          <i class="fa-solid fa-lock"></i>
+          <input id="senha" name="senha" placeholder="Senha" type="password" />
+        </div>
+        <p>
+          <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta?
+          <a href="cadastro.html">Clique aqui</a>
+        </p>
+        <div id="btn">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      const firebaseConfig = {
         apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
         authDomain: "mescla-f9d00.firebaseapp.com",
         projectId: "mescla-f9d00",
         storageBucket: "mescla-f9d00.appspot.com",
         messagingSenderId: "442057041731",
-        appId: "1:442057041731:web:a5d7208555136ba97531f6"
-    };
-    firebase.initializeApp(firebaseConfig);
+        appId: "1:442057041731:web:a5d7208555136ba97531f6",
+      };
+      firebase.initializeApp(firebaseConfig);
 
-    function login(event) {
+      function login(event) {
         event.preventDefault();
-        const email = document.getElementById('email').value;
-        const senha = document.getElementById('senha').value;
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
 
-        firebase.auth().signInWithEmailAndPassword(email, senha).then(response => {
-            console.log('success', response);
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, senha)
+          .then((response) => {
+            console.log("success", response);
             window.location.href = "feed2.html";
-        }).catch(error => {
-            console.log('error', error);
-        });
-    }
-   </script>
-</body>
+          })
+          .catch((error) => {
+            console.log("error", error);
+          });
+      }
+    </script>
+  </body>
 </html>

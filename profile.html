@@ -123,7 +123,7 @@
           </form>
         </div>
 
-        <!-- Mudar Senha Section (Mantida) -->
+        <!-- Mudar Senha Section (Atualizado) -->
         <div id="mudar-senha-section" class="section">
           <h2>Alterar senha</h2>
 
@@ -141,46 +141,70 @@
               <!-- First Column -->
               <div class="form-column">
                 <div class="form-group">
-                  <label for="name">Usuário:</label>
+                  <label for="username">Usuário:</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="username"
+                    name="username"
                     placeholder="Digite seu usuário"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Senha atual:</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Digite a senha atual"
-                  />
+                  <label for="current-password">Senha atual:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="current-password"
+                      name="current-password"
+                      placeholder="Digite a senha atual"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('current-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
 
               <!-- Second Column -->
               <div class="form-column">
                 <div class="form-group">
-                  <label for="address">Nova senha:</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="newPassword"
-                    placeholder="Digite sua nova senha"
-                  />
+                  <label for="new-password">Nova senha:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="new-password"
+                      name="new-password"
+                      placeholder="Digite sua nova senha"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('new-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="phone">Confirmar nova senha:</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="confirmPassword"
-                    placeholder="Confirme sua nova senha"
-                  />
+                  <label for="confirm-password">Confirmar nova senha:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="confirm-password"
+                      name="confirm-password"
+                      placeholder="Confirme sua nova senha"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('confirm-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -221,6 +245,21 @@
 
         // Adiciona a classe 'selected' na aba clicada
         clickedTab.classList.add("selected");
+      }
+    </script>
+
+    <script>
+      function togglePassword(id) {
+        var passwordField = document.getElementById(id);
+        var passwordIcon = passwordField.nextElementSibling;
+
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          passwordIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+          passwordField.type = "password";
+          passwordIcon.innerHTML = '<i class="fas fa-eye"></i>';
+        }
       }
     </script>
   </body>

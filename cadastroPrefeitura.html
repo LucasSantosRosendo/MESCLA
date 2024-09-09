@@ -12,67 +12,35 @@
 </head>
 <body>
    <form id="form">
-
-       <h2 class="title">Cadastro</h2>
-       <label for="nome">Nome</label>
-       <div class="input">
-           <i class="fa-solid fa-user-large"></i>
-           <input id="nome" name="username" placeholder="Usuário" type="text" required>
-       </div>
-
-       <label for="nascimento">Data de Nascimento</label>
-       <div class="input">
-        <i class="fa-solid fa-calendar"></i>
-        <input id="nascimento" name="nascimento" type="date" required>
-    </div>
-
-       <label for="cpf">CPF</label>
-       <div class="input">
-           <i class="fa-solid fa-address-card"></i>
-           <input id="cpf" name="cpf" maxlength="11" placeholder="000.000.000-00" type="text" required>
-
-       </div>
+       <h2 class="title">Cadastrar</h2>
        <label for="cidade">Cidade</label>
        <div class="input">
-           <i class="fa-solid fa-location-dot"></i>
-           <input id="cidade" name="cidade" placeholder="Cidade" type="text" required>
+           <i class="fa-solid fa-landmark"></i>
+           <input id="nome" name="username" placeholder="Cidade" type="text" required>
        </div>
-
-       <label for="bairro">Bairro</label>
+       <label for="cnpj">CNPJ</label>
        <div class="input">
-           <i class="fa-solid fa-map-location-dot"></i>
-           <input id="bairro" name="bairro" placeholder="Bairro" type="text" required>
+           <i class="fa-solid fa-envelope"></i>
+           <input id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" type="number" required>
        </div>
-
-       <label for="email">Email</label>
+       <label for="email">Email Institucional</label>
        <div class="input">
            <i class="fa-solid fa-envelope"></i>
            <input id="email" name="email" placeholder="nome@email.com" type="email" required>
        </div>
-
        <label for="senha">Senha</label>
        <div class="input">
            <i class="fa-solid fa-lock"></i>
            <input id="senha" name="senha" placeholder="Senha" type="password" required>
        </div>
-
        <label for="senha2">Confirmar senha</label>
        <div class="input">
            <i class="fa-solid fa-lock"></i>
            <input id="senha2" name="senha2" placeholder="Confirme sua senha" type="password" required>
        </div>
-
-       <p>
-        <i class="fa-solid fa-circle-info"></i> Esqueceu sua senha? <a href="senha.html">Clique aqui</a>
-       </p>
-
        <p>
         <i class="fa-solid fa-circle-info"></i> Já tem uma conta? <a href="login.html">Clique aqui</a>
        </p>
-    </div>
-    <p>
-     <i class="fa-solid fa-circle-info"></i> Cadastre-se como <a href="cadastroEmpresa.html">empresa</a> ou <a href="cadastroPrefeitura.html">prefeitura</a>
-    </p>
        <button id="submit" type="submit">Cadastrar</button>
    </form>
 </body>

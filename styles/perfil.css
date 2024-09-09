@@ -1,0 +1,300 @@
+body {
+  margin: 0;
+  font-family: "Poppins Medium", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(34, 34, 34); /* Fundo geral */
+}
+
+.container {
+  display: flex;
+  width: 1200px; /* Largura do container */
+  min-height: 500px; /* Altura mínima do container */
+  background-color: rgb(30, 30, 30); /* Fundo do container */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra mais escura */
+  border-radius: 8px; /* Bordas arredondadas */
+}
+
+.sidebar {
+  width: 300px; /* Largura da sidebar */
+  background-color: rgb(40, 40, 40); /* Fundo da sidebar */
+  color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 8px; /* Borda arredondada no canto superior esquerdo */
+  border-bottom-left-radius: 8px; /* Borda arredondada no canto inferior esquerdo */
+  display: flex;
+  flex-direction: column; /* Organiza os itens da sidebar verticalmente */
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  flex-grow: 1; /* Faz com que a lista ocupe o espaço disponível */
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 5px; /* Borda arredondada para os itens do menu */
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: rgb(60, 202, 148); /* Cor de fundo ao passar o mouse */
+}
+
+.sidebar ul li a i {
+  margin-right: 10px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for maior que a área visível */
+  color: #fff;
+}
+
+.content h1,
+.general-section h2 {
+  margin-top: 0;
+}
+
+/* Avatar Section */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  background-color: #f4f4f4;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(60, 202, 148); /* Verde-água */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.upload-btn:hover {
+  background-color: rgb(50, 180, 130); /* Cor mais escura ao passar o mouse */
+  transform: scale(1.05);
+}
+
+/* Geral Section */
+.general-section {
+  margin-top: 20px;
+}
+
+.form-container {
+  display: flex;
+  gap: 30px; /* Espaço entre as colunas */
+}
+
+/* Form Column */
+.form-column {
+  flex: 1; /* Faz com que as colunas ocupem espaço igual */
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-family: poppinsmedium;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: rgb(60, 202, 148); /* Cor verde água */
+}
+
+.form-group input {
+  font-family: poppinslight;
+  width: 100%; /* Ajusta a largura do campo para 100% da coluna */
+  max-width: 300px; /* Define a largura máxima para os campos */
+  padding: 10px;
+  font-size: 14px; /* Tamanho da fonte consistente */
+  border: 1px solid #555;
+  border-radius: 5px; /* Bordas arredondadas */
+  background-color: rgb(34, 34, 34); /* Cor de fundo dos campos */
+  color: #fff;
+}
+
+.form-group input::placeholder {
+  color: #888;
+}
+
+/* Estilização específica para os campos de Data de Nascimento e Número de Telefone */
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="date"] {
+  max-width: 300px; /* Define a largura máxima para os campos de texto, telefone e data */
+}
+
+.sidebar ul li a {
+  font-family: poppinsmedium;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 15px; /* Arredonda as bordas do item do menu */
+  padding: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: rgb(60, 202, 148); /* Cor de fundo ao passar o mouse */
+  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+  position: relative;
+}
+
+.sidebar ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(17, 233, 179, 0) 0%,
+    rgba(17, 233, 179, 0.5) 50%,
+    rgba(17, 233, 179, 0) 100%
+  );
+  transform: scaleY(0.5);
+}
+
+/* Estilização dos botões */
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px; /* Espaço entre os botões */
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.save-btn {
+  background-color: rgb(60, 202, 148); /* Verde-água */
+  color: #fff;
+}
+
+.save-btn:hover {
+  background-color: rgb(50, 180, 130); /* Cor mais escura ao passar o mouse */
+  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+.cancel-btn {
+  background-color: rgb(255, 80, 80); /* Vermelho */
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(220, 60, 60); /* Cor mais escura ao passar o mouse */
+  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  color: #3cca94;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btn-back i {
+  margin-right: 8px;
+  font-size: 1.5rem;
+}
+
+.btn-back:hover {
+  color: #31a377;
+  transform: scale(1.1);
+}
+
+.username {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Poppins Medium", sans-serif;
+  background-color: rgb(40, 40, 40); /* Fundo similar ao da sidebar */
+  padding: 10px 20px;
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra discreta */
+}
+
+/* Estilo para a seção de senha e o ícone de olho */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 30px; /* Espaço para o ícone */
+}
+
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+  font-size: 16px; /* Ajuste o tamanho do ícone conforme necessário */
+}
