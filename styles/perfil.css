@@ -5,28 +5,28 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: rgb(34, 34, 34); /* Fundo geral */
+  background-color: rgb(34, 34, 34); 
 }
 
 .container {
   display: flex;
-  width: 1200px; /* Largura do container */
-  min-height: 500px; /* Altura mínima do container */
-  background-color: rgb(30, 30, 30); /* Fundo do container */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra mais escura */
-  border-radius: 8px; /* Bordas arredondadas */
+  width: 1200px; 
+  min-height: 500px;
+  background-color: rgb(30, 30, 30); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  border-radius: 8px; 
 }
 
 .sidebar {
-  width: 300px; /* Largura da sidebar */
-  background-color: rgb(40, 40, 40); /* Fundo da sidebar */
+  width: 300px; 
+  background-color: rgb(40, 40, 40);
   color: #fff;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-top-left-radius: 8px; /* Borda arredondada no canto superior esquerdo */
-  border-bottom-left-radius: 8px; /* Borda arredondada no canto inferior esquerdo */
+  border-top-left-radius: 8px; 
+  border-bottom-left-radius: 8px; 
   display: flex;
-  flex-direction: column; /* Organiza os itens da sidebar verticalmente */
+  flex-direction: column;
 }
 
 .sidebar h2 {
@@ -36,7 +36,7 @@ body {
 .sidebar ul {
   list-style: none;
   padding: 0;
-  flex-grow: 1; /* Faz com que a lista ocupe o espaço disponível */
+  flex-grow: 1; 
 }
 
 .sidebar ul li {
@@ -48,13 +48,13 @@ body {
   text-decoration: none;
   display: flex;
   align-items: center;
-  border-radius: 5px; /* Borda arredondada para os itens do menu */
+  border-radius: 5px; 
   padding: 10px;
   transition: background-color 0.3s;
 }
 
 .sidebar ul li a:hover {
-  background-color: rgb(60, 202, 148); /* Cor de fundo ao passar o mouse */
+  background-color: rgb(60, 202, 148); 
 }
 
 .sidebar ul li a i {
@@ -64,7 +64,7 @@ body {
 .content {
   flex-grow: 1;
   padding: 20px;
-  overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for maior que a área visível */
+  overflow-y: auto; 
   color: #fff;
 }
 
@@ -73,7 +73,6 @@ body {
   margin-top: 0;
 }
 
-/* Avatar Section */
 .avatar-section {
   display: flex;
   flex-direction: column;
@@ -103,7 +102,7 @@ body {
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: rgb(60, 202, 148); /* Verde-água */
+  background-color: rgb(60, 202, 148);
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -111,26 +110,24 @@ body {
 }
 
 .upload-btn:hover {
-  background-color: rgb(50, 180, 130); /* Cor mais escura ao passar o mouse */
+  background-color: rgb(50, 180, 130);
   transform: scale(1.05);
 }
 
-/* Geral Section */
 .general-section {
   margin-top: 20px;
 }
 
 .form-container {
   display: flex;
-  gap: 30px; /* Espaço entre as colunas */
+  gap: 30px;
 }
 
-/* Form Column */
+
 .form-column {
-  flex: 1; /* Faz com que as colunas ocupem espaço igual */
+  flex: 1; 
 }
 
-/* Form Group */
 .form-group {
   margin-bottom: 15px;
 }
@@ -140,18 +137,18 @@ body {
   display: block;
   margin-bottom: 5px;
   font-size: 16px;
-  color: rgb(60, 202, 148); /* Cor verde água */
+  color: rgb(60, 202, 148);
 }
 
 .form-group input {
   font-family: poppinslight;
-  width: 100%; /* Ajusta a largura do campo para 100% da coluna */
-  max-width: 300px; /* Define a largura máxima para os campos */
+  width: 100%; 
+  max-width: 300px;
   padding: 10px;
-  font-size: 14px; /* Tamanho da fonte consistente */
+  font-size: 14px;
   border: 1px solid #555;
-  border-radius: 5px; /* Bordas arredondadas */
-  background-color: rgb(34, 34, 34); /* Cor de fundo dos campos */
+  border-radius: 5px;
+  background-color: rgb(34, 34, 34);
   color: #fff;
 }
 
@@ -159,11 +156,10 @@ body {
   color: #888;
 }
 
-/* Estilização específica para os campos de Data de Nascimento e Número de Telefone */
 .form-group input[type="text"],
 .form-group input[type="tel"],
 .form-group input[type="date"] {
-  max-width: 300px; /* Define a largura máxima para os campos de texto, telefone e data */
+  max-width: 300px;
 }
 
 .sidebar ul li a {
@@ -172,14 +168,14 @@ body {
   text-decoration: none;
   display: flex;
   align-items: center;
-  border-radius: 15px; /* Arredonda as bordas do item do menu */
+  border-radius: 15px;
   padding: 10px;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .sidebar ul li a:hover {
-  background-color: rgb(60, 202, 148); /* Cor de fundo ao passar o mouse */
-  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+  background-color: rgb(60, 202, 148); 
+  transform: scale(1.05);
 }
 
 .sidebar ul li {
@@ -203,12 +199,12 @@ body {
   transform: scaleY(0.5);
 }
 
-/* Estilização dos botões */
+
 .form-buttons {
   margin-top: 20px;
   display: flex;
   justify-content: flex-end;
-  gap: 20px; /* Espaço entre os botões */
+  gap: 20px;
 }
 
 .save-btn,
@@ -222,23 +218,23 @@ body {
 }
 
 .save-btn {
-  background-color: rgb(60, 202, 148); /* Verde-água */
+  background-color: rgb(60, 202, 148); 
   color: #fff;
 }
 
 .save-btn:hover {
-  background-color: rgb(50, 180, 130); /* Cor mais escura ao passar o mouse */
-  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+  background-color: rgb(50, 180, 130); 
+  transform: scale(1.05);
 }
 
 .cancel-btn {
-  background-color: rgb(255, 80, 80); /* Vermelho */
+  background-color: rgb(255, 80, 80);
   color: #fff;
 }
 
 .cancel-btn:hover {
-  background-color: rgb(220, 60, 60); /* Cor mais escura ao passar o mouse */
-  transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+  background-color: rgb(220, 60, 60);
+  transform: scale(1.05);
 }
 
 .back-button {
@@ -272,13 +268,12 @@ body {
   font-size: 18px;
   color: #fff;
   font-family: "Poppins Medium", sans-serif;
-  background-color: rgb(40, 40, 40); /* Fundo similar ao da sidebar */
+  background-color: rgb(40, 40, 40); 
   padding: 10px 20px;
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra discreta */
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para a seção de senha e o ícone de olho */
 .password-wrapper {
   position: relative;
   display: flex;
@@ -286,7 +281,7 @@ body {
 }
 
 .password-wrapper input {
-  padding-right: 30px; /* Espaço para o ícone */
+  padding-right: 30px;
 }
 
 .password-wrapper .toggle-password {
@@ -296,5 +291,84 @@ body {
   transform: translateY(-50%);
   cursor: pointer;
   color: #999;
-  font-size: 16px; /* Ajuste o tamanho do ícone conforme necessário */
+  font-size: 16px;
 }
+      .section {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      .sidebar ul li a.selected {
+        background-color: #3cca94;
+        color: #333;
+      }
+      .post {
+        border: 1px solid #3cca94;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+      }
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .post-header .infoUserPost {
+        display: flex;
+        align-items: center;
+      }
+      .post-header .imgUserPost {
+        width: 50px;
+        height: 50px;
+        background-color: #ddd;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .post-header .nameAndHour {
+        font-size: 14px;
+      }
+      .post-header .nameAndHour strong {
+        display: block;
+        font-size: 16px;
+      }
+      .post-header .nameAndHour p {
+        margin: 0;
+      }
+      .post-header .trash-icon {
+        margin-bottom: 21px;
+        cursor: pointer;
+        font-size: 18px;
+        color: rgb(124, 121, 121);
+      }
+      .post-content {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      .post-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .post-footer .like-count {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+      }
+      .post-footer .like-count img {
+        margin-right: 5px;
+      }
+      .post-footer .actionBtnPost button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .post-footer .actionBtnPost img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .post-footer .like-count {
+        color: rgb(219, 76, 76)
+      }

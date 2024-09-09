@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,15 +48,21 @@
             </a>
           </li>
           <li>
-            <a href="#"><i class="fas fa-bell"></i> Notificações</a>
+            <a
+              href="#"
+              id="publicacoes-tab"
+              onclick="showSection('publicacoes-section', this)"
+            >
+              <i class="fa-solid fa-camera"></i> Minhas publicações
+            </a>
           </li>
         </ul>
       </div>
 
       <div class="content">
-        <!-- Geral Section (Clonada) -->
+        <!-- Geral Section -->
         <div id="geral-section" class="section active">
-          <h2>Geral</h2>
+          <h2>Geral:</h2>
           <div class="avatar-section">
             <div class="avatar">
               <img src="path/to/default-avatar.png" alt="Avatar" />
@@ -68,7 +74,6 @@
           </div>
           <form>
             <div class="form-container">
-              <!-- First Column -->
               <div class="form-column">
                 <div class="form-group">
                   <label for="name">Nome:</label>
@@ -91,7 +96,6 @@
                 </div>
               </div>
 
-              <!-- Second Column -->
               <div class="form-column">
                 <div class="form-group">
                   <label for="address">Endereço:</label>
@@ -115,7 +119,6 @@
               </div>
             </div>
 
-            <!-- Buttons -->
             <div class="form-buttons">
               <button type="submit" class="save-btn">Salvar alterações</button>
               <button type="button" class="cancel-btn">Cancelar</button>
@@ -123,22 +126,19 @@
           </form>
         </div>
 
-        <!-- Mudar Senha Section (Atualizado) -->
+        <!-- Mudar Senha Section -->
         <div id="mudar-senha-section" class="section">
-          <h2>Alterar senha</h2>
+          <h2>Alterar senha:</h2>
 
-          <!-- Avatar Section (Mudar Senha) -->
           <div class="avatar-section">
             <div class="avatar">
               <img src="path/to/default-avatar.png" alt="Avatar" />
             </div>
-            <!-- Substituir o botão por nome do usuário -->
             <p class="username">Lucas Santos</p>
           </div>
 
           <form>
             <div class="form-container">
-              <!-- First Column -->
               <div class="form-column">
                 <div class="form-group">
                   <label for="username">Usuário:</label>
@@ -169,7 +169,6 @@
                 </div>
               </div>
 
-              <!-- Second Column -->
               <div class="form-column">
                 <div class="form-group">
                   <label for="new-password">Nova senha:</label>
@@ -209,12 +208,38 @@
               </div>
             </div>
 
-            <!-- Buttons -->
             <div class="form-buttons">
               <button type="submit" class="save-btn">Salvar alterações</button>
               <button type="button" class="cancel-btn">Cancelar</button>
             </div>
           </form>
+        </div>
+
+        <!-- Minhas Publicações Section -->
+        <div id="publicacoes-section" class="section">
+          <h2>Minhas publicações:</h2>
+          
+          <div class="post">
+            <div class="post-header">
+              <div class="infoUserPost">
+                <div class="imgUserPost"></div>
+                <div class="nameAndHour">
+                  <strong>Lucas Santos</strong>
+                </div>
+              </div>
+              <div class="trash-icon" onclick="removePost(this)">
+                <i class="fas fa-trash"></i>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>A fiação elétrica do bairro Santa Bárbara está com muitos defeitos.</p>
+            </div>
+            <div class="post-footer">
+              <div class="like-count">
+                <span>❤️ 44 curtidas</span>
+              </div>     
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -227,24 +252,24 @@
 
     <script>
       function showSection(sectionId, clickedTab) {
-        // Oculta todas as seções
         var sections = document.querySelectorAll(".section");
         sections.forEach(function (section) {
           section.classList.remove("active");
         });
 
-        // Remove a classe 'selected' de todas as abas
         var tabs = document.querySelectorAll(".sidebar ul li a");
         tabs.forEach(function (tab) {
           tab.classList.remove("selected");
         });
 
-        // Mostra a seção selecionada
         var sectionToShow = document.getElementById(sectionId);
         sectionToShow.classList.add("active");
-
-        // Adiciona a classe 'selected' na aba clicada
+        
         clickedTab.classList.add("selected");
+      }
+
+      function removePost(postElement) {
+        postElement.closest('.post').remove();
       }
     </script>
 
