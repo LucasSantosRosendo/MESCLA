@@ -7,6 +7,7 @@ body {
   background-color: rgb(34, 34, 34);
 }
 
+<<<<<<< HEAD
 #form {
   position: relative;
   top: 85%;
@@ -20,6 +21,21 @@ body {
   color: rgb(0, 0, 0);
   animation: iniciar 1.6s ease-in-out;
   pointer-events: all;
+=======
+#form{
+    position:relative;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    padding: 50px;
+    width: min-content;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    animation: iniciar 1.6s ease-in-out;
+    pointer-events: all;
+>>>>>>> d6708e344993843d2b2c90e893c395ebdfe56326
 }
 
 .title {
@@ -94,8 +110,17 @@ a:hover {
   transform: scale(1.05);
 }
 
+<<<<<<< HEAD
 @keyframes iniciar {
   0% {
+=======
+#submit:active {
+    opacity: 0.5;
+}
+
+@keyframes iniciar{
+    0%{
+>>>>>>> d6708e344993843d2b2c90e893c395ebdfe56326
     top: -20%;
     opacity: 0;
     pointer-events: none;

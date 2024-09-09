@@ -1,0 +1,10 @@
+body {
+    background: #222222;
+    display: flex;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+    color:rgb(60, 202, 148);
+}
