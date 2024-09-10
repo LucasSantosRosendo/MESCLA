@@ -2,59 +2,59 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
     background: #222222;
     font-family: poppinslight;
     -webkit-font-smoothing: antialiased !important;
-}
-
-li {
+  }
+  
+  li {
     list-style: none;
-}
-
-h1 {
+  }
+  
+  h1 {
     font-family: poppinsmedium;
     color: #ffff;
     line-height: 10px;
     margin: 0;
     padding: 0;
     cursor: pointer;
-}
-
-header {
-  width: 100%;
-  height: 50px;
-  background: rgba(252, 95, 17, 0.979);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px;
-  box-shadow: 1px 0 3px rgba(0,0,0,0.4);
-  position: fixed; 
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-#title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.search-container{
+  }
+  
+  header {
+    width: 100%;
+    height: 50px;
+    background: rgba(252, 95, 17, 0.979);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  #title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .search-container {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 500px;
-}
-
-.search-container input{
+  }
+  
+  .search-container input {
     flex: 1;
     padding: 10px;
     border-radius: 25px;
@@ -62,9 +62,9 @@ header {
     background: #fff;
     color: #333;
     outline: none;
-}
-
-.search-container button {
+  }
+  
+  .search-container button {
     background: #ffffff;
     border: none;
     border-radius: 25px;
@@ -75,11 +75,9 @@ header {
   
   .search-container button i {
     color: #fc5f11
-    ;
   }
   
-
-.sidebar {
+  .sidebar {
     position: fixed;
     left: 0;
     top: 60px;
@@ -89,9 +87,9 @@ header {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.menu-item {
+  }
+  
+  .menu-item {
     color: #fff;
     text-decoration: none;
     display: flex;
@@ -100,31 +98,30 @@ header {
     padding: 10px;
     border-radius: 25px;
     transition: background 0.3s, transform 0.3s;
-}
-
-.menu-item:hover {
+  }
+  
+  .menu-item:hover {
     background: #fc5f11;
     color: #fff;
     transform: scale(1.05);
-}
-
-.menu-item h2 {
+  }
+  
+  .menu-item h2 {
     font-size: 15px;
     margin: 0;
-}
-
-.menu-item span {
+  }
+  
+  .menu-item span {
     font-size: 15px;
-}
-
-.content {
-  margin-left: 230px;
-  padding: 20px;
-  padding-top: 70px;
-}
-
-
-.publish-button {
+  }
+  
+  .content {
+    margin-left: 230px;
+    padding: 20px;
+    padding-top: 70px;
+  }
+  
+  .publish-button {
     background: #fc5f11;
     color: #fff;
     border: none;
@@ -134,20 +131,41 @@ header {
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
     margin-top: 20px;
-}
-
-.publish-button:hover {
+  }
+  
+  .publish-button:hover {
     background: rgba(252, 95, 17, 0.979);
     transform: scale(1.05);
-}
-
-.main {
-    max-width: 1000px; 
+  }
+  
+  .notification-button {
+    background: #da4d07;
+    color: #fff;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    margin-right: 10px;
+  }
+  
+  .notification-button:hover {
+    transform: scale(1.20);
+  }
+  
+  .main {
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-}
-
-div.newPost {
+  }
+  
+  .image {
+    margin-top: 5px;
+    width: 110px;
+    cursor: pointer;
+  }
+  
+  div.newPost {
     width: 100%;
     max-width: 1000px;
     height: auto;
@@ -158,34 +176,34 @@ div.newPost {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-}
-
-div.newPost div.infoUser {
+  }
+  
+  div.newPost div.infoUser {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-}
-
-div.newPost div.infoUser div.imgUser {
-    width: 40px; 
+  }
+  
+  div.newPost div.infoUser div.imgUser {
+    width: 40px;
     height: 40px;
     border-radius: 50%;
     background: #ffff;
-}
-
-div.newPost div.infoUser strong {
+  }
+  
+  div.newPost div.infoUser strong {
     font-size: 18px;
     color: #fc5f11;
     margin-left: 10px;
-}
-
-div.newPost form.formPost {
+  }
+  
+  div.newPost form.formPost {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-div.newPost form.formPost textarea {
+  }
+  
+  div.newPost form.formPost textarea {
     background: #222222;
     margin: 15px 0;
     padding: 25px;
@@ -197,27 +215,26 @@ div.newPost form.formPost textarea {
     font-weight: bold;
     color: #ffffff;
     font-family: poppinslight;
-}
-
-div.newPost form.formPost textarea:focus {
+  }
+  
+  div.newPost form.formPost textarea:focus {
     border: 2px solid #fc5f11;
-
-}
-
-div.newPost form.formPost div.iconsAndButton {
+  }
+  
+  div.newPost form.formPost div.iconsAndButton {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-div.newPost form.formPost div.iconsAndButton div.icons {
+  }
+  
+  div.newPost form.formPost div.iconsAndButton div.icons {
     width: 120px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-div.newPost form.formPost div.iconsAndButton div.icons button {
+  }
+  
+  div.newPost form.formPost div.iconsAndButton div.icons button {
     outline: none;
     margin-right: 15px;
     border: 0;
@@ -226,9 +243,9 @@ div.newPost form.formPost div.iconsAndButton div.icons button {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-div.newPost form.formPost div.iconsAndButton button.btnSubmitForm {
+  }
+  
+  div.newPost form.formPost div.iconsAndButton button.btnSubmitForm {
     background: #fc5f11;
     padding: 10px 60px;
     color: #fff;
@@ -237,60 +254,60 @@ div.newPost form.formPost div.iconsAndButton button.btnSubmitForm {
     border: 0;
     border-radius: 10px;
     transition: background 0.3s, transform 0.3s;
-}
-
-div.newPost form.formPost div.iconsAndButton button.btnSubmitForm:hover {
+  }
+  
+  div.newPost form.formPost div.iconsAndButton button.btnSubmitForm:hover {
     background: rgba(252, 95, 17, 0.979);
     transform: scale(1.05);
-}
-
-ul.posts {
-  padding: 0;
-  margin: 0;
-}
-
-ul.posts li.post {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 30px;
-  background: #1d1d1d;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 1px 2px 2px rgba(0,0,0,0.05);
-}
-
-ul.posts li.post div.infoUserPost {
+  }
+  
+  ul.posts {
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul.posts li.post {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    background: #1d1d1d;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  ul.posts li.post div.infoUserPost {
     display: flex;
     align-items: center;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour {
+  }
+  
+  ul.posts li.post div.infoUserPost div.nameAndHour {
     margin-left: 12px;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour > strong {
+  }
+  
+  ul.posts li.post div.infoUserPost div.nameAndHour > strong {
     color: #fc5f11;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour > p {
+  }
+  
+  ul.posts li.post div.infoUserPost div.nameAndHour > p {
     color: #d1d1d1;
     font-size: 15px;
     height: 50px;
-}
-
-ul.posts li.post > p {
+  }
+  
+  ul.posts li.post > p {
     width: 100%;
     margin: 20px 0;
     font-weight: bold;
     color: #727272;
-}
-
-.tooltip {
+  }
+  
+  .tooltip {
     position: relative;
     display: inline-block;
-}
-
-.tooltip .tooltiptext {
+  }
+  
+  .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: #333;
@@ -305,20 +322,19 @@ ul.posts li.post > p {
     margin-left: -60px;
     opacity: 0;
     transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
+  }
+  
+  .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-}
-
-
-ul.posts li.post div.actionBtnPost {
+  }
+  
+  ul.posts li.post div.actionBtnPost {
     display: flex;
     align-items: center;
-}
-
-ul.posts li.post div.actionBtnPost button.filesPost {
+  }
+  
+  ul.posts li.post div.actionBtnPost button.filesPost {
     padding: 10px 25px;
     border: 0;
     display: flex;
@@ -331,56 +347,55 @@ ul.posts li.post div.actionBtnPost button.filesPost {
     color: #fff;
     font-weight: bold;
     transition: background 0.2s;
-}
-
-ul.posts li.post div.actionBtnPost button.filesPost img {
+  }
+  
+  ul.posts li.post div.actionBtnPost button.filesPost img {
     margin-right: 5px;
-}
-
-.like {
+  }
+  
+  .like {
     background: #ff6b6b;
     transition: background 0.3s, transform 0.3s;
-}
-
-.like:hover {
+  }
+  
+  .like:hover {
     background: rgb(248, 75, 75);
     transform: scale(1.05);
-}
-
-.comment {
+  }
+  
+  .comment {
     background: #ffc320;
     transition: background 0.3s, transform 0.3s;
-}
-
-.comment:hover {
+  }
+  
+  .comment:hover {
     background: rgb(245, 180, 0);
     transform: scale(1.05);
-}
-
-.share {
+  }
+  
+  .share {
     background: #fc5f11;
     transition: background 0.3s, transform 0.3s;
-}
-
-.share:hover {
+  }
+  
+  .share:hover {
     background: rgba(209, 88, 28, 0.979);
     transform: scale(1.05);
-}
-
-.janela-modal {
+  }
+  
+  .janela-modal {
     display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-
-.modal {
+    background-color: #00000000; /* Cor preta sem opacidade */
+  }
+  
+  .modal {
     background-color: #1d1d1d;
     margin: 5% auto;
     padding: 20px;
@@ -388,16 +403,22 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
     width: 90%;
     max-width: 800px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: animatetop 0.4s;
-}
-
-@keyframes animatetop {
-    from {top: -300px; opacity: 0} 
-    to {top: 0; opacity: 1}
-}
-
-.close {
+  }
+  
+  @keyframes animatetop {
+    from {
+      top: -300px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+  
+  .close {
     color: #f44336;
     float: right;
     font-size: 28px;
@@ -405,23 +426,22 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
     cursor: pointer;
     margin-top: -15px;
     margin-right: -15px;
-}
-
-
-.close:hover,
-.close:focus {
-    color: #d32f2f; 
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #d32f2f;
     text-decoration: none;
     cursor: pointer;
-    transition: color 0.3s; 
-}
-
-.janela-modal .formPost {
+    transition: color 0.3s;
+  }
+  
+  .janela-modal .formPost {
     display: flex;
     flex-direction: column;
-}
-
-.janela-modal .formPost textarea {
+  }
+  
+  .janela-modal .formPost textarea {
     resize: none;
     border: 2px solid #141313;
     border-radius: 10px;
@@ -430,32 +450,32 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
     background-color: #2b2b2b;
     color: white;
     height: 100px;
-}
-
-.janela-modal .iconsAndButton {
+  }
+  
+  .janela-modal .iconsAndButton {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-}
-
-.janela-modal .icons {
+  }
+  
+  .janela-modal .icons {
     display: flex;
     gap: 10px;
-}
-
-.janela-modal .btnFileForm {
+  }
+  
+  .janela-modal .btnFileForm {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.janela-modal .btnFileForm img {
+  }
+  
+  .janela-modal .btnFileForm img {
     width: 24px;
     height: 24px;
-}
-
-.janela-modal .btnSubmitForm {
+  }
+  
+  .janela-modal .btnSubmitForm {
     background-color: #fc5f11;
     border: none;
     border-radius: 10px;
@@ -464,13 +484,14 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.janela-modal .btnSubmitForm:hover {
-    background-color: #d64f0c;
-}
-
-.tooltip .tooltiptext {
+  }
+  
+  .janela-modal .btnSubmitForm:hover {
+    background-color: rgba(202, 75, 11, 0.979);
+    transform: scale(1.05);
+  }
+  
+  .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: #555;
@@ -482,12 +503,53 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -60px; 
+    margin-left: -60px;
     opacity: 0;
     transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
+  }
+  
+  .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-}
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-button {
+    background-color: #f0f0f0; /* Ou a cor que desejar */
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown-button:focus + .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a.selected {
+    background-color: #ddd;
+  }
+  

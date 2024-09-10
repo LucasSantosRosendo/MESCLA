@@ -24,9 +24,11 @@ body{
 }
 
 .title{
-    font-size: 1.8pm;
-    color:rgb(60, 202, 148);
+    margin: 0px 0px -10px 0px;
+    font-size: 45px;
+    color: rgb(60, 202, 148);
     margin-bottom: 10%;
+    text-align: center;
 }
 
 .input{
@@ -47,7 +49,7 @@ body{
     width: 80%;
     border: none;
     outline: none;
-    font-family: poppinsmedium;
+    font-family: poppinslight;
     transform: translateY(-10%);
     font-size: 11pt;
 }
@@ -68,7 +70,7 @@ a:hover {
 }
 
 #btn button{
-    font-family: poppinsmedium;
+    font-family: poppinslight;
     background: rgb(60,202,148);
     width: 100%;
     height: 40px;
@@ -99,3 +101,4 @@ a:hover {
     pointer-events: all;
     }
 }
+
