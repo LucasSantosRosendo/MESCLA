@@ -122,6 +122,7 @@ header {
 }
 
 .publish-button {
+  width: 270px;
   background: #3cca94;
   color: #fff;
   border: none;
@@ -130,7 +131,7 @@ header {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .publish-button:hover {
@@ -138,10 +139,31 @@ header {
   transform: scale(1.05);
 }
 
+.notification-button {
+  background: #3cca94;
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  margin-right: 10px;
+}
+
+.notification-button:hover {
+  transform: scale(1.20);
+}
+
 .main {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.image {
+  margin-top: 5px;
+  width: 110px;
+  cursor: pointer;
 }
 
 div.newPost {

@@ -17,7 +17,7 @@
   <body>
     <div id="form">
       <form id="login-form" action="" onsubmit="login(event)">
-        <h2 class="title">Logar</h2>
+        <h2 class="title">Login</h2>
         <label for="">Email</label>
         <div class="input">
           <i class="fa-solid fa-envelope"></i>
@@ -32,6 +32,7 @@
           <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta?
           <a href="cadastro.html">Clique aqui</a>
         </p>
+        <i class="fa-solid fa-key"></i> Esqueceu sua senha? <a href="#" id="forgot-password">Clique aqui</a>
         <div id="btn">
           <button type="submit">Login</button>
         </div>
@@ -64,6 +65,24 @@
             console.log("error", error);
           });
       }
-    </script>
+
+      document.getElementById('forgot-password').addEventListener('click', function() {
+        const email = prompt("Por favor, insira seu e-mail para redefinir a senha:");
+        
+        if (email) {
+          firebase.auth().sendPasswordResetEmail(email)
+            .then(() => {
+              alert('E-mail de redefinição de senha enviado com sucesso!');
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert(`Erro: ${errorMessage}`);
+            });
+        } else {
+          alert('Por favor, insira um e-mail válido.');
+        }
+      });
+    </script>    
   </body>
 </html>
