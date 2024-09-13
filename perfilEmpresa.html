@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Empresa / MESCLA</title>
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <link href="/styles/media.css" rel="stylesheet" />
+    <link href="/styles/perfil.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      .section {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      .sidebar ul li a.selected {
+        background-color: #3cca94;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h2>Perfil</h2>
+        <ul>
+          <li>
+            <a
+              href="#"
+              id="geral-tab"
+              onclick="showSection('geral-section', this)"
+            >
+              <i class="fas fa-cog"></i> Geral
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="senha-tab"
+              onclick="showSection('mudar-senha-section', this)"
+            >
+              <i class="fas fa-lock"></i> Mudar Senha
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="publicacoes-tab"
+              onclick="showSection('publicacoes-section', this)"
+            >
+            <i class="fa-solid fa-bell"></i> Solicitações
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <!-- Geral Section -->
+        <div id="geral-section" class="section active">
+          <h2>Geral:</h2>
+          <div class="avatar-section">
+            <div class="avatar">
+              <img src="/components/images/cemig.jpeg" alt="Avatar" />
+            </div>
+            <input type="file" id="file-input" style="display: none" />
+            <label for="file-input" class="upload-btn"
+              >Carregue uma foto de perfil</label
+            >
+          </div>
+          <form>
+            <div class="form-container">
+              <div class="form-column">
+                <div class="form-group">
+                  <label for="name">Empresa:</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Nome da sua empresa"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email corporativo:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Seu email corporativo"
+                  />
+                </div>
+              </div>
+
+              <div class="form-column">
+                <div class="form-group">
+                  <label for="address">Setor de atuação:</label>
+                  <input
+                    type="text"
+                    id="setor"
+                    name="setor"
+                    placeholder="Setor de atuação"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">CNPJ:</label>
+                  <input
+                    type="text"
+                    id="cnpj"
+                    name="cnpj"
+                    maxlength="13"
+                    placeholder="00.000.000/0000-0"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="save-btn">Salvar alterações</button>
+              <button type="button" class="cancel-btn">Cancelar</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Mudar Senha Section -->
+        <div id="mudar-senha-section" class="section">
+          <h2>Alterar senha:</h2>
+
+          <div class="avatar-section">
+            <div class="avatar">
+              <img src="/components/images/cemig.jpeg" alt="Avatar" />
+            </div>
+            <p class="username">Cemig</p>
+          </div>
+
+          <form>
+            <div class="form-container">
+              <div class="form-column">
+                <div class="form-group">
+                  <label for="username">Empresa:</label>
+                  <input
+                    type="text"
+                    id="empresa"
+                    name="empresa"
+                    placeholder="Digite o nome da sua empresa"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="current-password">Senha atual:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="current-password"
+                      name="current-password"
+                      placeholder="Digite a senha atual"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('current-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-column">
+                <div class="form-group">
+                  <label for="new-password">Nova senha:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="new-password"
+                      name="new-password"
+                      placeholder="Digite sua nova senha"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('new-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="confirm-password">Confirmar nova senha:</label>
+                  <div class="password-wrapper">
+                    <input
+                      type="password"
+                      id="confirm-password"
+                      name="confirm-password"
+                      placeholder="Confirme sua nova senha"
+                    />
+                    <span
+                      class="toggle-password"
+                      onclick="togglePassword('confirm-password')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="save-btn">Salvar alterações</button>
+              <button type="button" class="cancel-btn">Cancelar</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Minhas Publicações Section -->
+        <div id="publicacoes-section" class="section">
+          <h2>Solicitações:</h2>
+          
+          <div class="post">
+            <div class="post-header">
+              <div class="infoUserPost">
+                <div class="imgUserPost"></div>
+                <div class="nameAndHour">
+                  <strong>Lucas Santos</strong>
+                </div>
+              </div>
+              <div class="trash-icon" onclick="removePost(this)">
+                <i class="fas fa-trash"></i>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>A fiação elétrica do bairro Santa Bárbara está com muitos defeitos.</p>
+            </div>
+            <div class="post-footer">
+              <div class="like-count">
+                <span>❤️ 44 curtidas</span>
+              </div>     
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-button">
+      <a href="feed2.html" class="btn btn-back">
+        <i class="fas fa-arrow-left"></i> Início
+      </a>
+    </div>
+
+    <script>
+      function showSection(sectionId, clickedTab) {
+        var sections = document.querySelectorAll(".section");
+        sections.forEach(function (section) {
+          section.classList.remove("active");
+        });
+
+        var tabs = document.querySelectorAll(".sidebar ul li a");
+        tabs.forEach(function (tab) {
+          tab.classList.remove("selected");
+        });
+
+        var sectionToShow = document.getElementById(sectionId);
+        sectionToShow.classList.add("active");
+        
+        clickedTab.classList.add("selected");
+      }
+
+      function removePost(postElement) {
+        postElement.closest('.post').remove();
+      }
+    </script>
+
+    <script>
+      function togglePassword(id) {
+        var passwordField = document.getElementById(id);
+        var passwordIcon = passwordField.nextElementSibling;
+
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          passwordIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+          passwordField.type = "password";
+          passwordIcon.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+      }
+    </script>
+  </body>
+</html>
