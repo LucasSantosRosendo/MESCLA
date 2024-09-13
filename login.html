@@ -13,31 +13,50 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
     <title>Login / MESCLA</title>
+
+    <style>
+      
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin: 10px 0;
+        display: none;
+        font-family: poppinsmedium;
+      }
+    </style>
   </head>
   <body>
     <div id="form">
-      <form id="login-form" action="" onsubmit="login(event)">
+      <form id="login-form" action="" onsubmit="return validarForm(event)">
         <h2 class="title">Login</h2>
+
+        
+        <div id="error-message" class="error-message"></div>
+
         <label for="">Email</label>
         <div class="input">
           <i class="fa-solid fa-envelope"></i>
           <input id="email" name="email" placeholder="Email" type="text" />
         </div>
+
         <label for="">Senha</label>
         <div class="input">
           <i class="fa-solid fa-lock"></i>
           <input id="senha" name="senha" placeholder="Senha" type="password" />
         </div>
+
         <p>
           <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta?
           <a href="cadastro.html">Clique aqui</a>
         </p>
         <i class="fa-solid fa-key"></i> Esqueceu sua senha? <a href="#" id="forgot-password">Clique aqui</a>
+
         <div id="btn">
           <button type="submit">Login</button>
         </div>
       </form>
     </div>
+
     <script>
       const firebaseConfig = {
         apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -63,6 +82,7 @@
           })
           .catch((error) => {
             console.log("error", error);
+            Erro("Erro ao fazer login: " + error.message);
           });
       }
 
@@ -72,17 +92,50 @@
         if (email) {
           firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
-              alert('E-mail de redefinição de senha enviado com sucesso!');
+              Erro('E-mail de redefinição de senha enviado com sucesso!', false);
             })
             .catch((error) => {
-              const errorCode = error.code;
               const errorMessage = error.message;
-              alert(`Erro: ${errorMessage}`);
+              Erro(`Erro: ${errorMessage}`);
             });
         } else {
-          alert('Por favor, insira um e-mail válido.');
+          Error('Por favor, insira um e-mail válido.');
         }
       });
-    </script>    
+
+      function validarForm(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+
+        if (email === "") {
+          Erro("Email e senha são obrigatórios!");
+          return false;
+        }
+
+        const emailValidacao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailValidacao.test(email)) {
+          Erro("Por favor, insira um email válido.");
+          return false;
+        }
+
+        if (senha.length < 8) {
+          Erro("A senha deve ter pelo menos 8 caracteres.");
+          return false;
+        }
+        
+        
+        login(event);
+        return true;
+      }
+
+      
+      function Erro(message, isError = true) {
+        const errorMessageDiv = document.getElementById("error-message");
+        errorMessageDiv.innerHTML = message;
+        errorMessageDiv.style.color = isError ? "red" : "green";
+        errorMessageDiv.style.display = "block";
+      }
+    </script>
   </body>
 </html>

@@ -25,12 +25,11 @@ const database = getDatabase(app);
 document.getElementById("submit").addEventListener("click", function (event) {
   event.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const nascimento = document.getElementById("nascimento").value;
-  const cpf = document.getElementById("cpf").value;
+  const empresa = document.getElementById("empresa").value;
+  const cnpj = document.getElementById("cnpj").value;
   const cidade = document.getElementById("cidade").value;
-  const bairro = document.getElementById("bairro").value;
   const email = document.getElementById("email").value;
+  const setorAtuacao = document.getElementById("setorAtuacao").value;
   const senha = document.getElementById("senha").value;
   const senha2 = document.getElementById("senha2").value;
 
@@ -44,12 +43,11 @@ document.getElementById("submit").addEventListener("click", function (event) {
       const user = userCredential.user;
 
       set(ref(database, "users/" + user.uid), {
-        nome: nome,
-        nascimento: nascimento,
-        cpf: cpf,
+        empresa: empresa,
+        cnpj: cnpj,
         cidade: cidade,
-        bairro: bairro,
         email: email,
+        setorAtuacao: setorAtuacao,
       })
         .then(() => {
           alert("Conta criada e dados salvos com sucesso!");
@@ -64,37 +62,3 @@ document.getElementById("submit").addEventListener("click", function (event) {
       alert("Erro ao criar conta: " + errorMessage);
     });
 });
-
-function validarForm(event) {
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
-
-  if (email === "") {
-    Erro("Email e senha são obrigatórios!");
-    return false;
-  }
-
-  const emailValidacao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailValidacao.test(email)) {
-    Erro("Por favor, insira um email válido.");
-    return false;
-  }
-
-  if (senha.length < 8) {
-    Erro("A senha deve ter pelo menos 8 caracteres.");
-    return false;
-  }
-  
-  
-  login(event);
-  return true;
-}
-
-
-function Erro(message, isError = true) {
-  const errorMessageDiv = document.getElementById("error-message");
-  errorMessageDiv.innerHTML = message;
-  errorMessageDiv.style.color = isError ? "red" : "green";
-  errorMessageDiv.style.display = "block";
-}
