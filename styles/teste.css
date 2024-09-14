@@ -1,0 +1,49 @@
+    /* CSS Adicional para o Bloco de Texto */
+    .description-block {
+        background: #9f3737;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 5px 5px 5px rgba(253, 130, 130, 0.05);
+      }
+  
+      .description-block h2 {
+        font-size: 10px;
+        color: #3cca94;
+        margin-bottom: 10px;
+      }
+  
+      .description-block textarea {
+        width: 30%;
+        height: 100px;
+        padding: 15px;
+        border: 2px solid #141313;
+        border-radius: 10px;
+        background: #222222;
+        color: #ffffff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        resize: none;
+        outline: none;
+      }
+  
+      .description-block textarea:focus {
+        border-color: #3cca94;
+      }
+  
+      .description-block button {
+        background: #3cca94;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+        margin-top: 10px;
+      }
+  
+      .description-block button:hover {
+        background: rgb(60, 202, 148);
+        transform: scale(1.05);
+      }

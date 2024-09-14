@@ -1,262 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="/styles/feed2.css" rel="stylesheet" />
-    <link href="/styles/fonts.css" rel="stylesheet" />
-    <script
-      src="https://kit.fontawesome.com/b432763f75.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Página Inicial / MESCLA</title>
-  </head>
-  <body>
-    <header>
-      <div id="title">
-        <article>
-        <img class="image"src="components/images/mesclado.png" alt="MESCLA"/>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
+  <link href="/styles/feed2.css" rel="stylesheet" />
+  <link href="/styles/fonts.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
+  <title>Página Inicial / MESCLA</title>
+</head>
+
+<body>
+  <header>
+    <div id="title">
+      <article>
+        <img class="image" src="components/images/mesclado.png" alt="MESCLA" />
       </article>
-      </div>
-        <div>
-          <button class="notification-button" id="notificacao">
-              <span><i class="fas fa-bell"></i></span>
-          </button>
-          </div>
-        <div class="search-container">
-          <input type="text" placeholder=" Procure amigos no MESCLA..." />
-          <button class="search-button"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <button class="notification-button" id="notificacao">
+        <span><i class="fas fa-bell"></i></span>
+      </button>
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder=" Procure amigos no MESCLA..." />
+      <button class="search-button"><i class="fas fa-search"></i></button>
+    </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="sidebar">
+
+      <a href="comunidade.html" class="menu-item">
+        <span><i class="fas fa-users"></i></span>
+        <h2>Comunidade</h2>
+      </a>
+      <a href="chat.html" class="menu-item">
+        <span><i class="fas fa-comment"></i></span>
+        <h2>Mensagens</h2>
+      </a>
+
+      <a href="publicacao.html" class="menu-item">
+        <span><i class="fas fa-plus"></i></span>
+        <h2>Publicar</h2>
+      </a>
+      <a href="profile.html" class="menu-item">
+        <span><i class="fa-solid fa-user"></i></span>
+        <h2>Perfil</h2>
+      </a>
+      <a href="configuracoes.html" class="menu-item">
+        <span><i class="fas fa-cog"></i></span>
+        <h2>Configurações</h2>
+      </a>
+
+      <a href="pet.html" class="menu-item">
+        <button class="publish-button" href="pet.html">Pet's Community <i class="fa-solid fa-paw"></i> </button>
+      </a>
+
+    </div>
+
+    <div class="sidebar-separator"></div>
+
+    <div class="content">
+      <div class="newPost">
+        <div class="infoUser">
+          <div class="imgUser"></div>
+          <strong>Lucas Santos</strong>
         </div>
-      </div>
-    </header>
 
-    <main class="main">
-      <div class="sidebar">
-        
-        <a href="comunidade.html" class="menu-item">
-          <span><i class="fas fa-users"></i></span>
-          <h2>Comunidade</h2>
-        </a>
-        <a href="chat.html" class="menu-item">
-          <span><i class="fas fa-comment"></i></span>
-          <h2>Mensagens</h2>
-        </a>
-
-        <a href="publicacao.html" class="menu-item">
-          <span><i class="fas fa-plus"></i></span>
-          <h2>Publicar</h2>
-        </a>
-        <a href="profile.html" class="menu-item">
-          <span><i class="fa-solid fa-user"></i></span>
-          <h2>Perfil</h2>
-        </a>
-        <a href="configuracoes.html" class="menu-item">
-          <span><i class="fas fa-cog"></i></span>
-          <h2>Configurações</h2>
-        </a>
-
-        <a href="pet.html" class="menu-item">
-          <button class="publish-button" href="pet.html">Pet's Community  <i class="fa-solid fa-paw"></i> </button>
-        </a>
-        
-      </div>
-
-      <div class="sidebar-separator"></div>
-
-      <div class="content">
-        <div class="newPost">
-          <div class="infoUser">
-            <div class="imgUser"></div>
-            <strong>Lucas Santos</strong>
-          </div>
-
-          <form action="" class="formPost" id="formPost">
-            <textarea
-              name="textarea"
-              placeholder="Vamos melhorar sua região?"
-              id="textarea"
-            ></textarea>
-            <div class="iconsAndButton">
-              <div class="icons">
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="imageUpload"
-                    accept="image/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('imageUpload').click();"
-                  >
-                    <img
-                      src="/components/images/imgMESCLA.png"
-                      alt="Adicionar uma imagem"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar uma imagem</span>
-                </div>
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="videoUpload"
-                    accept="video/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('videoUpload').click();"
-                  >
-                    <img
-                      src="/components/images/videoMESCLA.png"
-                      alt="Adicionar um vídeo"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar um vídeo</span>
-                </div>
-                <button
-                  type="button"
-                  class="btnFileForm"
-                  onclick="document.getElementById('videoUpload').click();"
-                >
-                  <img
-                    src="/components/images/empresaMESCLA.png"
-                    alt="Adicionar empresa"
-                  />
+        <form action="" class="formPost" id="formPost">
+          <textarea name="textarea" placeholder="Vamos melhorar sua região?" id="textarea"></textarea>
+          <div class="iconsAndButton">
+            <div class="icons">
+              <div class="tooltip">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none" />
+                <button type="button" class="btnFileForm" onclick="document.getElementById('imageUpload').click();">
+                  <img src="/components/images/imgMESCLA.png" alt="Adicionar uma imagem" />
                 </button>
+                <span class="tooltiptext">Adicionar uma imagem</span>
               </div>
-              <button type="submit" id="botao" class="btnSubmitForm">
-                Publicar
+              <div class="tooltip">
+                <input type="file" id="videoUpload" accept="video/*" style="display: none" />
+                <button type="button" class="btnFileForm" onclick="document.getElementById('videoUpload').click();">
+                  <img src="/components/images/videoMESCLA.png" alt="Adicionar um vídeo" />
+                </button>
+                <span class="tooltiptext">Adicionar um vídeo</span>
+              </div>
+              <button type="button" class="btnFileForm" onclick="document.getElementById('videoUpload').click();">
+                <img src="/components/images/empresaMESCLA.png" alt="Adicionar empresa" />
               </button>
             </div>
-          </form>
-        </div>
-
-        <ul class="posts" id="posts">
-          <!-- As publicações serão adicionadas aqui -->
-        </ul>
+            <button type="submit" id="botao" class="btnSubmitForm">
+              Publicar
+            </button>
+          </div>
+        </form>
       </div>
 
-      <div class="janela-modal" id="janela-modal">
-        <div class="modal">
-          <span class="close">&times;</span>
-          <form action="" class="formPost" id="formPostModal">
-            <textarea
-              name="textarea"
-              placeholder="Vamos melhorar sua região?"
-              id="textareaModal"
-            ></textarea>
-            <div class="iconsAndButton">
-              <div class="icons">
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="imageUploadModal"
-                    accept="image/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('imageUploadModal').click();"
-                  >
-                    <img
-                      src="/components/images/imgMESCLA.png"
-                      alt="Adicionar uma imagem"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar uma imagem</span>
-                </div>
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="videoUploadModal"
-                    accept="video/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('videoUploadModal').click();"
-                  >
-                    <img
-                      src="/components/images/videoMESCLA.png"
-                      alt="Adicionar um vídeo"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar um vídeo</span>
-                </div>
+      <ul class="posts" id="posts">
+        <!-- As publicações serão adicionadas aqui -->
+      </ul>
+    </div>
+
+    <div class="janela-modal" id="janela-modal">
+      <div class="modal">
+        <span class="close">&times;</span>
+        <form action="" class="formPost" id="formPostModal">
+          <textarea name="textarea" placeholder="Vamos melhorar sua região?" id="textareaModal"></textarea>
+          <div class="iconsAndButton">
+            <div class="icons">
+              <div class="tooltip">
+                <input type="file" id="imageUploadModal" accept="image/*" style="display: none" />
+                <button type="button" class="btnFileForm"
+                  onclick="document.getElementById('imageUploadModal').click();">
+                  <img src="/components/images/imgMESCLA.png" alt="Adicionar uma imagem" />
+                </button>
+                <span class="tooltiptext">Adicionar uma imagem</span>
               </div>
-              <button type="submit" id="botaoModal" class="btnSubmitForm">
-                Publicar
-              </button>
+              <div class="tooltip">
+                <input type="file" id="videoUploadModal" accept="video/*" style="display: none" />
+                <button type="button" class="btnFileForm"
+                  onclick="document.getElementById('videoUploadModal').click();">
+                  <img src="/components/images/videoMESCLA.png" alt="Adicionar um vídeo" />
+                </button>
+                <span class="tooltiptext">Adicionar um vídeo</span>
+              </div>
             </div>
-          </form>
-        </div>
+            <button type="submit" id="botaoModal" class="btnSubmitForm">
+              Publicar
+            </button>
+          </div>
+        </form>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Modal Logic
-        const openModalButton = document.getElementById("openModal");
-        const modal = document.getElementById("janela-modal");
-        const closeModalButton = document.querySelector(".close");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Modal Logic
+      const openModalButton = document.getElementById("openModal");
+      const modal = document.getElementById("janela-modal");
+      const closeModalButton = document.querySelector(".close");
 
-        openModalButton.addEventListener("click", function () {
-          modal.style.display = "flex";
-        });
+      openModalButton.addEventListener("click", function () {
+        modal.style.display = "flex";
+      });
 
-        closeModalButton.addEventListener("click", function () {
+      closeModalButton.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
           modal.style.display = "none";
+        }
+      });
+
+      // Form Submission Logic for Modal
+      document
+        .getElementById("formPostModal")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const textareaContent =
+            document.getElementById("textareaModal").value;
+
+          alert("Publicação no modal realizada com sucesso!");
+          modal.style.display = "none";
+
+          // Example: Adding post to feed
+          addPostToFeed(textareaContent);
         });
 
-        window.addEventListener("click", function (event) {
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
+      // Form Submission Logic for Page
+      document
+        .getElementById("formPost")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const textareaContent = document.getElementById("textarea").value;
+
+          alert("Publicação na página realizada com sucesso!");
+          document.getElementById("formPost").reset();
+
+          // Example: Adding post to feed
+          addPostToFeed(textareaContent);
         });
 
-        // Form Submission Logic for Modal
-        document
-          .getElementById("formPostModal")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            const textareaContent =
-              document.getElementById("textareaModal").value;
-
-            alert("Publicação no modal realizada com sucesso!");
-            modal.style.display = "none";
-
-            // Example: Adding post to feed
-            addPostToFeed(textareaContent);
-          });
-
-        // Form Submission Logic for Page
-        document
-          .getElementById("formPost")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            const textareaContent = document.getElementById("textarea").value;
-
-            alert("Publicação na página realizada com sucesso!");
-            document.getElementById("formPost").reset();
-
-            // Example: Adding post to feed
-            addPostToFeed(textareaContent);
-          });
-
-        function addPostToFeed(content) {
-          const postsList = document.getElementById("posts");
-          const newPost = document.createElement("li");
-          newPost.classList.add("post");
-          newPost.innerHTML = `
+      function addPostToFeed(content) {
+        const postsList = document.getElementById("posts");
+        const newPost = document.createElement("li");
+        newPost.classList.add("post");
+        newPost.innerHTML = `
             <div class="infoUserPost">
               <div class="imgUserPost"></div>
               <div class="nameAndHour">
@@ -278,14 +213,15 @@
               </div>
             </div>
           `;
-          postsList.appendChild(newPost);
-        }
+        postsList.appendChild(newPost);
+      }
 
-        function calculateTimeAgo() {
-          const now = new Date();
-          return `${now.getHours()}:${now.getMinutes()}`;
-        }
-      });
-    </script>
-  </body>
+      function calculateTimeAgo() {
+        const now = new Date();
+        return `${now.getHours()}:${now.getMinutes()}`;
+      }
+    });
+  </script>
+</body>
+
 </html>
