@@ -1,10 +1,26 @@
 body {
-    background: #222222;
+    background: gray;
     display: flex;
+
 }
 
 .title {
-    font-size: 50px;
-    text-align: center;
+    font-size: 40px;
     color:rgb(60, 202, 148);
+}
+
+.box {
+    padding: 15px;
+    margin: 10px;
+    height: 600px;
+    width: auto;
+    background-color: black;
+}
+
+.botao {
+  cursor:pointer;
+  background-color: black;
+  border: none;
+  margin-right: 50px;
+  
 }

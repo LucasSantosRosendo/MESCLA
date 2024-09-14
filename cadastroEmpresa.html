@@ -7,8 +7,20 @@
    <link href="/styles/fonts.css" rel="stylesheet">
    <link href="/styles/media.css" rel="stylesheet">
    <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
-   <script type="module" src="register.js" defer></script>
+   <script type="module" src="registerEmpresa.js" defer></script>
    <title>Cadastro  / MESCLA</title>
+
+   <style>
+      
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin: 10px 0;
+      display: none;
+      font-family: poppinsmedium;
+    }
+  </style>
+
 </head>
 <body>
    <form id="form">
@@ -16,7 +28,7 @@
        <label for="nome">Empresa</label>
        <div class="input">
            <i class="fa-solid fa-building"></i>
-           <input id="nome" name="username" placeholder="Nome" type="text" required>
+           <input id="empresa" name="username" placeholder="Nome" type="text" required>
        </div>
        <label for="cnpj">CNPJ</label>
        <div class="input">

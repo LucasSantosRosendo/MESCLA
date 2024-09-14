@@ -7,8 +7,20 @@
    <link href="/styles/fonts.css" rel="stylesheet">
    <link href="/styles/media.css" rel="stylesheet">
    <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
-   <script type="module" src="register.js" defer></script>
+   <script type="module" src="registerPrefeitura.js" defer></script>
    <title>Cadastro / MESCLA</title>
+
+   <style>
+      
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin: 10px 0;
+      display: none;
+      font-family: poppinsmedium;
+    }
+  </style>
+
 </head>
 <body>
    <form id="form">
@@ -16,12 +28,12 @@
        <label for="cidade">Cidade</label>
        <div class="input">
            <i class="fa-solid fa-landmark"></i>
-           <input id="nome" name="username" placeholder="Cidade" type="text" required>
+           <input id="cidade" name="username" placeholder="Cidade" type="text" required>
        </div>
        <label for="cnpj">CNPJ</label>
        <div class="input">
            <i class="fa-solid fa-envelope"></i>
-           <input id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" type="number" required>
+           <input id="cnpj" name="cnpj" placeholder="00.000.000/0000-00"  maxlength="14" type="text" required>
        </div>
        <label for="email">Email Institucional</label>
        <div class="input">
