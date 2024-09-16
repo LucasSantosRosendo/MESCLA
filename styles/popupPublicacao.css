@@ -1,0 +1,170 @@
+* {
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+}
+
+.buttonAPP{
+    background-color: #3cca94;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .4s;
+    margin: 10px;
+    justify-content: space-between;
+        display: flex;
+}
+.popup-button,
+.popup .close-popup-button {
+    background-color: #3cca94;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .4s;
+    margin: 10px;
+    justify-content: space-between;
+        display: flex;
+}
+
+.description-block button {
+    background-color: #3cca94;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 14;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 10px;
+  }
+
+  .description-block button:hover {
+    background: rgb(60, 202, 148);
+    transform: scale(1.05);
+  }
+
+.popup-button:hover,
+.popup .close-popup-button:hover {
+    opacity: 0.8;
+}
+
+.popup-button:active,
+.popup .close-popup-button:active {
+    transform: scale(.8);
+}
+
+.popup {
+    position: absolute;
+    background-color: #333;
+    padding: 30px 50px;
+    border-radius: 8px;
+    text-align: center;
+    width: 600px; /* Aumentado para acomodar o upload de imagem */
+    box-sizing: border-box;
+    transition: all .4s;
+    z-index: -1;
+    transform: scale(.4);
+    opacity: 0;
+}
+
+.popup.opened {
+    z-index: 1;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup h2.title {
+    color: #3cca94;
+    text-align: center; /* Centralização do título */
+}
+
+.popup p.desc {
+    color: #FFF;
+    text-align: center; /* Centralização do texto */
+}
+
+#picture__input {
+    display: none;
+}
+
+.picture {
+    width: 400px; /* Ajustado para ocupar toda a largura do popup */
+    aspect-ratio: 16/9;
+    background: #3e3e3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2f2f2f;
+    border: 2px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+    margin: 20px auto; /* Centraliza o upload de imagem */
+}
+
+.picture:hover {
+    color: #777;
+    background: rgb(127, 201, 150);
+}
+
+.picture:active {
+    border-color: rgb(64, 224, 115);
+    color: rgb(127, 201, 150);
+    background: #eee;
+}
+
+.picture:focus {
+    color: #777;
+    background: rgb(127, 201, 150);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.picture__img {
+    max-width: 100%;
+    height: auto;
+}
+
+.description-block textarea {
+    width: 85%;
+    height: 100px;
+    padding: 15px;
+    border: 2px solid #141313;
+    border-radius: 10px;
+    background: #222222;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+  }
+
+  .description-block textarea:focus {
+    border-color: #3cca94;
+  }
+
