@@ -1,5 +1,5 @@
 body {
-    background: gray;
+    background: #222222;
     display: flex;
 
 }
@@ -10,17 +10,38 @@ body {
 }
 
 .box {
-    padding: 15px;
     margin: 10px;
-    height: 600px;
-    width: auto;
-    background-color: black;
+    height: auto;
+    width: 250px;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding-top: 16px;
 }
 
 .botao {
   cursor:pointer;
-  background-color: black;
   border: none;
-  margin-right: 50px;
-  
+  margin-right: 10px;
+  font-size: 35px;
+  color:rgb(60, 202, 148);
+  text-decoration:wavy;
+  margin-left: 25px;
+}
+
+.botao span:hover {
+  transition: 0.3s all;
+  font-size: 40px;
+  }
+
+hr {
+  border: 1px solid white;
+  margin: 10px;
+}
+
+.cubao {
+    background-color: black;
+    margin: 10px;
+    height: 600px;
+    width: 100%;
+    border-radius: 30px;
 }
