@@ -25,6 +25,10 @@ const database = getDatabase(app);
 document.getElementById("submit").addEventListener("click", function (event) {
   event.preventDefault();
 
+  if (!validarForm()) {
+    return;
+  }
+
   const nome = document.getElementById("nome").value;
   const nascimento = document.getElementById("nascimento").value;
   const cpf = document.getElementById("cpf").value;
@@ -33,11 +37,6 @@ document.getElementById("submit").addEventListener("click", function (event) {
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
   const senha2 = document.getElementById("senha2").value;
-
-  if (senha !== senha2) {
-    alert("As senhas não coincidem!");
-    return;
-  }
 
   createUserWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
@@ -65,13 +64,27 @@ document.getElementById("submit").addEventListener("click", function (event) {
     });
 });
 
-function validarForm(event) {
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
+function validarForm() {
+  const nome = document.getElementById("nome").value.trim();
+  const nascimento = document.getElementById("nascimento").value;
+  const cpf = document.getElementById("cpf").value.trim();
+  const cidade = document.getElementById("cidade").value.trim();
+  const bairro = document.getElementById("bairro").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const senha = document.getElementById("senha").value;
+  const senha2 = document.getElementById("senha2").value;
 
-  if (email === "") {
-    Erro("Email e senha são obrigatórios!");
+  if (
+    !nome ||
+    !nascimento ||
+    !cpf ||
+    !cidade ||
+    !bairro ||
+    !email ||
+    !senha ||
+    !senha2
+  ) {
+    Erro("Todos os campos são obrigatórios!");
     return false;
   }
 
@@ -81,16 +94,24 @@ function validarForm(event) {
     return false;
   }
 
+  const cpfValidacao = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+  if (!cpfValidacao.test(cpf)) {
+    Erro("Por favor, insira um CPF válido no formato 000.000.000-00.");
+    return false;
+  }
+
   if (senha.length < 8) {
     Erro("A senha deve ter pelo menos 8 caracteres.");
     return false;
   }
-  
-  
-  login(event);
+
+  if (senha !== senha2) {
+    Erro("As senhas não conferem.");
+    return false;
+  }
+
   return true;
 }
-
 
 function Erro(message, isError = true) {
   const errorMessageDiv = document.getElementById("error-message");
