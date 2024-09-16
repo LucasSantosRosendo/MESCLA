@@ -25,6 +25,10 @@ const database = getDatabase(app);
 document.getElementById("submit").addEventListener("click", function (event) {
   event.preventDefault();
 
+  if (!validarForm()) {
+    return;
+  }
+
   const empresa = document.getElementById("empresa").value;
   const cnpj = document.getElementById("cnpj").value;
   const cidade = document.getElementById("cidade").value;
@@ -32,11 +36,6 @@ document.getElementById("submit").addEventListener("click", function (event) {
   const setorAtuacao = document.getElementById("setorAtuacao").value;
   const senha = document.getElementById("senha").value;
   const senha2 = document.getElementById("senha2").value;
-
-  if (senha !== senha2) {
-    alert("As senhas não coincidem!");
-    return;
-  }
 
   createUserWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
@@ -62,3 +61,49 @@ document.getElementById("submit").addEventListener("click", function (event) {
       alert("Erro ao criar conta: " + errorMessage);
     });
 });
+
+function validarForm() {
+  const empresa = document.getElementById("empresa").value.trim();
+  const cidade = document.getElementById("cidade").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const setorAtuacao = document.getElementById("setorAtuacao").value.trim();
+  const senha = document.getElementById("senha").value;
+  const senha2 = document.getElementById("senha2").value;
+
+  if (
+    !empresa ||
+    !cidade ||
+    !email ||
+    !setorAtuacao ||
+    !senha ||
+    !senha2
+  ) {
+    Erro("Todos os campos são obrigatórios!");
+    return false;
+  }
+
+  const emailValidacao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailValidacao.test(email)) {
+    Erro("Por favor, insira um email válido.");
+    return false;
+  }
+
+  if (senha.length < 8) {
+    Erro("A senha deve ter pelo menos 8 caracteres.");
+    return false;
+  }
+
+  if (senha !== senha2) {
+    Erro("As senhas não conferem.");
+    return false;
+  }
+
+  return true;
+}
+
+function Erro(message, isError = true) {
+  const errorMessageDiv = document.getElementById("error-message");
+  errorMessageDiv.innerHTML = message;
+  errorMessageDiv.style.color = isError ? "red" : "green";
+  errorMessageDiv.style.display = "block";
+}

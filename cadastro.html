@@ -25,55 +25,110 @@
 <body>
    <form id="form">
 
-       <h2 class="title">Cadastro</h2>
-       <label for="nome">Nome</label>
-       <div class="input">
-           <i class="fa-solid fa-user-large"></i>
-           <input id="nome" name="username" placeholder="Usuário" type="text" required>
-       </div>
+    <style>
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin: 10px 0;
+        display: none;
+        font-family: poppinsmedium;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <h2 class="title">Cadastrar</h2>
+      <div id="error-message" class="error-message"></div>
+      <label for="nome">Nome</label>
+      <div class="input">
+        <i class="fa-solid fa-user-large"></i>
+        <input
+          id="nome"
+          name="username"
+          placeholder="Usuário"
+          type="text"
+          required
+        />
+      </div>
 
-       <label for="nascimento">Data de Nascimento</label>
-       <div class="input">
+      <label for="nascimento">Data de Nascimento</label>
+      <div class="input">
         <i class="fa-solid fa-calendar"></i>
-        <input id="nascimento" name="nascimento" type="date" required>
-    </div>
+        <input id="nascimento" name="nascimento" type="date" required />
+      </div>
 
-       <label for="cpf">CPF</label>
-       <div class="input">
-           <i class="fa-solid fa-address-card"></i>
-           <input id="cpf" name="cpf" maxlength="11" placeholder="000.000.000-00" type="text" required>
+      <label for="cpf">CPF</label>
+      <div class="input">
+        <i class="fa-solid fa-address-card"></i>
+        <input
+          id="cpf"
+          name="cpf"
+          maxlength="14"
+          placeholder="000.000.000-00"
+          type="text"
+          required
+        />
+      </div>
 
-       </div>
-       <label for="cidade">Cidade</label>
-       <div class="input">
-           <i class="fa-solid fa-location-dot"></i>
-           <input id="cidade" name="cidade" placeholder="Cidade" type="text" required>
-       </div>
+      <label for="cidade">Cidade</label>
+      <div class="input">
+        <i class="fa-solid fa-location-dot"></i>
+        <input
+          id="cidade"
+          name="cidade"
+          placeholder="Cidade"
+          type="text"
+          required
+        />
+      </div>
 
-       <label for="bairro">Bairro</label>
-       <div class="input">
-           <i class="fa-solid fa-map-location-dot"></i>
-           <input id="bairro" name="bairro" placeholder="Bairro" type="text" required>
-       </div>
+      <label for="bairro">Bairro</label>
+      <div class="input">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <input
+          id="bairro"
+          name="bairro"
+          placeholder="Bairro"
+          type="text"
+          required
+        />
+      </div>
 
-       <label for="email">Email</label>
-       <div class="input">
-           <i class="fa-solid fa-envelope"></i>
-           <input id="email" name="email" placeholder="nome@email.com" type="email" required>
-       </div>
+      <label for="email">Email</label>
+      <div class="input">
+        <i class="fa-solid fa-envelope"></i>
+        <input
+          id="email"
+          name="email"
+          placeholder="nome@email.com"
+          type="email"
+          required
+        />
+      </div>
 
-       <label for="senha">Senha</label>
-       <div class="input">
-           <i class="fa-solid fa-lock"></i>
-           <input id="senha" name="senha" placeholder="Senha" type="password" required>
-       </div>
+      <label for="senha">Senha</label>
+      <div class="input">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          id="senha"
+          name="senha"
+          placeholder="Senha"
+          type="password"
+          required
+        />
+      </div>
 
-       <label for="senha2">Confirmar senha</label>
-       <div class="input">
-           <i class="fa-solid fa-lock"></i>
-           <input id="senha2" name="senha2" placeholder="Confirme sua senha" type="password" required>
-       </div>
-
+      <label for="senha2">Confirmar senha</label>
+      <div class="input">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          id="senha2"
+          name="senha2"
+          placeholder="Confirme sua senha"
+          type="password"
+          required
+        />
+      </div>
        <p>
         <i class="fa-solid fa-circle-info"></i> Já tem uma conta? <a href="login.html">Clique aqui</a>
        </p>
