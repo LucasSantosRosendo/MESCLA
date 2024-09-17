@@ -7,7 +7,7 @@
     <link href="/styles/popupPublicacao.css" rel="stylesheet" />
     <style>
 
-        .buttonAPP {
+        #buttonAPP {
             position: absolute;
             top: 532px; /* distância do topo */
             left: 415px; /* distância da esquerda */
@@ -31,7 +31,7 @@
             <label class="picture" for="picture__input" tabIndex="0">
                 <span class="picture__image">Clique aqui para adicionar uma imagem</span>
             </label>
-            <input type="file" name="picture__input" id="picture__input" style="display: none;" onchange="previewImage(event)">
+            <input type="file" name="picture__input" id="picture__input" style="display: none">
 
             <div class="content">
                 <!-- Bloco de Texto para Inserção de Descrição -->
@@ -39,7 +39,7 @@
                   <textarea placeholder="Escreva sua descrição aqui..."></textarea>
                 </div>
                 <!--Botão enviar-->
-                <button class="buttonAPP" type="button">Enviar</button>
+                <button id="buttonAPP" type="button">Enviar</button>
             <!-- Pré-visualização da imagem -->
             <div id="imagePreview"></div>
 
@@ -49,6 +49,9 @@
             </button>
         </div>
     </div>
+
+    <!--tags no arquivo HTML -->
+
 
     <!-- Script para manipulação do pop-up -->
     <script>
@@ -60,9 +63,8 @@
 
      
     </script>
-
     <!-- Script de publicação -->
-    <script src="popupPublicacao.js"></script>
+    <script type="module" src="popupPublicacao.js"></script>
 
 </body>
 </html>
