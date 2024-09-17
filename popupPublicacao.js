@@ -1,16 +1,8 @@
-
 /************************************************************************************/
-//inicializacao do fire base
-//preciso referenciar stack overflow e krintas erro no console do beowser
-/*
-import { initializeApp } from 'firebase/app';
-import { getStorage, ref, uploadBytes} from 'firebase/storage';
-*/
-
-// firebaseConfig.js
+// Inicialização do Firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getStorage, ref, uploadBytes} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -26,28 +18,17 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// TODO: Replace the following with your app's Firebase project configuration
-
-/*
-console.log("passou firebaseconfig");
-
-//Inicializa o firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-// Referência ao Storage do Firebase
-const storage = getStorage(app);
-*/
 /************************************************************************************/
-// variavel global para armazenar o arquivo selecionado 
+// Variável global para armazenar o arquivo selecionado 
 let selectedFile = null;
 
-//recebimentos relacionados à imagem
+// Recebimentos relacionados à imagem
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
 const pictureImageTxt = "Choose an image";
 pictureImage.innerHTML = pictureImageTxt;
 
-console.log("inicio popup");
+console.log("Início popup");
 
 inputFile.addEventListener("change", function (e) {
   const inputTarget = e.target;
@@ -73,41 +54,41 @@ inputFile.addEventListener("change", function (e) {
     pictureImage.innerHTML = pictureImageTxt;
   }
 });
+
 /************************************************************************************/
 
-
 function uploadImage() {
-
   const storage = getStorage();
+  
+  // Gerar um nome único para a imagem usando o timestamp
+  const uniqueImageName = `images/${Date.now()}_${selectedFile.name}`;
+  
+  // Criar uma referência única no Storage
+  const storageRef = ref(storage, uniqueImageName);
 
- // Create a reference to 'images/mountains.jpg'
-const storageRef = ref(storage, 'images/mountains.jpg');
-
-  // 'file' comes from the Blob or File API
+  // Fazer o upload do arquivo
   uploadBytes(storageRef, selectedFile).then((snapshot) => {
-    console.log('Uploaded a blob or file!');
+    console.log('Upload de arquivo completo!');
+  }).catch((error) => {
+    console.error('Erro ao fazer upload:', error);
   });
 }
-console.log(" estou no firebase");
 
+console.log("Estou no Firebase");
 
 document.addEventListener('DOMContentLoaded', function() {
   const botao = document.getElementById('buttonAPP');
   if (botao) {
     botao.addEventListener('click', function() {
-      uploadImage()
-
+      uploadImage();
     });
   }
 });
 
-
 /*
-olhar a documentação: https://firebase.google.com/docs/web/modular-upgrade
+Olhar a documentação:
+https://firebase.google.com/docs/web/modular-upgrade
 https://firebase.google.com/docs/storage/web/start
 https://firebase.google.com/docs/storage/web/download-files
 */
-/*
-agora devo criar uma url da imagem para ter a possibilidade de armazenar a descrição juntamente à imagem 
-além linkar o perfil com as publicações 
-*/
+/************************************************************************************/
