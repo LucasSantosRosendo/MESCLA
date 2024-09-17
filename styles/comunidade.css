@@ -22,15 +22,16 @@ body {
   cursor:pointer;
   border: none;
   margin-right: 10px;
-  font-size: 35px;
+  font-size: 25px;
   color:rgb(60, 202, 148);
   text-decoration:wavy;
-  margin-left: 25px;
+  margin-left: 20px;
+  font-family: poppinslight;
 }
 
 .botao span:hover {
   transition: 0.3s all;
-  font-size: 40px;
+  font-size: 27px;
   }
 
 hr {
@@ -39,9 +40,32 @@ hr {
 }
 
 .cubao {
-    background-color: black;
+    background-color: #1a1818;
     margin: 10px;
     height: 600px;
     width: 100%;
     border-radius: 30px;
+}
+
+h1 {
+  color: white;
+}
+
+.post {
+  background-color: #222222;
+  height: 100px;
+  margin: 10px;
+  width: auto;
+  color: rgb(60, 202, 148);
+  padding-left: 30px;
+  padding-top: 10px;
+  font-size: 23px;
+}
+
+.msg {
+  background-color: rgb(0, 0, 0);
+  height: auto;
+  margin: 10px;
+  color: aliceblue;
+  padding: 10px;
 }
