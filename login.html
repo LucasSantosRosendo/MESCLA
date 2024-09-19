@@ -15,13 +15,22 @@
     <title>Login / MESCLA</title>
 
     <style>
-      
       .error-message {
         color: red;
         font-size: 14px;
         margin: 10px 0;
         display: none;
         font-family: poppinsmedium;
+      }
+      .show-password {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .input {
+        position: relative;
       }
     </style>
   </head>
@@ -30,7 +39,6 @@
       <form id="login-form" action="" onsubmit="return validarForm(event)">
         <h2 class="title">Login</h2>
 
-        
         <div id="error-message" class="error-message"></div>
 
         <label for="">Email</label>
@@ -43,13 +51,15 @@
         <div class="input">
           <i class="fa-solid fa-lock"></i>
           <input id="senha" name="senha" placeholder="Senha" type="password" />
+          <i class="fa-solid fa-eye show-password" id="toggleSenha"></i>
         </div>
 
         <p>
           <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta?
           <a href="cadastro.html">Clique aqui</a>
         </p>
-        <i class="fa-solid fa-key"></i> Esqueceu sua senha? <a href="#" id="forgot-password">Clique aqui</a>
+        <i class="fa-solid fa-key"></i> Esqueceu sua senha?
+        <a href="#" id="forgot-password">Clique aqui</a>
 
         <div id="btn">
           <button type="submit">Login</button>
@@ -86,27 +96,27 @@
           });
       }
 
-      document.getElementById('forgot-password').addEventListener('click', function() {
+      document.getElementById("forgot-password").addEventListener("click", function () {
         const email = prompt("Por favor, insira seu e-mail para redefinir a senha:");
-        
+
         if (email) {
           firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
-              Erro('E-mail de redefinição de senha enviado com sucesso!', false);
+              Erro("E-mail de redefinição de senha enviado com sucesso!", false);
             })
             .catch((error) => {
               const errorMessage = error.message;
               Erro(`Erro: ${errorMessage}`);
             });
         } else {
-          Error('Por favor, insira um e-mail válido.');
+          Error("Por favor, insira um e-mail válido.");
         }
       });
 
       function validarForm(event) {
         event.preventDefault();
-        const email = document.getElementById('email').value;
-        const senha = document.getElementById('senha').value;
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
 
         if (email === "") {
           Erro("Email e senha são obrigatórios!");
@@ -123,19 +133,26 @@
           Erro("A senha deve ter pelo menos 8 caracteres.");
           return false;
         }
-        
-        
+
         login(event);
         return true;
       }
 
-      
       function Erro(message, isError = true) {
         const errorMessageDiv = document.getElementById("error-message");
         errorMessageDiv.innerHTML = message;
         errorMessageDiv.style.color = isError ? "red" : "green";
         errorMessageDiv.style.display = "block";
       }
+
+      const toggleSenha = document.getElementById("toggleSenha");
+      const senhaInput = document.getElementById("senha");
+
+      toggleSenha.addEventListener("click", function () {
+        const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
+        senhaInput.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+      });
     </script>
   </body>
 </html>
