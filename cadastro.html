@@ -11,132 +11,107 @@
    <title>Cadastro / MESCLA</title>
 
    <style>
-      
-    .error-message {
-      color: red;
-      font-size: 14px;
-      margin: 10px 0;
-      display: none;
-      font-family: poppinsmedium;
-    }
-  </style>
-  
+      .error-message {
+         color: red;
+         font-size: 14px;
+         margin: 10px 0;
+         display: none;
+         font-family: poppinsmedium;
+      }
+      .show-password {
+         cursor: pointer;
+         position: absolute;
+         right: 10px;
+         top: 50%;
+         transform: translateY(-50%);
+      }
+      .input {
+         position: relative;
+      }
+   </style>
 </head>
 <body>
    <form id="form">
-
-    <style>
-      .error-message {
-        color: red;
-        font-size: 14px;
-        margin: 10px 0;
-        display: none;
-        font-family: poppinsmedium;
-      }
-    </style>
-  </head>
-  <body>
-    <form id="form">
       <h2 class="title">Cadastrar</h2>
       <div id="error-message" class="error-message"></div>
+      
       <label for="nome">Nome</label>
       <div class="input">
-        <i class="fa-solid fa-user-large"></i>
-        <input
-          id="nome"
-          name="username"
-          placeholder="Usuário"
-          type="text"
-          required
-        />
+         <i class="fa-solid fa-user-large"></i>
+         <input id="nome" name="username" placeholder="Usuário" type="text" required />
       </div>
 
       <label for="nascimento">Data de Nascimento</label>
       <div class="input">
-        <i class="fa-solid fa-calendar"></i>
-        <input id="nascimento" name="nascimento" type="date" required />
+         <i class="fa-solid fa-calendar"></i>
+         <input id="nascimento" name="nascimento" type="date" required />
       </div>
 
       <label for="cpf">CPF</label>
       <div class="input">
-        <i class="fa-solid fa-address-card"></i>
-        <input
-          id="cpf"
-          name="cpf"
-          maxlength="14"
-          placeholder="000.000.000-00"
-          type="text"
-          required
-        />
+         <i class="fa-solid fa-address-card"></i>
+         <input id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" type="text" required />
       </div>
 
       <label for="cidade">Cidade</label>
       <div class="input">
-        <i class="fa-solid fa-location-dot"></i>
-        <input
-          id="cidade"
-          name="cidade"
-          placeholder="Cidade"
-          type="text"
-          required
-        />
+         <i class="fa-solid fa-location-dot"></i>
+         <input id="cidade" name="cidade" placeholder="Cidade" type="text" required />
       </div>
 
       <label for="bairro">Bairro</label>
       <div class="input">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <input
-          id="bairro"
-          name="bairro"
-          placeholder="Bairro"
-          type="text"
-          required
-        />
+         <i class="fa-solid fa-map-location-dot"></i>
+         <input id="bairro" name="bairro" placeholder="Bairro" type="text" required />
       </div>
 
       <label for="email">Email</label>
       <div class="input">
-        <i class="fa-solid fa-envelope"></i>
-        <input
-          id="email"
-          name="email"
-          placeholder="nome@email.com"
-          type="email"
-          required
-        />
+         <i class="fa-solid fa-envelope"></i>
+         <input id="email" name="email" placeholder="nome@email.com" type="email" required />
       </div>
 
       <label for="senha">Senha</label>
       <div class="input">
-        <i class="fa-solid fa-lock"></i>
-        <input
-          id="senha"
-          name="senha"
-          placeholder="Senha"
-          type="password"
-          required
-        />
+         <i class="fa-solid fa-lock"></i>
+         <input id="senha" name="senha" placeholder="Senha" type="password" required />
+         <i class="fa-solid fa-eye show-password" id="toggleSenha"></i>
       </div>
 
       <label for="senha2">Confirmar senha</label>
       <div class="input">
-        <i class="fa-solid fa-lock"></i>
-        <input
-          id="senha2"
-          name="senha2"
-          placeholder="Confirme sua senha"
-          type="password"
-          required
-        />
+         <i class="fa-solid fa-lock"></i>
+         <input id="senha2" name="senha2" placeholder="Confirme sua senha" type="password" required />
+         <i class="fa-solid fa-eye show-password" id="toggleSenha2"></i>
       </div>
-       <p>
-        <i class="fa-solid fa-circle-info"></i> Já tem uma conta? <a href="login.html">Clique aqui</a>
-       </p>
-    </div>
-    <p>
-     <i class="fa-solid fa-circle-info"></i> Cadastre-se como <a href="cadastroEmpresa.html">empresa</a> ou <a href="cadastroPrefeitura.html">prefeitura</a>
-    </p>
-       <button id="submit" type="submit">Cadastrar</button>
+      
+      <p>
+         <i class="fa-solid fa-circle-info"></i> Já tem uma conta? <a href="login.html">Clique aqui</a>
+      </p>
+      <p>
+         <i class="fa-solid fa-circle-info"></i> Cadastre-se como <a href="cadastroEmpresa.html">empresa</a> ou <a href="cadastroPrefeitura.html">prefeitura</a>
+      </p>
+      
+      <button id="submit" type="submit">Cadastrar</button>
    </form>
+
+   <script>
+      const toggleSenha = document.getElementById('toggleSenha');
+      const senhaInput = document.getElementById('senha');
+      const toggleSenha2 = document.getElementById('toggleSenha2');
+      const senha2Input = document.getElementById('senha2');
+
+      toggleSenha.addEventListener('click', function() {
+         const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+         senhaInput.setAttribute('type', type);
+         this.classList.toggle('fa-eye-slash');
+      });
+
+      toggleSenha2.addEventListener('click', function() {
+         const type = senha2Input.getAttribute('type') === 'password' ? 'text' : 'password';
+         senha2Input.setAttribute('type', type);
+         this.classList.toggle('fa-eye-slash');
+      });
+   </script>
 </body>
 </html>
