@@ -16,7 +16,7 @@ body {
     background-color: #222;
 }
 
-.buttonAPP{
+#buttonAPP{
     background-color: #3cca94;
     border: none;
     padding: 10px 30px;
@@ -67,11 +67,13 @@ body {
     transform: scale(1.05);
   }
 
+#buttonAPP:hover,
 .popup-button:hover,
 .popup .close-popup-button:hover {
     opacity: 0.8;
 }
 
+#buttonAPP:hover,
 .popup-button:active,
 .popup .close-popup-button:active {
     transform: scale(.8);

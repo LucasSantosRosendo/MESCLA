@@ -4,51 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/styles/comunidade.css" rel="stylesheet">
+    <link href="/styles/media.css" rel="stylesheet">
+    <link href="/styles/fonts.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <title>Comunidade / MESCLA</title>
  </head>
  <body>
+
+  <style>
+
+    .active {
+      display: block;
+    }
+    .botao li a.selected {
+      background-color: #3cca94;
+      color: #333;
+    }
+  </style>
     <div class="box"> 
 
-      <li>
          <a
            href="#"
+           class="botao"
            id="geral-tab"
            onclick="showSection('geral-section', this)"
          >
-           <i class="fas fa-cog"></i> Bairro
+         <i class="fa-solid fa-house"></i> <span>Bairro</span>
          </a>
-       </li>
-       <li></li>
+         <hr class="hr">
          <a
            href="#"
+           class="botao"
            id="geral-tab"
            onclick="showSection('geral-section', this)"
          >
-           <i class="fas fa-cog"></i> Prefeitura
+         <i class="fa-solid fa-landmark"></i> <span>Prefeitura</span>
          </a>
        </li>
       </li>
-      <li></li>
+      <hr class="hr">
         <a
           href="#"
           class="botao"
           id="geral-tab"
           onclick="showSection('geral-section', this)"
         >
-          <i class="fas fa-cog"></i> Chat
+        <i class="fa-solid fa-message"></i> <span>Chat</span>
         </a>
       </li>
 
    </li>
-   <li></li>
+   <hr class="hr">
      <a
        href="#"
+       class="botao"
        id="geral-tab"
        onclick="showSection('geral-section', this)"
      >
-       <i class="fas fa-cog"></i> Empresas
+       <i class="fas fa-building"></i> <span>Empresas</span>
      </a>
    </li>
-      
+    </div>
+    <div class="cubao">
+      <div class="post"> <i class="fas fa-person"></i>
+        <span>Lucas dos Santos</span>
+        <div class="msg">
+          <span>A fiação ta paia hein cemig</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="segundo-cubo">
+      <h1>Tetse </h1>
+    </div>    
  </body>
  </html>

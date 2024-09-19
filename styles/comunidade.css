@@ -1,5 +1,5 @@
 body {
-    background: gray;
+    background: #222222;
     display: flex;
 
 }
@@ -10,17 +10,62 @@ body {
 }
 
 .box {
-    padding: 15px;
     margin: 10px;
-    height: 600px;
-    width: auto;
-    background-color: black;
+    height: auto;
+    width: 250px;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding-top: 16px;
 }
 
 .botao {
   cursor:pointer;
-  background-color: black;
   border: none;
-  margin-right: 50px;
-  
+  margin-right: 10px;
+  font-size: 25px;
+  color:rgb(60, 202, 148);
+  text-decoration:wavy;
+  margin-left: 20px;
+  font-family: poppinslight;
+}
+
+.botao span:hover {
+  transition: 0.3s all;
+  font-size: 27px;
+  }
+
+hr {
+  border: 1px solid white;
+  margin: 10px;
+}
+
+.cubao {
+    background-color: #1a1818;
+    margin: 10px;
+    height: 600px;
+    width: 100%;
+    border-radius: 30px;
+}
+
+h1 {
+  color: white;
+}
+
+.post {
+  background-color: #222222;
+  height: 100px;
+  margin: 10px;
+  width: auto;
+  color: rgb(60, 202, 148);
+  padding-left: 30px;
+  padding-top: 10px;
+  font-size: 23px;
+}
+
+.msg {
+  background-color: rgb(0, 0, 0);
+  height: auto;
+  margin: 10px;
+  color: aliceblue;
+  padding: 10px;
 }
