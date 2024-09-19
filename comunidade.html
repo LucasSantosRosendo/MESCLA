@@ -1,84 +1,104 @@
- <!DOCTYPE html>
- <html lang="pt-BR">
- <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/styles/comunidade.css" rel="stylesheet">
     <link href="/styles/media.css" rel="stylesheet">
     <link href="/styles/fonts.css" rel="stylesheet">
+    <link href="/styles/chat.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <script src="comunidade.js" defer></script>
     <title>Comunidade / MESCLA</title>
- </head>
- <body>
-
-  <style>
-
-    .active {
-      display: block;
-    }
-    .botao li a.selected {
-      background-color: #3cca94;
-      color: #333;
-    }
-  </style>
+    <style>
+        .active {
+            display: block;
+        }
+        .cubao > div {
+            display: none; /* Oculta todas as seções por padrão */
+        }
+        .cubao > div.active {
+            display: block; /* Exibe a seção ativa */
+        }
+        .botao li a.selected {
+            background-color: #3cca94;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
     <div class="box"> 
-
-         <a
-           href="#"
-           class="botao"
-           id="geral-tab"
-           onclick="showSection('geral-section', this)"
-         >
-         <i class="fa-solid fa-house"></i> <span>Bairro</span>
-         </a>
-         <hr class="hr">
-         <a
-           href="#"
-           class="botao"
-           id="geral-tab"
-           onclick="showSection('geral-section', this)"
-         >
-         <i class="fa-solid fa-landmark"></i> <span>Prefeitura</span>
-         </a>
-       </li>
-      </li>
-      <hr class="hr">
-        <a
-          href="#"
-          class="botao"
-          id="geral-tab"
-          onclick="showSection('geral-section', this)"
-        >
-        <i class="fa-solid fa-message"></i> <span>Chat</span>
+        <a href="#" class="botao" onclick="showSection('bairro', this)">
+            <i class="fa-solid fa-house"></i> <span>Bairro</span>
         </a>
-      </li>
-
-   </li>
-   <hr class="hr">
-     <a
-       href="#"
-       class="botao"
-       id="geral-tab"
-       onclick="showSection('geral-section', this)"
-     >
-       <i class="fas fa-building"></i> <span>Empresas</span>
-     </a>
-   </li>
+        <hr class="hr">
+        <a href="#" class="botao" onclick="showSection('prefeitura', this)">
+            <i class="fa-solid fa-landmark"></i> <span>Prefeitura</span>
+        </a>
+        <hr class="hr">
+        <a href="#" class="botao" onclick="showSection('chat', this)">
+            <i class="fa-solid fa-message"></i> <span>Chat</span>
+        </a>
+        <hr class="hr">
+        <a href="#" class="botao" onclick="showSection('empresas', this)">
+            <i class="fas fa-building"></i> <span>Empresas</span>
+        </a>
     </div>
     <div class="cubao">
-      <div class="post"> <i class="fas fa-person"></i>
-        <span>Lucas dos Santos</span>
-        <div class="msg">
-          <span>A fiação ta paia hein cemig</span>
+        <div id="bairro" class="active"> <!-- Mantém a seção Bairro visível -->
+            <div class="post"><i class="fas fa-person"></i>
+                <span>Lucas dos Santos</span>
+                <div class="msg">
+                    <span>A fiação ta paia hein cemig</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+        <div id="prefeitura">
+            <div class="post"><i class="fas fa-person"></i>
+                <span>Prefeitura</span>
+                <div class="msg">
+                    <span>ATENÇÃO!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+                      <li>
+                    <span>obrigado pela atenção</span>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div id="chat">
+            <div class="post"><i class="fas fa-person"></i>
+                <span>Lucas dos Santos</span>
+                <div class="msg">
+                    <span>A fiação perto do mercadinho deve ser arrumada o quanto antes!</span>
+                </div>
+            </div>
 
-    <div class="segundo-cubo">
-      <h1>Tetse </h1>
-    </div>    
- </body>
- </html>
+            <div class="post"><i class="fas fa-person"></i>
+              <span>Davi Reis</span>
+              <div class="msg">
+                  <span>Também acho!</span>
+              </div>
+          </div>
+        </div>
+        <div id="empresas">
+            <div class="post"><i class="fas fa-person"></i>
+                <span>Empresa</span>
+                <div class="msg">
+                    <span>A fiação ta paia hein cemig</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+          <div class="tooltip">
+            <input type="file" id="fileInput" style="display: none" />
+            <span class="input-group-text attach_btn">
+              <i class="fas fa-paperclip"></i>
+            </span>
+            <span class="tooltiptext">Enviar arquivo ou imagem</span>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
