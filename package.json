@@ -1,12 +1,11 @@
 {
   "dependencies": {
-    "firebase": "^10.13.1"
+    "firebase": "^10.13.2"
   },
   "name": "mescla",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

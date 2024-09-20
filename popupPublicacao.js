@@ -1,8 +1,9 @@
-/************************************************************************************/
+/************************************************************************************/ 
 // Inicialização do Firebase
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+import { getDatabase, ref as databaseRef, push, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -17,12 +18,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const database = getDatabase(app);
 
 /************************************************************************************/
-// Variável global para armazenar o arquivo selecionado 
-let selectedFile = null;
 
-// Recebimentos relacionados à imagem
+// Variáveis globais para armazenar o arquivo selecionado e a descrição
+let selectedFile = null;
+let selectedTxt = null;
+let URL = null;
+
+// Referências relacionadas à imagem
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
 const pictureImageTxt = "Choose an image";
@@ -57,20 +62,59 @@ inputFile.addEventListener("change", function (e) {
 
 /************************************************************************************/
 
+// Função para upload de imagem
 function uploadImage() {
-  const storage = getStorage();
-  
-  // Gerar um nome único para a imagem usando o timestamp
-  const uniqueImageName = `images/${Date.now()}_${selectedFile.name}`;
-  
-  // Criar uma referência única no Storage
-  const storageRef = ref(storage, uniqueImageName);
+  return new Promise((resolve, reject) => {
+    const uniqueImageName = `images/${Date.now()}_${selectedFile.name}`;
+    const imageRef = storageRef(storage, uniqueImageName);
 
-  // Fazer o upload do arquivo
-  uploadBytes(storageRef, selectedFile).then((snapshot) => {
-    console.log('Upload de arquivo completo!');
+    // Fazer o upload do arquivo
+    uploadBytes(imageRef, selectedFile).then((snapshot) => {
+      console.log('Upload de arquivo completo!');
+      return getDownloadURL(imageRef); // Obter a URL de download
+    }).then((url_imagem) => {
+      console.log("URL da imagem:", url_imagem);
+      resolve(url_imagem); // Retorna a URL da imagem após o upload
+    }).catch((error) => {
+      console.error('Erro ao fazer upload:', error);
+      reject(error);
+    });
+  });
+}
+
+// Função para gravar dados no Realtime Database
+function writeUserData(selectedTxt, URL) {
+  if (!selectedTxt || typeof selectedTxt !== 'string') {
+    console.error('O texto da descrição está inválido:', selectedTxt);
+    return;
+  }
+
+  // Criar uma nova entrada única com `push()`
+  const newDescriptionRef = push(databaseRef(database, 'description/'));
+
+  // Gravar o texto e a URL da imagem
+  set(newDescriptionRef, {
+    text: selectedTxt,
+    imageUrl: URL,
+  })
+  .then(() => {
+    console.log("Texto e URL enviados com sucesso");
+  })
+  .catch((error) => {
+    console.error("Erro ao enviar texto:", error);
+  });
+}
+
+// Função principal chamada ao clicar no botão
+function handleButtonClick() {
+  const descriptionInput = document.getElementById('description_input').value;
+  selectedTxt = descriptionInput;
+
+  // Primeiro faz o upload da imagem, depois grava os dados
+  uploadImage().then((url_imagem) => {
+    writeUserData(selectedTxt, url_imagem);
   }).catch((error) => {
-    console.error('Erro ao fazer upload:', error);
+    console.error('Erro durante o processo:', error);
   });
 }
 
@@ -80,15 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const botao = document.getElementById('buttonAPP');
   if (botao) {
     botao.addEventListener('click', function() {
-      uploadImage();
+      handleButtonClick();
     });
   }
 });
 
-/*
-Olhar a documentação:
-https://firebase.google.com/docs/web/modular-upgrade
-https://firebase.google.com/docs/storage/web/start
-https://firebase.google.com/docs/storage/web/download-files
-*/
 /************************************************************************************/
