@@ -23,6 +23,7 @@
         color: #333;
       }
     </style>
+     <script src="auth.js"></script>
   </head>
   <body>
     <div class="container">
@@ -222,6 +223,20 @@
         // Adiciona a classe 'selected' na aba clicada
         clickedTab.classList.add("selected");
       }
+    </script>
+
+    <button id="logout-btn">Logout</button>
+
+    <script>
+      document.getElementById('logout-btn').addEventListener('click', function() {
+        firebase.auth().signOut().then(() => {
+          console.log("Usuário deslogado.");
+          // Redirecionar para a página de login
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          console.error("Erro ao deslogar:", error.message);
+        });
+      });
     </script>
   </body>
 </html>
