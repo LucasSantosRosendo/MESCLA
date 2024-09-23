@@ -83,7 +83,7 @@ function uploadImage() {
 }
 
 // Função para gravar dados no Realtime Database
-function writeUserData(selectedTxt, URL) {
+function writeUserData(selectedTxt, URL, userId) {
   if (!selectedTxt || typeof selectedTxt !== 'string') {
     console.error('O texto da descrição está inválido:', selectedTxt);
     return;
@@ -94,6 +94,7 @@ function writeUserData(selectedTxt, URL) {
 
   // Gravar o texto e a URL da imagem
   set(newDescriptionRef, {
+    userId: userId, 
     text: selectedTxt,
     imageUrl: URL,
   })
@@ -110,12 +111,32 @@ function handleButtonClick() {
   const descriptionInput = document.getElementById('description_input').value;
   selectedTxt = descriptionInput;
 
+    // Recupera o token do usuário do localStorage
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      console.error('Usuário não está autenticado');
+      return;
+    }
+  
+    // Decodifica o token para obter o userId
+    const userId = parseJwt(token).userId;
+
   // Primeiro faz o upload da imagem, depois grava os dados
   uploadImage().then((url_imagem) => {
     writeUserData(selectedTxt, url_imagem);
   }).catch((error) => {
     console.error('Erro durante o processo:', error);
   });
+}
+
+// Função para decodificar o token JWT
+function parseJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = decodeURIComponent(atob(base64Url).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(base64);
 }
 
 console.log("Estou no Firebase");

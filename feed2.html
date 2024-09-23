@@ -28,6 +28,7 @@
       <button class="search-button"><i class="fas fa-search"></i></button>
     </div>
     </div>
+    <script src = auth.js></script>
   </header>
 
   <main class="main">
@@ -219,9 +220,23 @@
     });
   </script>
     <!-- Adicione essas tags no seu arquivo HTML -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>    
+
+    <button id="logout-btn">Logout</button>
+
+    <script>
+      document.getElementById('logout-btn').addEventListener('click', function() {
+        firebase.auth().signOut().then(() => {
+          console.log("Usuário deslogado.");
+          // Redirecionar para a página de login
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          console.error("Erro ao deslogar:", error.message);
+        });
+      });
+    </script>
 </body>
 
 </html>
