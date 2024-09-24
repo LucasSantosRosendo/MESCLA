@@ -1,211 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="/styles/feed2.css" rel="stylesheet" />
-    <link href="/styles/fonts.css" rel="stylesheet" />
-    <script
-      src="https://kit.fontawesome.com/b432763f75.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src = auth.js></script>
-    <title>Feed das Empresas / MESCLA</title>
-  </head>
-  <body>
-    <header>
-      <div id="title">
-        <article>
-          <img class="image" src="components/images/mesclado.png" alt="MESCLA" />
-        </article>
-      </div>
-        <div>
-        <button class="notification-button" id="notificacao">
-            <span><i class="fas fa-bell"></i></span>
-        </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
+  <link href="/styles/feed2.css" rel="stylesheet" />
+  <link href="/styles/fonts.css" rel="stylesheet" />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
+  rel="stylesheet"/>
+
+  <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
+  <title>Feed de Publicações - MESCLA</title>
+  <script src = auth.js></script>
+  <style>
+        .main {
+      display: flex;
+      flex: 1;
+    }
+        .scroll-container {
+      flex: 1;
+      overflow-y: auto; /* Permite o scroll vertical */
+      padding: 10px;
+      height: calc(200vh - 60px); /* Ajusta a altura para considerar o cabeçalho */
+    }
+    .publicacao {
+        margin-bottom: 20px;
+    }
+    .publicacao img {
+        max-width: 50%;
+        height: auto;
+    }
+    .publicacao p {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+  <header>
+    <div id="title">
+      <article>
+        <img class="image" src="components/images/mesclado.png" alt="MESCLA" />
+      </article>
+    </div>
+    <div>
+      <button class="notification-button" id="notificacao">
+        <span><i class="fas fa-bell"></i></span>
+      </button>
+    </div>
+
+    <div>
+     
+      <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+          <strong>Notificações</strong>
         </div>
-        <div class="notification-dropdown" id="notificationDropdown">
-          <div class="notification-header">
-            <strong>Notificações</strong>
-          </div>
-          <ul class="notification-list">
-            <li class="notification-item">Lucas Santos enviou uma mensagem</li>
-            <li class="notification-item">Davi realizou uma solicitação</li>
-            <li class="notification-item">Vinícius curtiu sua publicação</li>
-          </ul>
-          <div class="notification-footer">
-            <a href="#">Ver todas as notificações</a>
-          </div>
-        </div>
-        <div class="search-container">
-          <input type="text" placeholder="Procure no MESCLA..." />
-          <button class="search-button"><i class="fas fa-search"></i></button>
-        </div>
-      </div>
-    </header>
-
-    <main class="main">
-      <div class="sidebar">
-        <a href="comunidade.html" class="menu-item">
-          <span><i class="fas fa-users"></i></span>
-          <h2>Comunidade</h2>
-        </a>
-        <a href="chatEmpresa.html" class="menu-item">
-          <span><i class="fas fa-comment"></i></span>
-          <h2>Mensagens</h2>
-        </a>
-        <a href="perfilEmpresa.html" class="menu-item">
-          <span><i class="fa-solid fa-building"></i></span>
-          <h2>Empresa</h2>
-        </a>
-        <a href="configEmpresa.html" class="menu-item">
-          <span><i class="fas fa-cog"></i></span>
-          <h2>Configurações</h2>
-        </a>
-        <button class="publish-button" id="openModal">Publicar</button>
-      </div>
-
-      <div class="sidebar-separator"></div>
-
-      <div class="content">
-        <div class="newPost">
-          <div class="infoUser">
-            <div class="imgUser"></div>
-            <strong>Lucas Santos</strong>
-          </div>
-
-          <form action="" class="formPost" id="formPost">
-            <textarea
-              name="textarea"
-              placeholder="Vamos melhorar sua região?"
-              id="textarea"
-            ></textarea>
-            <div class="iconsAndButton">
-              <div class="icons">
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="imageUpload"
-                    accept="image/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('imageUpload').click();"
-                  >
-                    <img
-                      src="/components/images/imgMESCLA.png"
-                      alt="Adicionar uma imagem"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar uma imagem</span>
-                </div>
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="videoUpload"
-                    accept="video/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('videoUpload').click();"
-                  >
-                    <img
-                      src="/components/images/videoMESCLA.png"
-                      alt="Adicionar um vídeo"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar um vídeo</span>
-                </div>
-                <button
-                  type="button"
-                  class="btnFileForm"
-                  onclick="document.getElementById('videoUpload').click();"
-                >
-                  <img
-                    src="/components/images/empresaMESCLA.png"
-                    alt="Adicionar empresa"
-                  />
-                </button>
-              </div>
-              <button type="submit" id="botao" class="btnSubmitForm">
-                Publicar
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <ul class="posts" id="posts">
-          <!-- As publicações serão adicionadas aqui -->
+        <ul class="notification-list">
+          <li class="notification-item">Lucas realizou uma publicação</li>
+          <li class="notification-item">Vinícius mandou uma mensagem</li>
+          <li class="notification-item">Davi comentou em sua foto</li>
         </ul>
-      </div>
-
-      <div class="janela-modal" id="janela-modal">
-        <div class="modal">
-          <span class="close">&times;</span>
-          <form action="" class="formPost" id="formPostModal">
-            <textarea
-              name="textarea"
-              placeholder="Vamos melhorar sua região?"
-              id="textareaModal"
-            ></textarea>
-            <div class="iconsAndButton">
-              <div class="icons">
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="imageUploadModal"
-                    accept="image/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('imageUploadModal').click();"
-                  >
-                    <img
-                      src="/components/images/imgMESCLA.png"
-                      alt="Adicionar uma imagem"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar uma imagem</span>
-                </div>
-                <div class="tooltip">
-                  <input
-                    type="file"
-                    id="videoUploadModal"
-                    accept="video/*"
-                    style="display: none"
-                  />
-                  <button
-                    type="button"
-                    class="btnFileForm"
-                    onclick="document.getElementById('videoUploadModal').click();"
-                  >
-                    <img
-                      src="/components/images/videoMESCLA.png"
-                      alt="Adicionar um vídeo"
-                    />
-                  </button>
-                  <span class="tooltiptext">Adicionar um vídeo</span>
-                </div>
-              </div>
-              <button type="submit" id="botaoModal" class="btnSubmitForm">
-                Publicar
-              </button>
-            </div>
-          </form>
+        <div class="notification-footer">
+          <a href="#">Ver todas as notificações</a>
         </div>
       </div>
-    </main>
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder=" Procure amigos no MESCLA..." />
+      <button class="search-button"><i class="fas fa-search"></i></button>
+    </div>
+  </header>
 
+  <main class="main">
+
+
+    <div class="sidebar">
+
+    
+      <a href="comunidade.html" class="menu-item">
+        <span><i class="fas fa-users"></i></span>
+        <h2>Comunidade</h2>
+      </a>
+      <a href="chat.html" class="menu-item">
+        <span><i class="fas fa-comment"></i></span>
+        <h2>Mensagens</h2>
+      </a>
+
+      <a href="popupPublicacao.html" class="menu-item">
+        <span><i class="fas fa-plus"></i></span>
+        <h2>Publicar</h2>
+      </a>
+      <a href="profile.html" class="menu-item">
+        <span><i class="fa-solid fa-building"></i></span>
+        <h2>Empresa</h2>
+      </a>
+
+    </div>
+ 
+    
+    <div class="scroll-container"id = "publicacoes">
+
+    
+    </div>
+  </main>
+
+    <script type = "module" src = feed.js></script>
     <script>
       const notificationButton = document.getElementById("notificacao");
       const notificationDropdown = document.getElementById(
@@ -236,5 +137,5 @@
         }
       });
     </script>
-  </body>
-</html>
+</body>
+
