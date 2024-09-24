@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
   <link href="/styles/feed2.css" rel="stylesheet" />
   <link href="/styles/fonts.css" rel="stylesheet" />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
+  rel="stylesheet"/>
+
   <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
   <title>Feed de Publicações - MESCLA</title>
   <script src = auth.js></script>
@@ -47,10 +50,26 @@
         <span><i class="fas fa-bell"></i></span>
       </button>
     </div>
+
+    <div>
+     
+      <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+          <strong>Notificações</strong>
+        </div>
+        <ul class="notification-list">
+          <li class="notification-item">Cemig atualizou o status</li>
+          <li class="notification-item">Seu post recebeu 5 curtidas</li>
+          <li class="notification-item">Davi comentou em sua foto</li>
+        </ul>
+        <div class="notification-footer">
+          <a href="#">Ver todas as notificações</a>
+        </div>
+      </div>
+    </div>
     <div class="search-container">
       <input type="text" placeholder=" Procure amigos no MESCLA..." />
       <button class="search-button"><i class="fas fa-search"></i></button>
-    </div>
     </div>
   </header>
 
@@ -87,11 +106,40 @@
     
     <div class="scroll-container"id = "publicacoes">
 
-      </div>
+    
     </div>
   </main>
 
     <script type = "module" src = feed.js></script>
+    <script>
+      const notificationButton = document.getElementById("notificacao");
+      const notificationDropdown = document.getElementById(
+        "notificationDropdown"
+      );
+
+      notificationButton.addEventListener("click", () => {
+        if (notificationDropdown.classList.contains("show")) {
+          notificationDropdown.classList.remove("show");
+          setTimeout(() => {
+            notificationDropdown.style.display = "none";
+          }, 400);
+        } else {
+          notificationDropdown.style.display = "block";
+          setTimeout(() => {
+            notificationDropdown.classList.add("show");
+          }, 10);
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (
+          !notificationButton.contains(event.target) &&
+          !notificationDropdown.contains(event.target)
+        ) {
+          notificationDropdown.classList.remove("show");
+          notificationDropdown.style.display = "none";
+        }
+      });
+    </script>
 </body>
 
-</html>
