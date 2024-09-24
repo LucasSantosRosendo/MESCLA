@@ -39,7 +39,8 @@ let UserId = null;
         window.location.href = "login.html";
       }
     });
-    
+
+
 // Referências relacionadas à imagem
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
@@ -107,19 +108,9 @@ function uploadImage() {
 }
 // Função para gravar dados no Realtime Database
 function writeUserData(selectedTxt, URL) {
-  const userInfoo = JSON.parse(localStorage.getItem('userInfo'));
+   
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-// Exibe os dados ou usa conforme necessário
-if (userInfoo) {
-   const nome = userInfoo.nome; // Pega o nome
-   const cidade = userInfoo.cidade; // Pega a cidade
-
-  console.log(`Nome: ${nome}, Cidade: ${cidade}`);
-  
-  // Você pode fazer outras operações com as informações, como preencher elementos na página
-} else {
-  console.error("Nenhuma informação disponível.");
-}
   if (!selectedTxt || typeof selectedTxt !== 'string') {
     console.error('O texto da descrição está inválido:', selectedTxt);
     return;
@@ -130,8 +121,8 @@ if (userInfoo) {
   set(newDescriptionRef, {
     text: selectedTxt,
     imageUrl: URL,
-    user: nome,
-    city: cidade
+    user: userInfo.nome,
+    city: userInfo.cidade,
   })
   .then(() => {
     console.log("Texto, URL e outras informações foram enviadas com sucesso");
@@ -142,22 +133,13 @@ if (userInfoo) {
 }
 
 // Função principal chamada ao clicar no botão
-// Função principal chamada ao clicar no botão
 function handleButtonClick() {
   const descriptionInput = document.getElementById('description_input').value;
   selectedTxt = descriptionInput;
 
   // Primeiro faz o upload da imagem, depois grava os dados
   uploadImage().then((url_imagem) => {
-    const userInfoo = JSON.parse(localStorage.getItem('userInfo'));
-    if (userInfoo) {
-      const nome = userInfoo.nome; // Pega o nome
-      const cidade = userInfoo.cidade; // Pega a cidade
-      
-      writeUserData(selectedTxt, url_imagem, nome, cidade); // Passando os parâmetros necessários
-    } else {
-      console.error("Nenhuma informação disponível.");
-    }
+      writeUserData(selectedTxt, url_imagem); // Passando os parâmetros necessários
   }).catch((error) => {
     console.error('Erro durante o processo:', error);
   });
