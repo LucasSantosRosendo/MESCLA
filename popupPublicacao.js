@@ -81,11 +81,10 @@ function getUsers() {
 
 
 // Função para encontrar o usuário pelo ID
-// Função para encontrar o usuário pelo ID
 function findUserByID(usersData, UserID) {
   for (const key in usersData) {
    console.log("Comparando:", usersData[key].userId, UserId); // Verifica se o userId existe e se a comparação é correta
-    if (usersData[key].UserId === UserId) {
+    if (usersData[key].userId === UserId) {
       // Quando encontrar, armazene as informações em variáveis
       userInfo = usersData[key];
       userName = usersData[key].nome;  // Corrigir para usar os dados corretos
