@@ -169,7 +169,13 @@
         onChildAdded,
         onChildRemoved,
       } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
+      import {
+        getStorage,
+        ref as storageRef,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+    
       const firebaseConfig = {
         apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
         authDomain: "mescla-f9d00.firebaseapp.com",
@@ -178,10 +184,11 @@
         messagingSenderId: "442057041731",
         appId: "1:442057041731:web:a5d7208555136ba97531f6",
       };
-
+    
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
-
+      const storage = getStorage(app);
+    
       var msgTxt = document.getElementById("msgTxt");
       var sender;
       if (sessionStorage.getItem("sender")) {
@@ -190,106 +197,77 @@
         sender = prompt("Entre com o seu usuário: ");
         sessionStorage.setItem("sender", sender);
       }
-
-      module.sendMsg = function sendMsg() {
-        var msg = msgTxt.value;
+    
+      module.sendMsg = function sendMsg(msg, imageUrl = null) {
         var timestamp = new Date().getTime();
         set(ref(db, "messages/" + timestamp), {
-          msg: msg,
+          msg: msg || "",
+          imageUrl: imageUrl || "",
           sender: sender,
         });
-
+    
         msgTxt.value = "";
-
-        var companyName = document.getElementById("company_name").textContent;
-        ContatosLateral(companyName);
       };
-
-      function ContatosLateral(companyName) {
-        var contactItem = document.querySelector(
-          `.contact-item[data-company="${companyName}"]`
-        );
-
-        if (contactItem) {
-          contactItem.classList.remove("hidden");
-
-          let savedContacts =
-            JSON.parse(localStorage.getItem("savedContacts")) || [];
-          if (!savedContacts.includes(companyName)) {
-            savedContacts.push(companyName);
-            localStorage.setItem(
-              "savedContacts",
-              JSON.stringify(savedContacts)
-            );
-          }
-        } else {
-          console.log("Empresa não encontrada.");
-        }
-      }
-
-      function restoreContacts() {
-        let savedContacts =
-          JSON.parse(localStorage.getItem("savedContacts")) || [];
-        savedContacts.forEach((companyName) => {
-          var contactItem = document.querySelector(
-            `.contact-item[data-company="${companyName}"]`
-          );
-          if (contactItem) {
-            contactItem.classList.remove("hidden");
-          }
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", restoreContacts);
-
+    
       onChildAdded(ref(db, "messages"), (data) => {
         let messageClass = data.val().sender === sender ? "me" : "notMe";
-        document.getElementById("messages").innerHTML += `
-            <div class="outer" id="${data.key}">
-              <div id="inner" class="${messageClass}">
-                ${
-                  data.val().sender === sender
-                    ? "Você: "
-                    : data.val().sender + ": "
-                }${data.val().msg}
-                ${
-                  data.val().sender === sender
-                    ? `<button class="button-delete" onclick="module.dltMsg('${data.key}')">Excluir</button>`
-                    : ""
-                }
-              </div>
-            </div>`;
+        let messageHtml = `
+          <div class="outer" id="${data.key}">
+            <div id="inner" class="${messageClass}">
+              ${data.val().sender === sender ? "Você: " : data.val().sender + ": "}
+              ${data.val().msg}
+              ${
+                data.val().imageUrl
+                  ? `<img src="${data.val().imageUrl}" style="max-width: 200px;"/>`
+                  : ""
+              }
+              ${
+                data.val().sender === sender
+                  ? `<button class="button-delete" data-key="${data.key}">Excluir</button>`
+                  : ""
+              }
+            </div>
+          </div>`;
+    
+        document.getElementById("messages").innerHTML += messageHtml;
       });
-
+    
+      document.getElementById("messages").addEventListener("click", function (event) {
+        if (event.target && event.target.classList.contains("button-delete")) {
+          let key = event.target.getAttribute("data-key");
+          module.dltMsg(key);
+        }
+      });
+    
       module.dltMsg = function dltMsg(key) {
         remove(ref(db, "messages/" + key));
       };
-
-      onChildRemoved(ref(db, "messages"), (data) => {
-        var msgBox = document.getElementById(data.key);
-        document.getElementById("messages").removeChild(msgBox);
+    
+      document.getElementById("msgBtn").addEventListener("click", function () {
+        const msg = msgTxt.value;
+        module.sendMsg(msg);
       });
-
-      document
-        .getElementById("msgBtn")
-        .addEventListener("click", module.sendMsg);
-
-      document
-        .getElementById("attachBtn")
-        .addEventListener("click", function () {
-          document.getElementById("fileInput").click();
-        });
-
-      document
-        .getElementById("fileInput")
-        .addEventListener("change", function (event) {
-          var file = event.target.files[0];
-          if (file) {
-            console.log("Arquivo selecionado:", file.name);
-            //Criar a lógica de como salvar o arquivo ou imagem no database do firebase depois;
-          }
-        });
-    </script>
+    
+      document.getElementById("fileInput").addEventListener("change", function (event) {
+        var file = event.target.files[0];
+        if (file) {
+          var timestamp = new Date().getTime();
+          var storagePath = storageRef(storage, "images/" + timestamp + "_" + file.name);
+    
+          uploadBytes(storagePath, file).then((snapshot) => {
+            console.log("Uploaded a file!");
+    
+            getDownloadURL(snapshot.ref).then((url) => {
+              module.sendMsg(null, url);
+            });
+          });
+        }
+      });
+    
+      document.getElementById("attachBtn").addEventListener("click", function () {
+        document.getElementById("fileInput").click();
+      });
+    </script>        
     <script src="script.js"></script>
   </body>
 </html>

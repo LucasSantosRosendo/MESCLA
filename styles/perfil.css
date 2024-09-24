@@ -404,7 +404,7 @@ body {
   font-size: 18px;
   text-decoration: none;
   background-color: transparent;
-  border-radius: 5px;
+  border-radius: 20px;
   transition: all 0.3s ease;
   transform: scale(1);
   margin-top: 20px;
