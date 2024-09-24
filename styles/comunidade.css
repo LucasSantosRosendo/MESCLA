@@ -54,12 +54,12 @@ color: white;
 
 .post {
 background-color: #222222;
-height: 100px;
+height: auto;
 margin: 10px;
 width: auto;
 color: rgb(60, 202, 148);
 padding-left: 30px;
-padding-top: 10px;
+padding: 10px;
 font-size: 23px;
 border-radius: 20px;
 }
@@ -70,6 +70,7 @@ height: auto;
 margin: 5px;
 color: aliceblue;
 padding: 10px;
+border-radius: 10px;
 }
 
 .card-footer {
@@ -130,4 +131,17 @@ font-size: 20px;
 background-color: rgba(0, 0, 0, 0.4) !important;
 border-radius: 15px;
 transform: scale(1.1);
+}
+
+.send_btn {
+  border-radius: 0 15px 15px 0 !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 0 !important;
+  color: #3cca94 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 20px;
 }

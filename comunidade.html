@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <script src = auth.js></script>
     <script src="comunidade.js" defer></script>
     <title>Comunidade / MESCLA</title>
     <style>
@@ -113,5 +114,139 @@
           </div>
         </div>
     </div>
+    <script>
+        module = {};
+      </script>
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          set,
+          remove,
+          onChildAdded,
+          onChildRemoved,
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+  
+        const firebaseConfig = {
+          apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
+          authDomain: "mescla-f9d00.firebaseapp.com",
+          projectId: "mescla-f9d00",
+          storageBucket: "mescla-f9d00.appspot.com",
+          messagingSenderId: "442057041731",
+          appId: "1:442057041731:web:a5d7208555136ba97531f6",
+        };
+  
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+  
+        var msgTxt = document.getElementById("msgTxt");
+        var sender;
+        if (sessionStorage.getItem("sender")) {
+          sender = sessionStorage.getItem("sender");
+        } else {
+          sender = prompt("Entre com o seu usuário: ");
+          sessionStorage.setItem("sender", sender);
+        }
+  
+        module.sendMsg = function sendMsg() {
+          var msg = msgTxt.value;
+          var timestamp = new Date().getTime();
+          set(ref(db, "messages/" + timestamp), {
+            msg: msg,
+            sender: sender,
+          });
+  
+          msgTxt.value = "";
+  
+          var companyName = document.getElementById("company_name").textContent;
+          ContatosLateral(companyName);
+        };
+  
+        function ContatosLateral(companyName) {
+          var contactItem = document.querySelector(
+            `.contact-item[data-company="${companyName}"]`
+          );
+  
+          if (contactItem) {
+            contactItem.classList.remove("hidden");
+  
+            let savedContacts =
+              JSON.parse(localStorage.getItem("savedContacts")) || [];
+            if (!savedContacts.includes(companyName)) {
+              savedContacts.push(companyName);
+              localStorage.setItem(
+                "savedContacts",
+                JSON.stringify(savedContacts)
+              );
+            }
+          } else {
+            console.log("Empresa não encontrada.");
+          }
+        }
+  
+        function restoreContacts() {
+          let savedContacts =
+            JSON.parse(localStorage.getItem("savedContacts")) || [];
+          savedContacts.forEach((companyName) => {
+            var contactItem = document.querySelector(
+              `.contact-item[data-company="${companyName}"]`
+            );
+            if (contactItem) {
+              contactItem.classList.remove("hidden");
+            }
+          });
+        }
+  
+        document.addEventListener("DOMContentLoaded", restoreContacts);
+  
+        onChildAdded(ref(db, "messages"), (data) => {
+          let messageClass = data.val().sender === sender ? "me" : "notMe";
+          document.getElementById("messages").innerHTML += `
+              <div class="outer" id="${data.key}">
+                <div id="inner" class="${messageClass}">
+                  ${
+                    data.val().sender === sender
+                      ? "Você: "
+                      : data.val().sender + ": "
+                  }${data.val().msg}
+                  ${
+                    data.val().sender === sender
+                      ? `<button class="button-delete" onclick="module.dltMsg('${data.key}')">Excluir</button>`
+                      : ""
+                  }
+                </div>
+              </div>`;
+        });
+  
+        module.dltMsg = function dltMsg(key) {
+          remove(ref(db, "messages/" + key));
+        };
+  
+        onChildRemoved(ref(db, "messages"), (data) => {
+          var msgBox = document.getElementById(data.key);
+          document.getElementById("messages").removeChild(msgBox);
+        });
+  
+        document
+          .getElementById("msgBtn")
+          .addEventListener("click", module.sendMsg);
+  
+        document
+          .getElementById("attachBtn")
+          .addEventListener("click", function () {
+            document.getElementById("fileInput").click();
+          });
+  
+        document
+          .getElementById("fileInput")
+          .addEventListener("change", function (event) {
+            var file = event.target.files[0];
+            if (file) {
+              console.log("Arquivo selecionado:", file.name);
+              //Criar a lógica de como salvar o arquivo ou imagem no database do firebase depois;
+            }
+          });
+      </script>
 </body>
 </html>
