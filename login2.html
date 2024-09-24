@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/styles/login.css" rel="stylesheet" />
+  <link href="/styles/fonts.css" rel="stylesheet" />
+  <link href="/styles/media.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
+  <title>Login / MESCLA</title>
+
+  <style>
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin: 10px 0;
+      display: none;
+      font-family: poppinsmedium;
+    }
+
+    .show-password {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .input {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="form">
+    <form id="login-form" action="" onsubmit="return validarForm(event)">
+      <h2 class="title">Login</h2>
+
+      <div id="error-message" class="error-message"></div>
+
+      <label for="">Email</label>
+      <div class="input">
+        <i class="fa-solid fa-envelope"></i>
+        <input id="email" name="email" placeholder="Email" type="text" />
+      </div>
+
+      <label for="">Senha</label>
+      <div class="input">
+        <i class="fa-solid fa-lock"></i>
+        <input id="senha" name="senha" placeholder="Senha" type="password" />
+        <i class="fa-solid fa-eye show-password" id="toggleSenha"></i>
+      </div>
+
+      <p>
+        <i class="fa-solid fa-circle-info"></i> Ainda não tem uma conta?
+        <a href="cadastro.html">Clique aqui</a>
+      </p>
+      <i class="fa-solid fa-key"></i> Esqueceu sua senha?
+      <a href="#" id="forgot-password">Clique aqui</a>
+
+      <div id="btn">
+        <button id="verificarToken" type="button">Login</button>
+      </div>
+
+
+    </form>
+  </div>
+
+  <!-- Corrige o tipo do script para módulos -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import {
+      getDatabase,
+      ref,
+      get,
+    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
+      authDomain: "mescla-f9d00.firebaseapp.com",
+      projectId: "mescla-f9d00",
+      storageBucket: "mescla-f9d00.appspot.com",
+      messagingSenderId: "442057041731",
+      appId: "1:442057041731:web:a5d7208555136ba97531f6",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    document.getElementById("verificarToken").addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      // Faz login do usuário para obter o token
+      signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          // Obtém o token JWT do usuário
+          user.getIdToken().then((idToken) => {
+            console.log("Token do usuário:", idToken);
+
+            // Agora que temos o token, podemos verificar e buscar os dados do usuário
+            verificarToken(idToken);
+          }).catch((error) => {
+            console.error("Erro ao obter o token do usuário:", error);
+          });
+        })
+        .catch((error) => {
+          console.error("Erro ao fazer login:", error.message);
+        });
+    });
+
+    function verificarToken(idToken) {
+      // Pega o UID do usuário a partir do token
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const uid = user.uid;
+
+          // Verifica se o UID corresponde ao token e busca as informações do banco de dados
+          const userRef = ref(database, 'users/' + uid);
+
+          get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+              const userInfo = snapshot.val();
+              
+              // Exibe as informações do usuário em um alert (para fins de teste)
+              alert(`Informações do usuário:
+                Nome: ${userInfo.nome}
+                Cidade: ${userInfo.cidade}`);
+            } else {
+              alert("Nenhum dado encontrado para este token.");
+            }
+          }).catch((error) => {
+            console.error("Erro ao buscar informações do usuário:", error);
+          });
+        } else {
+          alert("Usuário não autenticado.");
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>
