@@ -151,7 +151,7 @@ header {
 }
 
 .notification-button:hover {
-  transform: scale(1.20);
+  transform: scale(1.2);
 }
 
 .main {
@@ -354,60 +354,6 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   margin-right: 5px;
 }
 
-.like {
-  background: #ff6b6b;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.like:hover {
-  background: rgb(248, 75, 75);
-  transform: scale(1.05);
-}
-
-.comment {
-  background: #ffc320;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.comment:hover {
-  background: rgb(245, 180, 0);
-  transform: scale(1.05);
-}
-
-.share {
-  background: #3cca94;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.share:hover {
-  background: rgb(42, 146, 106);
-  transform: scale(1.05);
-}
-
-.janela-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: auto;
-  overflow: auto;
-  background-color: #00000000; /* Cor preta sem opacidade */
-}
-
-.modal {
-  background-color: #1d1d1d;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #141313;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: animatetop 0.4s;
-}
-
 @keyframes animatetop {
   from {
     top: -300px;
@@ -437,59 +383,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   transition: color 0.3s;
 }
 
-.janela-modal .formPost {
-  display: flex;
-  flex-direction: column;
-}
 
-.janela-modal .formPost textarea {
-  resize: none;
-  border: 2px solid #141313;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #2b2b2b;
-  color: white;
-  height: 100px;
-}
-
-.janela-modal .iconsAndButton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.janela-modal .icons {
-  display: flex;
-  gap: 10px;
-}
-
-.janela-modal .btnFileForm {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.janela-modal .btnFileForm img {
-  width: 24px;
-  height: 24px;
-}
-
-.janela-modal .btnSubmitForm {
-  background-color: #3cca94;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.janela-modal .btnSubmitForm:hover {
-  background-color: #34b484;
-}
 
 .tooltip .tooltiptext {
   visibility: hidden;
@@ -552,3 +446,52 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 .dropdown-content a.selected {
   background-color: #ddd;
 }
+
+
+/* Centralizar o contêiner das publicações */
+#publicacoes {
+  position: absolute; /* ou fixed, dependendo da necessidade */
+  top: 100%;  /* Move o contêiner 50% a partir do topo da janela */
+  left: 50%; /* Move o contêiner 50% a partir da esquerda da janela */
+  transform: translate(-50%, -50%); /* Centraliza corrigindo a posição */
+  width: 800px;  /* Largura do contêiner */
+  height: auto;  /* Altura automática */
+  background-color: #2b2b2b; /* Cor de fundo */
+  padding: 20px;  /* Espaçamento interno */
+  border-radius: 10px; /* Canto arredondado */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+
+/* Estilizar cada publicação */
+.publicacao {
+  display: flex;
+  flex-direction: column; /* Imagem e texto ficam em coluna */
+  align-items: flex-start;    /* Centraliza imagem e texto */
+  margin: 20px;           /* Espaçamento entre as publicações */
+  padding: 20px;
+  border: 1px solid #222222; /* Borda ao redor do contêiner */
+  border-radius: 10px;    /* Canto arredondado */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 720px;           /* Largura máxima do contêiner da publicação */
+  background-color: #222222;
+}
+
+/* Ajustar a imagem */
+.publicacao img {
+  max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
+  height: auto;    /* Mantém a proporção da imagem */
+  margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
+
+/* Centralizar o texto */
+.publicacao p {
+  text-align: center; /* Centraliza o texto */
+  font-size: 16px;
+  color: #ffffff;
+}
+.main {
+  display: flex;
+  flex: 1;
+}
+

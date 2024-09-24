@@ -9,13 +9,14 @@ const firebaseAuthScript = document.createElement('script');
 firebaseAuthScript.src = "https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js";
 document.head.appendChild(firebaseAuthScript);
 
+// Variável para armazenar o usuário autenticado
+let usuarioAutenticado = null;
+
 // Inicializa o Firebase somente se ainda não estiver inicializado
 firebaseAppScript.onload = function() {
   firebaseAuthScript.onload = function() {
     if (!firebase.apps.length) {
-        
       // Configuração do Firebase
-
       const firebaseConfig = {
         apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
         authDomain: "mescla-f9d00.firebaseapp.com",
@@ -31,16 +32,21 @@ firebaseAppScript.onload = function() {
     } else {
       console.log("Firebase já foi inicializado.");
     }
-
-    // Verifica se o usuário está logado
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("Usuário autenticado:", user.uid);
-      } else {
-        window.location.href = "index.html";
-      }
-    });
   };
 };
 
-
+// Função para obter o usuário autenticado
+export const getUsuarioAutenticado = () => {
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log("Usuário autenticado:", user.uid);
+        usuarioAutenticado = user.uid;
+        resolve(usuarioAutenticado);
+      } else {
+        reject("Usuário não autenticado");
+        window.location.href = "popupPublicacao.html";
+      }
+    });
+  });
+};

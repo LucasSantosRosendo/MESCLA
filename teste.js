@@ -3,7 +3,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
-import { getDatabase, ref as databaseRef, push, set, get} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { getDatabase, ref as databaseRef, push, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+import { getUsuarioAutenticado } from './authPublicacao.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -26,22 +27,8 @@ const database = getDatabase(app);
 let selectedFile = null;
 let selectedTxt = null;
 let URL = null;
-let UserId = null;
-let usersData = null;
-let userInfo = null;
-let userName = null;
-let userCity = null;
+let userId = null;
 
-    // Verifica se o usuário está logado
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("Usuário autenticado:", user.uid);
-        UserId = user.uid;
-      } else {
-        window.location.href = "login.html";
-      }
-    });
-    
 // Referências relacionadas à imagem
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
@@ -49,61 +36,55 @@ const pictureImageTxt = "Choose an image";
 pictureImage.innerHTML = pictureImageTxt;
 
 console.log("Início popup");
-
-document.addEventListener('DOMContentLoaded', function() {
-  const botaoAdd = document.getElementById('addbutton');
-  if (botaoAdd) {
-    botaoAdd.addEventListener('click', function() {
-      firebase.auth();
-      getUsers();
-    });
-  }
+/*document.addEventListener("DOMContentLoaded", () => {
+  getUsuarioAutenticado()
+  getUsers();
+  findUserByID(usersData, userID);
 });
-
+// Obtém o usuário autenticado de authPublicacao
+getUsuarioAutenticado()
+  .then((userId) => {
+    console.log("Usuário autenticado:", userId);
+    userId = userId; // Armazena o userId para uso posterior
+    //chamar as funções que necessitam do userId
+    getUsers();
+  })
+  .catch((error) => {
+    console.error(error);
+    window.location.href = "login.html"; // Redireciona se não estiver autenticado
+  });
+  
+// Função para obter os dados dos usuários
 function getUsers() {
-  const usersRef = databaseRef(database, 'users'); // Referência correta à pasta "users"
-  get(usersRef)
-    .then((snapshot) => {
-      const usersData = snapshot.val();
-      
-      console.log("Dados retornados do Realtime Database:", usersData); // Verifique os dados retornados
-      
-      if (usersData) {
-        findUserByID(usersData, UserId); // Somente chamar se houver dados
-      } else {
-        console.error("Nenhum dado encontrado no banco de dados.");
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao ler dados: ", error);
-    });
+    const usersRef = database.ref('users'); // Referência à pasta "users"
+    usersRef.once('value')
+        .then((snapshot) => {
+            const usersData = snapshot.val();
+            findUserByID(usersData, userId);
+        })
+        .catch((error) => {
+            console.error("Erro ao ler dados: ", error);
+        });
+}
+
+// Função para encontrar o usuário pelo ID
+function findUserByID(usersData, userID) {
+    for (const key in usersData) {
+        if (usersData[key].userId === userId) {
+            // Quando encontrar, armazene as informações em variáveis
+            const userInfo = usersData[key];
+            const userName = nome
+            const userEmail = cidade
+
+            console.log(`Usuário encontrado: ${userName}, Email: ${userEmail}`);
+            // Aqui você pode usar as variáveis como precisar
+            break; // Opcional: parar ao encontrar o primeiro
+        }
+    }
 }
 
 
-// Função para encontrar o usuário pelo ID
-// Função para encontrar o usuário pelo ID
-function findUserByID(usersData, UserID) {
-  for (const key in usersData) {
-   console.log("Comparando:", usersData[key].userId, UserId); // Verifica se o userId existe e se a comparação é correta
-    if (usersData[key].UserId === UserId) {
-      // Quando encontrar, armazene as informações em variáveis
-      userInfo = usersData[key];
-      userName = usersData[key].nome;  // Corrigir para usar os dados corretos
-      userCity = usersData[key].cidade; // Corrigir para usar os dados corretos
-
-      // Agora que os dados foram atribuídos, exiba-os
-      console.log("Usuário encontrado: ", userName);
-      console.log("Cidade do usuário: ", userCity);
-
-      break; // Opcional: parar ao encontrar o primeiro
-    }
-    else{
-      console.log(usersData[key].UserId);
-    }
-  }
-}
-
-
+*/
 inputFile.addEventListener("change", function (e) {
   const inputTarget = e.target;
   const file = inputTarget.files[0];
@@ -152,15 +133,23 @@ function uploadImage() {
 }
 
 // Função para gravar dados no Realtime Database
-function writeUserData(selectedTxt, URL) {
+function writeUserData(selectedTxt, URL, userId) {
   if (!selectedTxt || typeof selectedTxt !== 'string') {
     console.error('O texto da descrição está inválido:', selectedTxt);
     return;
   }
+
+  if (!userId) {
+    console.error('O userId está inválido:', userId);
+    return;
+  }
+
   // Criar uma nova entrada única com `push()`
   const newDescriptionRef = push(databaseRef(database, 'description/'));
+
   // Gravar o texto e a URL da imagem
   set(newDescriptionRef, {
+    userId: userId, 
     text: selectedTxt,
     imageUrl: URL,
   })
@@ -180,7 +169,7 @@ function handleButtonClick() {
 
   // Primeiro faz o upload da imagem, depois grava os dados
   uploadImage().then((url_imagem) => {
-    writeUserData(selectedTxt, url_imagem, /*userId*/); // Passando userId aqui
+    writeUserData(selectedTxt, url_imagem, userId); // Passando userId aqui
   }).catch((error) => {
     console.error('Erro durante o processo:', error);
   });

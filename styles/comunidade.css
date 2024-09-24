@@ -1,72 +1,133 @@
 body {
-    background: #222222;
-    display: flex;
+  background: #222222;
+  display: flex;
 
 }
 
 .title {
-    font-size: 40px;
-    color:rgb(60, 202, 148);
+  font-size: 40px;
+  color:rgb(60, 202, 148);
 }
 
 .box {
-    margin: 10px;
-    height: auto;
-    width: 250px;
-    border: 3px solid white;
-    border-radius: 10px;
-    padding-top: 16px;
+  margin: 10px;
+  height: auto;
+  width: 250px;
+  border-right: 3px solid white;
+  border-radius: 10px;
+  padding-top: 16px;
 }
 
 .botao {
-  cursor:pointer;
-  border: none;
-  margin-right: 10px;
-  font-size: 25px;
-  color:rgb(60, 202, 148);
-  text-decoration:wavy;
-  margin-left: 20px;
-  font-family: poppinslight;
+cursor:pointer;
+border: none;
+margin-right: 10px;
+font-size: 25px;
+color:rgb(60, 202, 148);
+text-decoration:wavy;
+margin-left: 20px;
+font-family: poppinslight;
 }
 
 .botao span:hover {
-  transition: 0.3s all;
-  font-size: 27px;
-  }
+transition: 0.3s all;
+font-size: 27px;
+}
 
 hr {
-  border: 1px solid white;
-  margin: 10px;
+border: 1px solid white;
+margin: 10px;
 }
 
 .cubao {
-    background-color: #1a1818;
-    margin: 10px;
-    height: 600px;
-    width: 100%;
-    border-radius: 30px;
+  background-color: #1a1818;
+  margin: 10px auto;
+  height: 600px;
+  width: 100%;
+  border-radius: 30px;
+  padding: 10px;
 }
 
 h1 {
-  color: white;
+color: white;
 }
 
 .post {
-  background-color: #222222;
-  height: 100px;
-  margin: 10px;
-  margin-bottom: 20px;
-  width: auto;
-  color: rgb(60, 202, 148);
-  padding-left: 30px;
-  padding-top: 10px;
-  font-size: 23px;
+background-color: #222222;
+height: 100px;
+margin: 10px;
+width: auto;
+color: rgb(60, 202, 148);
+padding-left: 30px;
+padding-top: 10px;
+font-size: 23px;
+border-radius: 20px;
 }
 
 .msg {
-  background-color: rgb(0, 0, 0);
-  height: auto;
-  margin: 10px;
-  color: aliceblue;
-  padding: 10px;
+background-color: rgb(0, 0, 0);
+height: auto;
+margin: 5px;
+color: aliceblue;
+padding: 10px;
+}
+
+.card-footer {
+border-radius: 0 0 30px 30px !important;
+border-top: 0 !important;
+}
+
+#sendMsg {
+display: flex;
+align-items: center;
+background-color: rgba(0, 0, 0, 0.3);
+border-radius: 15px;
+padding: 0 5px;
+height: 50px;
+margin: 0 auto;
+position: absolute;
+bottom: 2%;
+width: 1080px;
+}
+
+#attachBtn {
+background-color: transparent;
+border: 0;
+color: #3cca94;
+cursor: pointer;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 10px;
+}
+
+#msgTxt {
+background-color: transparent;
+border: 0;
+color: #ffffff;
+padding: 10px;
+flex: 1;
+box-sizing: border-box;
+}
+
+.attach_btn {
+border-radius: 15px 0 0 15px !important;
+background-color: rgba(0, 0, 0, 0.3) !important;
+border: 0 !important;
+color: #3cca94 !important;
+cursor: pointer;
+}
+
+.attach_btn i,
+.send_btn i {
+color: #3cca94 !important;
+font-size: 20px;
+}
+
+.send_btn:hover,
+.attach_btn:hover {
+background-color: rgba(0, 0, 0, 0.4) !important;
+border-radius: 15px;
+transform: scale(1.1);
 }

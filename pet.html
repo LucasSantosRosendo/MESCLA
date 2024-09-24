@@ -25,6 +25,19 @@
           <button class="notification-button" id="notificacao">
               <span><i class="fas fa-bell"></i></span>
           </button>
+          <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-header">
+              <strong>Notificações</strong>
+            </div>
+            <ul class="notification-list">
+              <li class="notification-item">Lucas Santos enviou uma mensagem</li>
+              <li class="notification-item">Seu post recebeu 5 curtidas</li>
+              <li class="notification-item">Davi comentou em sua foto</li>
+            </ul>
+            <div class="notification-footer">
+              <a href="#">Ver todas as notificações</a>
+            </div>
+          </div>
           </div>
         <div class="search-container">
             <input type="text" placeholder="Procure no Pet's Community...">
@@ -68,7 +81,7 @@
           <form action="" class="formPost" id="formPost">
             <textarea
               name="textarea"
-              placeholder="Vamos melhorar sua região?"
+              placeholder="Vamos encontrar seu animal?"
               id="textarea"
             ></textarea>
             <div class="iconsAndButton">
@@ -192,89 +205,33 @@
         </div>
       </div>
     </main>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Modal Logic
-        const openModalButton = document.getElementById("openModal");
-        const modal = document.getElementById("janela-modal");
-        const closeModalButton = document.querySelector(".close");
+      const notificationButton = document.getElementById("notificacao");
+      const notificationDropdown = document.getElementById(
+        "notificationDropdown"
+      );
 
-        openModalButton.addEventListener("click", function () {
-          modal.style.display = "flex";
-        });
-
-        closeModalButton.addEventListener("click", function () {
-          modal.style.display = "none";
-        });
-
-        window.addEventListener("click", function (event) {
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
-        });
-
-        // Form Submission Logic for Modal
-        document
-          .getElementById("formPostModal")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            const textareaContent =
-              document.getElementById("textareaModal").value;
-
-            alert("Publicação no modal realizada com sucesso!");
-            modal.style.display = "none";
-
-            // Example: Adding post to feed
-            addPostToFeed(textareaContent);
-          });
-
-        // Form Submission Logic for Page
-        document
-          .getElementById("formPost")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            const textareaContent = document.getElementById("textarea").value;
-
-            alert("Publicação na página realizada com sucesso!");
-            document.getElementById("formPost").reset();
-
-            // Example: Adding post to feed
-            addPostToFeed(textareaContent);
-          });
-
-        function addPostToFeed(content) {
-          const postsList = document.getElementById("posts");
-          const newPost = document.createElement("li");
-          newPost.classList.add("post");
-          newPost.innerHTML = `
-            <div class="infoUserPost">
-              <div class="imgUserPost"></div>
-              <div class="nameAndHour">
-                <strong>Usuário</strong>
-                <p>${calculateTimeAgo()}</p>
-                <div></div>
-                <p>${content}</p>
-                <div class="actionBtnPost">
-                  <button type="button" class="filesPost like">
-                    <img src="components/images/heart.svg" alt="Curtir" />Curtir
-                  </button>
-                  <button type="button" class="filesPost comment">
-                    <img src="components/images/comment.svg" alt="Comentar" />Comentar
-                  </button>
-                  <button type="button" class="filesPost share">
-                    <img src="components/images/share.svg" alt="Compartilhar" />Compartilhar
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-          postsList.appendChild(newPost);
+      notificationButton.addEventListener("click", () => {
+        if (notificationDropdown.classList.contains("show")) {
+          notificationDropdown.classList.remove("show");
+          setTimeout(() => {
+            notificationDropdown.style.display = "none";
+          }, 400);
+        } else {
+          notificationDropdown.style.display = "block";
+          setTimeout(() => {
+            notificationDropdown.classList.add("show");
+          }, 10);
         }
+      });
 
-        function calculateTimeAgo() {
-          const now = new Date();
-          return `${now.getHours()}:${now.getMinutes()}`;
+      document.addEventListener("click", (event) => {
+        if (
+          !notificationButton.contains(event.target) &&
+          !notificationDropdown.contains(event.target)
+        ) {
+          notificationDropdown.classList.remove("show");
+          notificationDropdown.style.display = "none";
         }
       });
     </script>
