@@ -57,6 +57,11 @@
               <i class="fa-solid fa-camera"></i> Minhas publicações
             </a>
           </li>
+          <div class="logout-section">
+            <a href="index.html" class="logout-button" id="sair-btn">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
+          </div>
         </ul>
       </div>
 
@@ -255,12 +260,6 @@
           </div>
         </div>
       </div>
-
-      <div class="logout-section">
-        <a href="index.html" class="logout-button">
-          <i class="fas fa-sign-out-alt"></i> Sair
-        </a>
-      </div>
     </div>
 
     <div class="back-button">
@@ -268,7 +267,6 @@
         <i class="fas fa-arrow-left"></i> Voltar
       </a>
     </div>
-    <button id="logout-btn">Logout</button>
     <script>
       function showSection(sectionId, clickedTab) {
         var sections = document.querySelectorAll(".section");
@@ -308,10 +306,9 @@
     </script>
     
     <script>
-      document.getElementById('logout-btn').addEventListener('click', function() {
+      document.getElementById('sair-btn').addEventListener('click', function() {
         firebase.auth().signOut().then(() => {
           console.log("Usuário deslogado.");
-          // Redirecionar para a página de login
           window.location.href = 'index.html';
         }).catch((error) => {
           console.error("Erro ao deslogar:", error.message);

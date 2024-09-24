@@ -57,6 +57,11 @@
             <i class="fa-solid fa-bell"></i> Solicitações
             </a>
           </li>
+          <div class="logout-section">
+            <a href="index.html" class="logout-button" id="sair-btn">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
+          </div>
         </ul>
       </div>
 
@@ -244,15 +249,10 @@
           </div>
         </div>
       </div>
-      <div class="logout-section">
-        <a href="index.html" class="logout-button">
-          <i class="fas fa-sign-out-alt"></i> Sair
-        </a>
-      </div>
     </div>
-
+    
     <div class="back-button">
-      <a href="feedEmpresa.html" class="btn btn-back">
+      <a href="#" class="btn btn-back">
         <i class="fas fa-arrow-left"></i> Voltar
       </a>
     </div>
@@ -293,6 +293,16 @@
           passwordIcon.innerHTML = '<i class="fas fa-eye"></i>';
         }
       }
+    </script>
+    <script>
+      document.getElementById('sair-btn').addEventListener('click', function() {
+        firebase.auth().signOut().then(() => {
+          console.log("Usuário deslogado.");
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          console.error("Erro ao deslogar:", error.message);
+        });
+      });
     </script>
   </body>
 </html>

@@ -6,6 +6,18 @@
     <title>Publicar - MESCLA</title>
     <link href="/styles/popupPublicacao.css" rel="stylesheet" />
     <style>
+                
+        #addbuttonVideo {
+                    position: absolute;
+            top: 390px; /* distância do topo */
+            left: 598px; /* distância da esquerda */
+        }
+
+        #addbutton{
+            position: absolute;
+            top: 300px; /* distância do topo */
+            left: 592px; /* distância da esquerda */
+        }
 
         #buttonAPP {
             position: absolute;
@@ -17,13 +29,13 @@
 </head>
 <body>
 
-    <!-- Botão para abrir o pop-up -->
+    <!-- Botão para abrir o pop-up imagem-->
     <div class="container">
         <button class="popup-button" id="addbutton" type="button" onclick="handlePopup(true)">
             <img src="/images/imgMESCLA.png" alt="Adicionar imagem">
         </button>
 
-        <!-- Pop-up de publicação -->
+        <!-- Pop-up de publicação imagem -->
         <div class="popup" id="popup">
             <h2 class="title">Publicar</h2>
             <p class="desc">Adicione aqui a imagem e a descrição do problema!</p>
@@ -51,6 +63,38 @@
         </div>
     </div>
 
+    <div class = "containerVideo">
+        <button class="popup-button" id="addbuttonVideo" type="button" onclick="handlePopupVideo(true)">
+            <img src="/images/imgMESCLA.png" alt="Adicionar vídeo">
+        </button>
+        <!-- Pop-up de publicação vídeo -->
+        <div class="popupVideo" id="popupVideo">
+            <h2 class="title">Publicar</h2>
+            <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
+
+            <!-- Botão de upload de vídeo dentro do pop-up -->
+            <label class="picture" for="picture__input" tabIndex="0">
+                <span class="picture__image">Clique aqui para adicionar um vídeo</span>
+            </label>
+            <input type="file" name="picture__input" id="picture__input" style="display: none">
+
+            <div class="content">
+                <!-- Bloco de Texto para Inserção de Descrição -->
+                <div class="description-block">
+                  <textarea id="description_input" placeholder="Escreva sua descrição aqui..."></textarea>
+                </div>
+                <!--Botão enviar-->
+                <button id="buttonAPP" type="button">Enviar</button>
+            <!-- Pré-visualização do vídeo -->
+            <div id="imagePreview"></div>
+
+            <!-- Botão para fechar o pop-up -->
+            <button class="close-popup-button" type="button" onclick="handlePopupVideo(false)">
+                Fechar
+            </button>
+        </div>
+    </div>
+
     <!--tags no arquivo HTML -->
 
 
@@ -61,9 +105,16 @@
         function handlePopup(open) {
             popup.classList[open ? 'add' : 'remove']('opened');
         }
-
-     
     </script>
+
+    <script>
+            const popupVideo = document.getElementById('popupVideo');
+    
+            function handlePopupVideo(open) {
+                popupVideo.classList[open ? 'add' : 'remove']('opened');
+            }
+    </script>
+
     <!-- Script de publicação -->
     <script type="module" src="popupPublicacao.js"></script>
 
