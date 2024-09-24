@@ -27,10 +27,8 @@ let selectedFile = null;
 let selectedTxt = null;
 let URL = null;
 let UserId = null;
-let usersData = null;
-let userInfo = null;
-let userName = null;
-let userCity = null;
+
+
 
     // Verifica se o usuário está logado
     firebase.auth().onAuthStateChanged(function(user) {
@@ -55,54 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (botaoAdd) {
     botaoAdd.addEventListener('click', function() {
       firebase.auth();
-      getUsers();
     });
   }
 });
-
-function getUsers() {
-  const usersRef = databaseRef(database, 'users'); // Referência correta à pasta "users"
-  get(usersRef)
-    .then((snapshot) => {
-      const usersData = snapshot.val();
-      
-      console.log("Dados retornados do Realtime Database:", usersData); // Verifique os dados retornados
-      
-      if (usersData) {
-        findUserByID(usersData, UserId); // Somente chamar se houver dados
-      } else {
-        console.error("Nenhum dado encontrado no banco de dados.");
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao ler dados: ", error);
-    });
-}
-
-
-// Função para encontrar o usuário pelo ID
-// Função para encontrar o usuário pelo ID
-function findUserByID(usersData, UserID) {
-  for (const key in usersData) {
-   console.log("Comparando:", usersData[key].userId, UserId); // Verifica se o userId existe e se a comparação é correta
-    if (usersData[key].UserId === UserId) {
-      // Quando encontrar, armazene as informações em variáveis
-      userInfo = usersData[key];
-      userName = usersData[key].nome;  // Corrigir para usar os dados corretos
-      userCity = usersData[key].cidade; // Corrigir para usar os dados corretos
-
-      // Agora que os dados foram atribuídos, exiba-os
-      console.log("Usuário encontrado: ", userName);
-      console.log("Cidade do usuário: ", userCity);
-
-      break; // Opcional: parar ao encontrar o primeiro
-    }
-    else{
-      console.log(usersData[key].UserId);
-    }
-  }
-}
-
 
 inputFile.addEventListener("change", function (e) {
   const inputTarget = e.target;
@@ -130,6 +83,8 @@ inputFile.addEventListener("change", function (e) {
 });
 
 /************************************************************************************/
+// Obtém os dados do Local Storage
+
 
 // Função para upload de imagem
 function uploadImage() {
@@ -150,9 +105,21 @@ function uploadImage() {
     });
   });
 }
-
 // Função para gravar dados no Realtime Database
 function writeUserData(selectedTxt, URL) {
+  const userInfoo = JSON.parse(localStorage.getItem('userInfo'));
+
+// Exibe os dados ou usa conforme necessário
+if (userInfoo) {
+   const nome = userInfoo.nome; // Pega o nome
+   const cidade = userInfoo.cidade; // Pega a cidade
+
+  console.log(`Nome: ${nome}, Cidade: ${cidade}`);
+  
+  // Você pode fazer outras operações com as informações, como preencher elementos na página
+} else {
+  console.error("Nenhuma informação disponível.");
+}
   if (!selectedTxt || typeof selectedTxt !== 'string') {
     console.error('O texto da descrição está inválido:', selectedTxt);
     return;
@@ -163,9 +130,11 @@ function writeUserData(selectedTxt, URL) {
   set(newDescriptionRef, {
     text: selectedTxt,
     imageUrl: URL,
+    user: nome,
+    city: cidade
   })
   .then(() => {
-    console.log("Texto e URL enviados com sucesso");
+    console.log("Texto, URL e outras informações foram enviadas com sucesso");
   })
   .catch((error) => {
     console.error("Erro ao enviar texto:", error);
@@ -173,14 +142,22 @@ function writeUserData(selectedTxt, URL) {
 }
 
 // Função principal chamada ao clicar no botão
+// Função principal chamada ao clicar no botão
 function handleButtonClick() {
   const descriptionInput = document.getElementById('description_input').value;
   selectedTxt = descriptionInput;
 
-
   // Primeiro faz o upload da imagem, depois grava os dados
   uploadImage().then((url_imagem) => {
-    writeUserData(selectedTxt, url_imagem, /*userId*/); // Passando userId aqui
+    const userInfoo = JSON.parse(localStorage.getItem('userInfo'));
+    if (userInfoo) {
+      const nome = userInfoo.nome; // Pega o nome
+      const cidade = userInfoo.cidade; // Pega a cidade
+      
+      writeUserData(selectedTxt, url_imagem, nome, cidade); // Passando os parâmetros necessários
+    } else {
+      console.error("Nenhuma informação disponível.");
+    }
   }).catch((error) => {
     console.error('Erro durante o processo:', error);
   });

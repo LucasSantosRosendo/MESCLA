@@ -132,11 +132,14 @@
           get(userRef).then((snapshot) => {
             if (snapshot.exists()) {
               const userInfo = snapshot.val();
-              
+
+              localStorage.setItem('userInfo', JSON.stringify(userInfo));
+              window.location.href = "popupPublicacao.html";
               // Exibe as informações do usuário em um alert (para fins de teste)
               alert(`Informações do usuário:
                 Nome: ${userInfo.nome}
                 Cidade: ${userInfo.cidade}`);
+                window.location.href = "feed2.html";
             } else {
               alert("Nenhum dado encontrado para este token.");
             }
