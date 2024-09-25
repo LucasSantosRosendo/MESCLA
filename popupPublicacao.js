@@ -126,10 +126,13 @@ function writeUserData(selectedTxt, URL) {
   })
   .then(() => {
     console.log("Texto, URL e outras informações foram enviadas com sucesso");
+    window.location.href = "feed2.html";
   })
   .catch((error) => {
     console.error("Erro ao enviar texto:", error);
   });
+ 
+
 }
 
 // Função principal chamada ao clicar no botão

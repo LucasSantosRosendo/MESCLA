@@ -9,32 +9,42 @@
     <style>
         #addbuttonVideo {
             position: absolute;
-            top: 390px;
             /* distância do topo */
-            left: 598px;
+            top: 390px;
             /* distância da esquerda */
+            left: 598px;
+            
         }
 
         #addbutton {
             position: absolute;
+              /* distância do topo */
             top: 300px;
-            /* distância do topo */
+             /* distância da esquerda */
             left: 592px;
-            /* distância da esquerda */
+         
         }
 
         #buttonAPP {
             position: absolute;
-            top: 532px;
             /* distância do topo */
+            top: 532px;
+          /* distância da esquerda */
             left: 415px;
-            /* distância da esquerda */
+          
         }
+        
     </style>
     <script src=auth.js></script>
 </head>
 
 <body>
+
+    <div class="back-button">
+        <a href="feed2.html" class="btn btn-back">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+      </div>
 
     <!-- Botão para abrir o pop-up imagem-->
     <div class="container">
@@ -112,7 +122,6 @@
             <!-- Script para manipulação do pop-up -->
             <script>
                 const popup = document.getElementById('popup');
-
                 function handlePopup(open) {
                     popup.classList[open ? 'add' : 'remove']('opened');
                 }
