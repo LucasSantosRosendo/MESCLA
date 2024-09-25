@@ -2,6 +2,7 @@
 // Inicialização do Firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getDatabase, ref as databaseRef, get } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -16,25 +17,55 @@ const firebaseConfig = {
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
 
 /************************************************************************************/
 
 document.addEventListener('DOMContentLoaded', function() {
-    getDescription();  // Chama a função apenas quando o DOM estiver pronto
+    // Verifica o estado de autenticação e busca a cidade do usuário logado
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userId = user.uid;
+
+
+            // Busca a cidade do usuário logado no Realtime Database
+            const userCityRef = databaseRef(database, `users/${userId}/cidade`);
+            get(userCityRef).then((snapshot) => {
+                const userCity = snapshot.val();
+
+                if (userCity) {
+                    getDescription(userCity);  // Chama a função com a cidade do usuário
+                } else {
+                    console.error('Cidade do usuário não encontrada.');
+                }
+            }).catch((error) => {
+                console.error("Erro ao obter a cidade do usuário: ", error);
+            });
+        } else {
+            console.log("Nenhum usuário logado.");
+        }
+    });
 });
 
 let post = null;
 
-function getDescription() {
-    const publicacoesRef = databaseRef(database, 'description'); // Referência correta à pasta "description"
+function getDescription(userCity) {
+    const publicacoesRef = databaseRef(database, 'description'); // Referência à pasta "description"
+    
     get(publicacoesRef)
       .then((snapshot) => {
         post = snapshot.val();
         
-        console.log("Dados retornados do Realtime Database:", post); // Verifique os dados retornados
-        
         if (post) {
-            publish(post); // Somente chamar se houver dados
+            // Filtra as publicações para exibir apenas da mesma cidade do usuário
+            const filteredPosts = Object.keys(post)
+                .filter(key => post[key].city === userCity)  // Filtra pela cidade
+                .reduce((obj, key) => {
+                    obj[key] = post[key];
+                    return obj;
+                }, {});
+            
+            publish(filteredPosts);  // Somente exibe as publicações filtradas
         } else {
           console.error("Nenhum dado encontrado no banco de dados.");
         }
@@ -44,7 +75,7 @@ function getDescription() {
       });
 }
 
-function publish(post) {
+function publish(filteredPosts) {
     const publicacoesDiv = document.getElementById('publicacoes'); // O contêiner para as publicações
 
     // Certifique-se de que o contêiner existe
@@ -55,40 +86,49 @@ function publish(post) {
 
     publicacoesDiv.innerHTML = ''; // Limpa a área de exibição
 
-    // Transformar o objeto em um array
-    const postsArray = Object.keys(post).map(key => ({
+    // Transformar o objeto filtrado em um array
+    const postsArray = Object.keys(filteredPosts).map(key => ({
         key: key,
-        ...post[key]
+        ...filteredPosts[key]
     }));
 
     // Ordenar os posts por posição (supondo que você tenha um campo 'position')
-    postsArray.sort((a, b) => a.position - b.position); // Ordem crescente
+    postsArray.sort((a, b) => b.position - a.position);
 
     for (const postItem of postsArray) {
         const URL = postItem.imageUrl;
         const notice = postItem.text;
+        const cidade = postItem.city;
+        const name = postItem.user; 
 
         console.log(URL);
         console.log(notice);
+        console.log(cidade);
+        console.log(name);
 
         // Criar um novo elemento de imagem
         const img = document.createElement('img');
-        img.src = URL;
+        img.src = URL; //adiciona url para aparecer imagem
         img.alt = 'Imagem da publicação';
         img.width = 300;  // Largura em pixels
         img.height = 200; // Altura em pixels
 
-        // Criar um novo elemento de parágrafo para o texto
+        //Cria um novo elemento para exibir nome
+        const usuario = document.createElement('p');
+        usuario.textContent = name;
+
+        // Cria um novo elemento de parágrafo para o texto
         const descricao = document.createElement('p');
         descricao.textContent = notice;
 
-        // Criar um contêiner para a publicação
+        // Cria um contêiner para a publicação
         const container = document.createElement('div');
         container.classList.add('publicacao');
 
         // Adicionar a imagem e o texto ao contêiner
         container.appendChild(img);
         container.appendChild(descricao);
+        container.appendChild(usuario);
 
         // Adicionar o contêiner ao div de publicações
         publicacoesDiv.appendChild(container);
