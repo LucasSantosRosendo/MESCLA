@@ -17,7 +17,7 @@ body {
     background-color: #222;
 }
 
-#buttonAPP{
+#buttonAPP {
     background-color: #3cca94;
     border: none;
     padding: 10px 30px;
@@ -30,8 +30,9 @@ body {
     transition: all .4s;
     margin: 10px;
     justify-content: space-between;
-        display: flex;
+    display: flex;
 }
+
 .popup-button,
 .popupVideo .close-popup-button,
 .popup .close-popup-button {
@@ -47,7 +48,7 @@ body {
     transition: all .4s;
     margin: 10px;
     justify-content: space-between;
-        display: flex;
+    display: flex;
 }
 
 .description-block button {
@@ -62,12 +63,12 @@ body {
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
     margin-top: 10px;
-  }
+}
 
-  .description-block button:hover {
+.description-block button:hover {
     background: rgb(60, 202, 148);
     transform: scale(1.05);
-  }
+}
 
 #buttonAPP:hover,
 .popup-button:hover,
@@ -121,6 +122,24 @@ body {
     display: none;
 }
 
+.pictureVideo {
+    width: 200px; /* Ajustado para ocupar toda a largura do popup */
+    height: 50px;
+    aspect-ratio: 16/9;
+    background: #3e3e3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f1efef;
+    border: 1px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+    margin: 20px auto; /* Centraliza o upload de imagem */
+}
+
 .picture {
     width: 400px; /* Ajustado para ocupar toda a largura do popup */
     aspect-ratio: 16/9;
@@ -138,23 +157,27 @@ body {
     margin: 20px auto; /* Centraliza o upload de imagem */
 }
 
+.pictureVideo:hover,
 .picture:hover {
     color: #777;
     background: rgb(127, 201, 150);
 }
 
+.pictureVideo:active,
 .picture:active {
     border-color: rgb(64, 224, 115);
     color: rgb(127, 201, 150);
     background: #eee;
 }
 
+.pictureVideo:focus,
 .picture:focus {
     color: #777;
     background: rgb(127, 201, 150);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.pictureVideo__img
 .picture__img {
     max-width: 100%;
     height: auto;
@@ -172,9 +195,35 @@ body {
     font-size: 16px;
     resize: none;
     outline: none;
-  }
+}
 
-  .description-block textarea:focus {
+.description-block textarea:focus {
     border-color: #3cca94;
-  }
+}
 
+/* Configurações adicionais para vídeos */
+.video__preview {
+    width: 100%; /* Faz o vídeo ocupar a largura disponível */
+    max-width: 350px; /* Define um limite máximo de largura */
+    aspect-ratio: 16/9; /* Mantém a proporção 16:9 */
+    margin: 20px auto; /* Centraliza o vídeo dentro do container */
+    background: #3e3e3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.video__preview-video {
+    width: 100%; /* O vídeo preencherá a largura do container */
+    height: 100%; /* O vídeo ajustará sua altura de acordo com a largura */
+    object-fit: cover; /* O vídeo manterá sua proporção ao preencher o container */
+    border-radius: 8px;
+}
+
+/* Adiciona uma borda de destaque no vídeo ao passar o mouse */
+.video__preview-video:hover {
+    border: 2px solid #3cca94;
+}

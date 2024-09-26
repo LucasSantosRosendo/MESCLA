@@ -1,27 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicação</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publicar - MESCLA</title>
+    <link href="/styles/popupPublicacao.css" rel="stylesheet" />
+    <style>
+        #addbuttonVideo {
+            position: absolute;
+            top: 390px;
+            left: 598px;
+        }
+
+        #addbutton {
+            position: absolute;
+            top: 300px;
+            left: 592px;
+        }
+
+        #buttonAPP {
+            position: absolute;
+            top: 580px;
+            left: 415px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Descrição da Publicação</h1>
-    <div id="userInfo"></div>
 
+    <div class="back-button">
+        <a href="feed2.html" class="btn btn-back">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Botão para abrir o pop-up de vídeo -->
+        <button class="popup-button" id="addbuttonVideo" type="button" onclick="handlePopupVideo(true)">
+            <img src="/images/imgMESCLA.png" alt="Adicionar vídeo">
+        </button>
+
+        <!-- Pop-up de publicação de vídeo -->
+        <div class="popupVideo" id="popupVideo">
+            <h2 class="title">Publicar Vídeo</h2>
+            <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
+
+            <!-- Botão de upload de vídeo dentro do pop-up -->
+            <label class="pictureVideo" for="video__input" tabIndex="0">
+                <span class="picture__image">Clique aqui para adicionar um vídeo</span>
+            </label>
+            <input type="file" name="video__input" id="video__input" style="display: none">
+
+            <div class="content">
+                <!-- Bloco de Texto para Inserção de Descrição -->
+                <div class="description-block">
+                    <textarea id="description_input" placeholder="Escreva sua descrição aqui..."></textarea>
+                </div>
+
+                <!-- Pré-visualização do vídeo -->
+                <div class="video__preview"></div>
+
+                <!-- Botão Enviar -->
+                <button id="buttonAPP" type="button">
+                    Enviar
+                </button>
+
+                <!-- Botão para fechar o pop-up -->
+                <button class="close-popup-button" type="button" onclick="handlePopupVideo(false)">
+                    Fechar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script para manipulação do pop-up -->
     <script>
-        // Obtém os dados do Local Storage
-        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const popupVideo = document.getElementById('popupVideo');
 
-        // Exibe os dados na página
-        if (userInfo) {
-            document.getElementById('userInfo').innerHTML = `
-                <p>Nome: ${userInfo.nome}</p>
-                <p>Cidade: ${userInfo.cidade}</p>
-            `;
-        } else {
-            document.getElementById('userInfo').innerHTML = `<p>Nenhuma informação disponível.</p>`;
+        function handlePopupVideo(open) {
+            popupVideo.classList[open ? 'add' : 'remove']('opened');
         }
     </script>
+
+    <!-- Script de publicação de vídeo -->
+    <script type="module" src="popupPublicacaoVideo.js"></script>
+
 </body>
+
 </html>
