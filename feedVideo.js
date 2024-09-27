@@ -125,7 +125,7 @@ function publish(filteredPosts) {
 
         // Cria um contêiner para a publicação
         const container = document.createElement('div');
-        container.classList.add('publicacao');
+        container.classList.add('publicacaoVideo');
 
         // Adicionar a imagem e o texto ao contêiner
         container.appendChild(video);

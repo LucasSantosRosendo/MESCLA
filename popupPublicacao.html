@@ -13,38 +13,40 @@
             top: 390px;
             /* distância da esquerda */
             left: 598px;
-            
         }
 
         #addbutton {
             position: absolute;
-              /* distância do topo */
+            /* distância do topo */
             top: 300px;
-             /* distância da esquerda */
+            /* distância da esquerda */
             left: 592px;
-         
         }
 
+        #buttonAPPVideo{
+            position: absolute;
+            /* distância do topo */
+            top: 580px;
+            /* distância da esquerda */
+            left: 415px;
+        }
         #buttonAPP {
             position: absolute;
             /* distância do topo */
             top: 532px;
-          /* distância da esquerda */
+            /* distância da esquerda */
             left: 415px;
-          
         }
-        
     </style>
-    <script src=auth.js></script>
+    <script src="auth.js"></script>
 </head>
 
 <body>
-
     <div class="back-button">
         <a href="feed2.html" class="btn btn-back">
-          <i class="fas fa-arrow-left"></i> Voltar
+            <i class="fas fa-arrow-left"></i> Voltar
         </a>
-      </div>
+    </div>
 
     <!-- Botão para abrir o pop-up imagem-->
     <div class="container">
@@ -68,76 +70,70 @@
                 <div class="description-block">
                     <textarea id="description_input" placeholder="Escreva sua descrição aqui..."></textarea>
                 </div>
-                <!--Botão enviar-->
-                <button id="buttonAPP" type="button" onclick="handlePopup(false)"
-                >Enviar
-                </button>
+                <!-- Botão enviar -->
+                <button id="buttonAPP" type="button" onclick="handlePopup(false)">Enviar</button>
                 <!-- Pré-visualização da imagem -->
                 <div id="imagePreview"></div>
 
                 <!-- Botão para fechar o pop-up -->
-                <button class="close-popup-button" type="button" onclick="handlePopup(false)">
-                    Fechar
-                </button>
+                <button class="close-popup-button" type="button" onclick="handlePopup(false)">Fechar</button>
             </div>
         </div>
 
         <div class="containerVideo">
-            <button class="popup-button" id="addbuttonVideo" type="button" onclick="handlePopupVideo(true)">
+            <!-- Botão para abrir o pop-up de vídeo -->
+            <button class="popup-buttonVideo" id="addbuttonVideo" type="button" onclick="handlePopupVideo(true)">
                 <img src="/images/imgMESCLA.png" alt="Adicionar vídeo">
             </button>
-            <!-- Pop-up de publicação vídeo -->
+
+            <!-- Pop-up de publicação de vídeo -->
             <div class="popupVideo" id="popupVideo">
-                <h2 class="title">Publicar</h2>
+                <h2 class="title">Publicar Vídeo</h2>
                 <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
 
                 <!-- Botão de upload de vídeo dentro do pop-up -->
-                <label class="picture" for="picture__input" tabIndex="0">
+                <label class="pictureVideo" for="video__input" tabIndex="0">
                     <span class="picture__image">Clique aqui para adicionar um vídeo</span>
                 </label>
-                <input type="file" name="picture__input" id="picture__input" style="display: none">
+                <input type="file" name="video__input" id="video__input" style="display: none">
 
                 <div class="content">
                     <!-- Bloco de Texto para Inserção de Descrição -->
                     <div class="description-block">
-                        <textarea id="description_input" placeholder="Escreva sua descrição aqui..."></textarea>
+                        <textarea id="description_input_video" placeholder="Escreva sua descrição aqui..."></textarea>
                     </div>
-                    <!--Botão enviar-->
-                    <button id="buttonAPP" type="button" onclick="handlePopupVideo(false)">
-                        Enviar
-                    </button>
+
                     <!-- Pré-visualização do vídeo -->
-                    <div id="imagePreview"></div>
+                    <div class="video__preview"></div>
+
+                    <!-- Botão Enviar -->
+                    <button id="buttonAPPVideo" type="button" onclick="handlePopup(false)">Enviar</button>
 
                     <!-- Botão para fechar o pop-up -->
-                    <button class="close-popup-button" type="button" onclick="handlePopupVideo(false)">
-                        Fechar
-                    </button>
+                    <button class="close-popup-button" type="button" onclick="handlePopupVideo(false)">Fechar</button>
                 </div>
             </div>
+        </div> <!-- Faltava fechar esta div -->
 
-            <!--tags no arquivo HTML -->
+        <!-- Script para manipulação do pop-up -->
+        <script>
+            const popup = document.getElementById('popup');
+            function handlePopup(open) {
+                popup.classList[open ? 'add' : 'remove']('opened');
+            }
+        </script>
+
+        <script>
+            const popupVideo = document.getElementById('popupVideo');
+            function handlePopupVideo(open) {
+                popupVideo.classList[open ? 'add' : 'remove']('opened');
+            }
+        </script>
+        <script type="module" src ="popupPublicacaoVideo.js"></script>
+        <script type="module" src ="popupPublicacao.js"></script>
 
 
-            <!-- Script para manipulação do pop-up -->
-            <script>
-                const popup = document.getElementById('popup');
-                function handlePopup(open) {
-                    popup.classList[open ? 'add' : 'remove']('opened');
-                }
-            </script>
-
-            <script>
-                const popupVideo = document.getElementById('popupVideo');
-
-                function handlePopupVideo(open) {
-                    popupVideo.classList[open ? 'add' : 'remove']('opened');
-                }
-            </script>
-
-            <!-- Script de publicação -->
-            <script type="module" src="popupPublicacao.js"></script>
-
+    </div>
 </body>
 
 </html>

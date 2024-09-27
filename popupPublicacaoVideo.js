@@ -92,6 +92,7 @@ function writeUserData(description, videoUrl) {
   })
   .then(() => {
     console.log("Dados enviados com sucesso");
+    window.location.href = "feed2.html";
   })
   .catch((error) => {
     console.error("Erro ao enviar dados:", error);
@@ -100,7 +101,7 @@ function writeUserData(description, videoUrl) {
 
 // Função principal de envio
 function handleButtonClick() {
-  const descriptionInput = document.getElementById('description_input').value;
+  const descriptionInput = document.getElementById('description_input_video').value;
   selectedTxt = descriptionInput;
 
   uploadVideo().then((url_video) => {
@@ -110,4 +111,4 @@ function handleButtonClick() {
   });
 }
 
-document.getElementById('buttonAPP').addEventListener('click', handleButtonClick);
+document.getElementById('buttonAPPVideo').addEventListener('click', handleButtonClick);
