@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
@@ -18,10 +18,8 @@
         display: none;
       }
     </style>
-        <script src = auth.js></script>
-  </head>
-
-  <body>
+</head>
+<body>
     <div class="container-fluid h-100">
       <div class="row justify-content-center h-100">
         <div class="col-md-4 col-xl-3 chat">
@@ -95,6 +93,19 @@
                     </div>
                   </div>
                 </li>
+                <li class="contact-item hidden" data-company="Petrobras">
+                  <div class="d-flex bd-highlight">
+                    <div class="img_cont">
+                      <img
+                        src="/components/images/petrobras.png"
+                        class="rounded-circle user_img"
+                      />
+                    </div>
+                    <div class="user_info">
+                      <span>Petrobras</span>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="card-footer">
@@ -123,28 +134,28 @@
                 </p>
               </div>
               <div class="chat_window hidden">
-                <div class="user_info">
-                  <img
-                    id="company_img"
-                    src=""
-                    class="rounded-circle user_img"
-                  />
-                  <span id="company_name"></span>
-                </div>
-                <div id="messages"></div>
-                <div id="sendMsg">
-                  <button id="attachBtn" class="attach_btn">
-                    <i class="fas fa-paperclip"></i>
-                  </button>
-                  <input
-                    type="text"
-                    id="msgTxt"
-                    placeholder="Digite sua mensagem..."
-                  />
-                  <button id="msgBtn" class="send_btn">
-                    <i class="fas fa-paper-plane"></i>
-                  </button>
-                </div>
+                  <div class="user_info">
+                    <img
+                      id="company_img"
+                      src=""
+                      class="rounded-circle user_img"
+                    />
+                    <span id="company_name"></span>
+                  </div>
+                  <div id="messages"></div>
+                  <div id="sendMsg">
+                    <button id="attachBtn" class="attach_btn">
+                      <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input
+                      type="text"
+                      id="msgTxt"
+                      placeholder="Digite sua mensagem..."
+                    />
+                    <button id="msgBtn" class="send_btn">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
               </div>
             </div>
             <div class="back-button">
@@ -156,118 +167,185 @@
         </div>
       </div>
     </div>
+
     <script>
       module = {};
     </script>
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        set,
-        remove,
-        onChildAdded,
-        onChildRemoved,
-      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-      import {
-        getStorage,
-        ref as storageRef,
-        uploadBytes,
-        getDownloadURL,
-      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import {
+          getDatabase,
+          ref,
+          set,
+          remove,
+          onChildAdded,
+          onChildRemoved,
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+        import {
+          getStorage,
+          ref as storageRef,
+          uploadBytes,
+          getDownloadURL,
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
+          authDomain: "mescla-f9d00.firebaseapp.com",
+          projectId: "mescla-f9d00",
+          storageBucket: "mescla-f9d00.appspot.com",
+          messagingSenderId: "442057041731",
+          appId: "1:442057041731:web:a5d7208555136ba97531f6",
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
     
-      const firebaseConfig = {
-        apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
-        authDomain: "mescla-f9d00.firebaseapp.com",
-        projectId: "mescla-f9d00",
-        storageBucket: "mescla-f9d00.appspot.com",
-        messagingSenderId: "442057041731",
-        appId: "1:442057041731:web:a5d7208555136ba97531f6",
-      };
-    
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-      const storage = getStorage(app);
-    
-      var msgTxt = document.getElementById("msgTxt");
-      var sender;
-      if (sessionStorage.getItem("sender")) {
-        sender = sessionStorage.getItem("sender");
-      } else {
-        sender = prompt("Entre com o seu usuário: ");
-        sessionStorage.setItem("sender", sender);
-      }
-    
-      module.sendMsg = function sendMsg(msg, imageUrl = null) {
-        var timestamp = new Date().getTime();
-        set(ref(db, "messages/" + timestamp), {
-          msg: msg || "",
-          imageUrl: imageUrl || "",
-          sender: sender,
-        });
-    
-        msgTxt.value = "";
-      };
-    
-      onChildAdded(ref(db, "messages"), (data) => {
-        let messageClass = data.val().sender === sender ? "me" : "notMe";
-        let messageHtml = `
-          <div class="outer" id="${data.key}">
-            <div id="inner" class="${messageClass}">
-              ${data.val().sender === sender ? "Você: " : data.val().sender + ": "}
-              ${data.val().msg}
-              ${
-                data.val().imageUrl
-                  ? `<img src="${data.val().imageUrl}" style="max-width: 200px;"/>`
-                  : ""
-              }
-              ${
-                data.val().sender === sender
-                  ? `<button class="button-delete" data-key="${data.key}">Excluir</button>`
-                  : ""
-              }
-            </div>
-          </div>`;
-    
-        document.getElementById("messages").innerHTML += messageHtml;
-      });
-    
-      document.getElementById("messages").addEventListener("click", function (event) {
-        if (event.target && event.target.classList.contains("button-delete")) {
-          let key = event.target.getAttribute("data-key");
-          module.dltMsg(key);
+        var msgTxt = document.getElementById("msgTxt");
+        var sender;
+        var currentCompany;
+      
+        if (sessionStorage.getItem("sender")) {
+          sender = sessionStorage.getItem("sender");
+        } else {
+          sender = prompt("Entre com o seu usuário: ");
+          sessionStorage.setItem("sender", sender);
         }
-      });
-    
-      module.dltMsg = function dltMsg(key) {
-        remove(ref(db, "messages/" + key));
-      };
-    
-      document.getElementById("msgBtn").addEventListener("click", function () {
-        const msg = msgTxt.value;
-        module.sendMsg(msg);
-      });
-    
-      document.getElementById("fileInput").addEventListener("change", function (event) {
-        var file = event.target.files[0];
-        if (file) {
+      
+        module.sendMsg = function sendMsg() {
+          var msg = msgTxt.value.trim();
           var timestamp = new Date().getTime();
-          var storagePath = storageRef(storage, "images/" + timestamp + "_" + file.name);
+          
+          if (msg === "") return;
     
-          uploadBytes(storagePath, file).then((snapshot) => {
-            console.log("Uploaded a file!");
+          set(ref(db, "messages/" + currentCompany + "/" + timestamp), {
+            msg: msg,
+            sender: sender,
+          });
+          msgTxt.value = "";
+          ContatosLateral(currentCompany);
+        };
+      
+        module.dltMsg = function dltMsg(company, key) {
+          remove(ref(db, "messages/" + company + "/" + key));
+        };
     
-            getDownloadURL(snapshot.ref).then((url) => {
-              module.sendMsg(null, url);
+        module.sendImage = function sendImage(file) {
+          const timestamp = new Date().getTime();
+          const storagePath = `images/${currentCompany}/${timestamp}_${file.name}`;
+    
+          const imageRef = storageRef(storage, storagePath);
+      
+          uploadBytes(imageRef, file).then((snapshot) => {
+            console.log("Imagem enviada:", snapshot);
+    
+            getDownloadURL(imageRef).then((url) => {
+              set(ref(db, "messages/" + currentCompany + "/" + timestamp), {
+                msg: url,
+                sender: sender,
+              });
             });
           });
-        }
-      });
+        };
+      
+        function selectCompany(companyName) {
+          currentCompany = companyName;
+          document.getElementById("company_name").textContent = companyName;
+          document.getElementById("messages").innerHTML = "";
+          
+          onChildRemoved(ref(db, "messages/" + currentCompany));
     
-      document.getElementById("attachBtn").addEventListener("click", function () {
-        document.getElementById("fileInput").click();
-      });
-    </script>        
+          onChildAdded(ref(db, "messages/" + currentCompany), (data) => {
+            let messageClass = data.val().sender === sender ? "me" : "notMe";
+            const messageContent = data.val().msg.includes("http") ? `<img src="${data.val().msg}" alt="Imagem" style="max-width: 100px;"/>` : data.val().msg; // Exibe imagem se for uma URL
+            
+            document.getElementById("messages").innerHTML += `
+              <div class="outer" id="${data.key}">
+                <div id="inner" class="${messageClass}">
+                  ${
+                    data.val().sender === sender
+                      ? "Você: "
+                      : data.val().sender + ": "
+                  }${messageContent}
+                  ${
+                    data.val().sender === sender
+                      ? `<button class="button-delete" onclick="module.dltMsg('${currentCompany}', '${data.key}')">x</button>`
+                      : ""
+                  }
+                </div>
+              </div>`;
+          });
+      
+          onChildRemoved(ref(db, "messages/" + currentCompany), (data) => {
+            const messageElement = document.getElementById(data.key);
+            if (messageElement) {
+              messageElement.remove();
+            }
+          });
+        }
+      
+        function ContatosLateral(companyName) {
+          var contactItem = document.querySelector(
+            `.contact-item[data-company="${companyName}"]`
+          );
+          if (contactItem) {
+            contactItem.classList.remove("hidden");
+            let savedContacts =
+              JSON.parse(localStorage.getItem("savedContacts")) || [];
+            if (!savedContacts.includes(companyName)) {
+              savedContacts.push(companyName);
+              localStorage.setItem(
+                "savedContacts",
+                JSON.stringify(savedContacts)
+              );
+            }
+          } else {
+            console.log("Empresa não encontrada.");
+          }
+        }
+      
+        function restoreContacts() {
+          let savedContacts =
+            JSON.parse(localStorage.getItem("savedContacts")) || [];
+          savedContacts.forEach((companyName) => {
+            var contactItem = document.querySelector(
+              `.contact-item[data-company="${companyName}"]`
+            );
+            if (contactItem) {
+              contactItem.classList.remove("hidden");
+            }
+          });
+        }
+      
+        document.addEventListener("DOMContentLoaded", restoreContacts);
+      
+        document
+          .getElementById("msgBtn")
+          .addEventListener("click", module.sendMsg);
+        
+        document
+          .getElementById("attachBtn")
+          .addEventListener("click", function () {
+            document.getElementById("fileInput").click();
+          });
+        
+        document
+          .getElementById("fileInput")
+          .addEventListener("change", function (event) {
+            var file = event.target.files[0];
+            if (file) {
+              console.log("Arquivo selecionado:", file.name);
+              module.sendImage(file);
+            }
+          });
+      
+        document.querySelectorAll('.contact-item').forEach(item => {
+          item.addEventListener('click', function() {
+            selectCompany(item.getAttribute('data-company'));
+            document.querySelector('.chat_window').classList.remove('hidden');
+          });
+        });
+    </script>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
