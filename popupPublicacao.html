@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publicar - MESCLA</title>
+    <link href="/styles/popupPublicacao.css" rel="stylesheet" />
+    <style>
+             
+    body,
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: #222222; /* Fundo da página */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff;
+      }
+
+           /* Botão de voltar */
+           .back-button {
+        margin: 20px;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: #3cca94;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .back-button i {
+        margin-right: 8px; /* Espaço entre a seta e o texto */
+        font-size: 20px;
+      }
+
+      .back-button:hover {
+        color: #2e9f76; /* Muda a cor no hover */
+      }
+
+           /* Container de publicação */
+           .containerIndex {
+        background-color: #4d4d4d;
+        color: #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        width: 350px;
+        height: 300px;
+        margin: 80px auto;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      .publication-container:hover {
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+      }
+
+      .publication-container h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: #3cca94;
+      }
+
+      .publication-container p {
+        font-size: 18px;
+        margin-top: 5px;
+        color: #cccccc;
+      }
+
+        #addbuttonVideo {
+            position: absolute;
+            /* distância do topo */
+            top: 390px;
+            /* distância da esquerda */
+            left: 650px;
+        }
+
+        #addbutton {
+            position: absolute;
+            /* distância do topo */
+            top: 300px;
+            /* distância da esquerda */
+            left: 643px;
+        }
+
+        #buttonAPPVideo{
+            position: absolute;
+            /* distância do topo */
+            top: 580px;
+            /* distância da esquerda */
+            left: 415px;
+        }
+        #buttonAPP {
+            position: absolute;
+            /* distância do topo */
+            top: 532px;
+            /* distância da esquerda */
+            left: 415px;
+        }
+    </style>
+    <script src="auth.js"></script>
+</head>
+
+<body>
+    <!-- Botão de voltar -->
+    <a href="feed2.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Voltar
+      </a>
+
+      <div class ="containerIndex">
+        <h2>Publicar</h2>
+        <p>Vamos melhorar sua região?</p>
+      </div>
+    <!-- Botão para abrir o pop-up imagem-->
+    <div class="container">
+   
+        <button class="popup-button" id="addbutton" type="button" onclick="handlePopup(true)">
+            <img src="/images/imgMESCLA.png" alt="Adicionar imagem">
+        </button>
+
+        <!-- Pop-up de publicação imagem -->
+        <div class="popup" id="popup">
+            <h2 class="title">Publicar</h2>
+            <p class="desc">Adicione aqui a imagem e a descrição do problema!</p>
+
+            <!-- Botão de upload de imagem dentro do pop-up -->
+            <label class="picture" for="picture__input" tabIndex="0">
+                <span class="picture__image">Clique aqui para adicionar uma imagem</span>
+            </label>
+            <input type="file" name="picture__input" id="picture__input" style="display: none">
+
+            <div class="content">
+                <!-- Bloco de Texto para Inserção de Descrição -->
+                <div class="description-block">
+                    <textarea id="description_input" placeholder="Escreva sua descrição aqui..."></textarea>
+                </div>
+                <!-- Botão enviar -->
+                <button id="buttonAPP" type="button" onclick="handlePopup(false)">Enviar</button>
+                <!-- Pré-visualização da imagem -->
+                <div id="imagePreview"></div>
+
+                <!-- Botão para fechar o pop-up -->
+                <button class="close-popup-button" type="button" onclick="handlePopup(false)">Fechar</button>
+            </div>
+        </div>
+
+        <div class="containerVideo">
+            <!-- Botão para abrir o pop-up de vídeo -->
+            <button class="popup-buttonVideo" id="addbuttonVideo" type="button" onclick="handlePopupVideo(true)">
+                <img src="/images/imgMESCLA.png" alt="Adicionar vídeo">
+            </button>
+
+            <!-- Pop-up de publicação de vídeo -->
+            <div class="popupVideo" id="popupVideo">
+                <h2 class="title">Publicar Vídeo</h2>
+                <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
+
+                <!-- Botão de upload de vídeo dentro do pop-up -->
+                <label class="pictureVideo" for="video__input" tabIndex="0">
+                    <span class="picture__image">Clique aqui para adicionar um vídeo</span>
+                </label>
+                <input type="file" name="video__input" id="video__input" style="display: none">
+
+                <div class="content">
+                    <!-- Bloco de Texto para Inserção de Descrição -->
+                    <div class="description-block">
+                        <textarea id="description_input_video" placeholder="Escreva sua descrição aqui..."></textarea>
+                    </div>
+
+                    <!-- Pré-visualização do vídeo -->
+                    <div class="video__preview"></div>
+
+                    <!-- Botão Enviar -->
+                    <button id="buttonAPPVideo" type="button" onclick="handlePopup(false)">Enviar</button>
+
+                    <!-- Botão para fechar o pop-up -->
+                    <button class="close-popup-button" type="button" onclick="handlePopupVideo(false)">Fechar</button>
+                </div>
+            </div>
+        </div> <!-- Faltava fechar esta div -->
+
+        <!-- Script para manipulação do pop-up -->
+        <script>
+            const popup = document.getElementById('popup');
+            function handlePopup(open) {
+                popup.classList[open ? 'add' : 'remove']('opened');
+            }
+        </script>
+
+        <script>
+            const popupVideo = document.getElementById('popupVideo');
+            function handlePopupVideo(open) {
+                popupVideo.classList[open ? 'add' : 'remove']('opened');
+            }
+        </script>
+        <script type="module" src ="popupPublicacaoVideo.js"></script>
+        <script type="module" src ="popupPublicacao.js"></script>
+
+
+    </div>
+</body>
+
+</html>
