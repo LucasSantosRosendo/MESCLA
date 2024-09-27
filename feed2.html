@@ -6,36 +6,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
   <link href="/styles/feed2.css" rel="stylesheet" />
   <link href="/styles/fonts.css" rel="stylesheet" />
-  <link
-  href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
-  rel="stylesheet"/>
-
   <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
   <title>Feed de Publicações - MESCLA</title>
-  <script src = auth.js></script>
+  <script src="auth.js"></script>
   <style>
         .main {
       display: flex;
       flex: 1;
     }
-        .scroll-container {
+    .scroll-container {
       flex: 1;
       overflow-y: auto; /* Permite o scroll vertical */
       padding: 10px;
-      height: calc(200vh - 60px); /* Ajusta a altura para considerar o cabeçalho */
+      height: calc(100vh - 60px); /* Ajusta a altura para considerar o cabeçalho */
     }
     .publicacao {
         margin-bottom: 20px;
     }
-    .publicacao img {
-        max-width: 50%;
+    .publicacao img, .publicacao video {
+        max-width: 100%;
         height: auto;
+        display: block;
     }
     .publicacao p {
         font-size: 16px;
         margin-top: 10px;
     }
-</style>
+  </style>
 </head>
 
 <body>
@@ -51,22 +48,20 @@
       </button>
     </div>
 
-    <div>
-     
-      <div class="notification-dropdown" id="notificationDropdown">
-        <div class="notification-header">
-          <strong>Notificações</strong>
-        </div>
-        <ul class="notification-list">
-          <li class="notification-item">Cemig atualizou o status</li>
-          <li class="notification-item">Seu post recebeu 5 curtidas</li>
-          <li class="notification-item">Davi comentou em sua foto</li>
-        </ul>
-        <div class="notification-footer">
-          <a href="#">Ver todas as notificações</a>
-        </div>
+    <div class="notification-dropdown" id="notificationDropdown">
+      <div class="notification-header">
+        <strong>Notificações</strong>
+      </div>
+      <ul class="notification-list">
+        <li class="notification-item">Cemig atualizou o status</li>
+        <li class="notification-item">Seu post recebeu 5 curtidas</li>
+        <li class="notification-item">Davi comentou em sua foto</li>
+      </ul>
+      <div class="notification-footer">
+        <a href="#">Ver todas as notificações</a>
       </div>
     </div>
+
     <div class="search-container">
       <input type="text" placeholder=" Procure amigos no MESCLA..." />
       <button class="search-button"><i class="fas fa-search"></i></button>
@@ -74,11 +69,7 @@
   </header>
 
   <main class="main">
-
-
     <div class="sidebar">
-
-    
       <a href="comunidade.html" class="menu-item">
         <span><i class="fas fa-users"></i></span>
         <h2>Comunidade</h2>
@@ -100,63 +91,43 @@
       <a href="pet.html" class="menu-item">
         <button class="publish-button" href="pet.html">Pet's Community <i class="fa-solid fa-paw"></i> </button>
       </a>
-
     </div>
- 
-    
-    <div class="scroll-container"id = "publicacoes">
 
-    
+    <div class="scroll-container" id="publicacoes">
     </div>
 
     <div id="userInfo"></div>
-
   </main>
 
   <script>
-    // Obtém os dados do Local Storage
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    // Exibe informações do usuário
+    document.addEventListener("DOMContentLoaded", function () {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      const userInfoDiv = document.getElementById('userInfo');
+      if (userInfo) {
+          userInfoDiv.innerHTML = `<p>Nome: ${userInfo.nome}</p><p>Cidade: ${userInfo.cidade}</p>`;
+      } else {
+          userInfoDiv.innerHTML = `<p>Nenhuma informação disponível.</p>`;
+      }
+    });
+  </script>
 
-    // Exibe os dados na página
-    if (userInfo) {
-        document.getElementById('userInfo').innerHTML = `
-            <p>Nome: ${userInfo.nome}</p>
-            <p>Cidade: ${userInfo.cidade}</p>
-        `;
-    } else {
-        document.getElementById('userInfo').innerHTML = `<p>Nenhuma informação disponível.</p>`;
-    }
-</script>
-    <script type = "module" src = feed.js></script>
-    <script>
-      const notificationButton = document.getElementById("notificacao");
-      const notificationDropdown = document.getElementById(
-        "notificationDropdown"
-      );
+  <script>
+    const notificationButton = document.getElementById("notificacao");
+    const notificationDropdown = document.getElementById("notificationDropdown");
 
-      notificationButton.addEventListener("click", () => {
-        if (notificationDropdown.classList.contains("show")) {
-          notificationDropdown.classList.remove("show");
-          setTimeout(() => {
-            notificationDropdown.style.display = "none";
-          }, 400);
-        } else {
-          notificationDropdown.style.display = "block";
-          setTimeout(() => {
-            notificationDropdown.classList.add("show");
-          }, 10);
-        }
-      });
+    notificationButton.addEventListener("click", () => {
+      notificationDropdown.style.display = notificationDropdown.classList.toggle("show") ? "block" : "none";
+    });
 
-      document.addEventListener("click", (event) => {
-        if (
-          !notificationButton.contains(event.target) &&
-          !notificationDropdown.contains(event.target)
-        ) {
-          notificationDropdown.classList.remove("show");
-          notificationDropdown.style.display = "none";
-        }
-      });
-    </script>
+    document.addEventListener("click", (event) => {
+      if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
+        notificationDropdown.classList.remove("show");
+        notificationDropdown.style.display = "none";
+      }
+    });
+  </script>
+
+  <script type="module" src="feed.js"></script>
 </body>
-
+</html>

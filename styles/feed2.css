@@ -465,6 +465,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 
 
 /* Estilizar cada publicação */
+.publicacaoVideo,
 .publicacao {
   display: flex;
   flex-direction: column; /* Imagem e texto ficam em coluna */
@@ -479,6 +480,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 }
 
 /* Ajustar a imagem */
+.publicacaoVideo video,
 .publicacao img {
   max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
   height: auto;    /* Mantém a proporção da imagem */
@@ -486,6 +488,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 }
 
 /* Centralizar o texto */
+.publicacaoVideo p,
 .publicacao p {
   text-align: center; /* Centraliza o texto */
   font-size: 16px;

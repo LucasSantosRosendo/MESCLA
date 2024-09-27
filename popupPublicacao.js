@@ -44,7 +44,7 @@ let UserId = null;
 // Referências relacionadas à imagem
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
-const pictureImageTxt = "Choose an image";
+const pictureImageTxt = "Clique aqui para escolher sua imagem";
 pictureImage.innerHTML = pictureImageTxt;
 
 console.log("Início popup");
