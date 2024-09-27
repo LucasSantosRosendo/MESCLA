@@ -63,23 +63,13 @@
       <div id="btn">
         <button id="verificarToken" type="button">Login</button>
       </div>
-
-
     </form>
   </div>
 
-  <!-- Corrige o tipo do script para módulos -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-    import {
-      getDatabase,
-      ref,
-      get,
-    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
@@ -100,16 +90,11 @@
       const email = document.getElementById("email").value;
       const senha = document.getElementById("senha").value;
 
-      // Faz login do usuário para obter o token
       signInWithEmailAndPassword(auth, email, senha)
         .then((userCredential) => {
           const user = userCredential.user;
-
-          // Obtém o token JWT do usuário
           user.getIdToken().then((idToken) => {
             console.log("Token do usuário:", idToken);
-
-            // Agora que temos o token, podemos verificar e buscar os dados do usuário
             verificarToken(idToken);
           }).catch((error) => {
             console.error("Erro ao obter o token do usuário:", error);
@@ -121,26 +106,20 @@
     });
 
     function verificarToken(idToken) {
-      // Pega o UID do usuário a partir do token
       auth.onAuthStateChanged((user) => {
         if (user) {
           const uid = user.uid;
-
-          // Verifica se o UID corresponde ao token e busca as informações do banco de dados
           const userRef = ref(database, 'users/' + uid);
-
           get(userRef).then((snapshot) => {
             if (snapshot.exists()) {
               const userInfo = snapshot.val();
-
               localStorage.setItem('userInfo', JSON.stringify(userInfo));
               window.location.href = "popupPublicacao.html";
-              // Exibe as informações do usuário em um alert (para fins de teste)
               alert(`Informações do usuário:
                 Nome: ${userInfo.nome}
                 Cidade: ${userInfo.cidade}
                 Bairro: ${userInfo.bairro}`);
-                window.location.href = "feed2.html";
+              window.location.href = "feed2.html";
             } else {
               alert("Nenhum dado encontrado para este token.");
             }
@@ -153,6 +132,62 @@
       });
     }
 
+    document.getElementById("forgot-password").addEventListener("click", function () {
+      const email = prompt("Por favor, insira seu e-mail para redefinir a senha:");
+
+      if (email) {
+        auth.sendPasswordResetEmail(email)
+          .then(() => {
+            Erro("E-mail de redefinição de senha enviado com sucesso!", false);
+          })
+          .catch((error) => {
+            Erro(`Erro: ${error.message}`);
+          });
+      } else {
+        Erro("Por favor, insira um e-mail válido.");
+      }
+    });
+
+    function validarForm(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      if (email === "") {
+        Erro("Email e senha são obrigatórios!");
+        return false;
+      }
+
+      const emailValidacao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailValidacao.test(email)) {
+        Erro("Por favor, insira um email válido.");
+        return false;
+      }
+
+      if (senha.length < 8) {
+        Erro("A senha deve ter pelo menos 8 caracteres.");
+        return false;
+      }
+
+      login(event);
+      return true;
+    }
+
+    function Erro(message, isError = true) {
+      const errorMessageDiv = document.getElementById("error-message");
+      errorMessageDiv.innerHTML = message;
+      errorMessageDiv.style.color = isError ? "red" : "green";
+      errorMessageDiv.style.display = "block";
+    }
+
+    const toggleSenha = document.getElementById("toggleSenha");
+    const senhaInput = document.getElementById("senha");
+
+    toggleSenha.addEventListener("click", function () {
+      const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
+      senhaInput.setAttribute("type", type);
+      this.classList.toggle("fa-eye-slash");
+    });
   </script>
 </body>
 
