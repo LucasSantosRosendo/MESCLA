@@ -1,260 +1,363 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/styles/comunidade.css" rel="stylesheet">
-    <link href="/styles/media.css" rel="stylesheet">
-    <link href="/styles/fonts.css" rel="stylesheet">
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comunidade / MESCLA</title>
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <link href="/styles/media.css" rel="stylesheet" />
+    <link href="/styles/comunidade.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <script src = auth.js></script>
-    <script src="comunidade.js" defer></script>
-    <title>Comunidade / MESCLA</title>
     <style>
-        .active {
-            display: block;
-        }
-        .cubao > div {
-            display: none; /* Oculta todas as seções por padrão */
-        }
-        .cubao > div.active {
-            display: block; /* Exibe a seção ativa */
-        }
-        .botao li a.selected {
-            background-color: #3cca94;
-            color: #333;
-        }
+      .section {
+        display: none;
+      }
+      .active {
+        display: block;
+      }
+      .sidebar ul li a.selected {
+        background-color: #3cca94;
+        color: #333;
+      }
+
+      .post {
+        background-color: #202020; /* Fundo da publicação */
+        color: #fff; /* Cor do texto */
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .post h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .post p {
+        margin: 0;
+      }
+
+      .content h2 {
+        margin-bottom: 20px; /* Espaçamento entre o título e as publicações */
+      }
+
+      .announcement {
+        background-color: #202020; /* Fundo do anúncio */
+        color: #fff; /* Cor do texto */
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+      }
+
+      .announcement p {
+        margin-bottom: 10px; /* Espaçamento entre os parágrafos */
+      }
+
+      .announcement img {
+        width: 100%; /* Faz a imagem ocupar 100% da largura do container */
+        border-radius: 5px;
+        margin-top: 10px; /* Espaçamento entre o texto e a imagem */
+      }
+
+      .outer {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .me {
+        background-color: #00d1b2;
+        color: #000;
+        border-radius: 15px;
+        padding: 10px;
+        max-width: 50%;
+        position: relative;
+        margin-left: auto; /* Alinha mensagens 'me' à direita */
+      }
+      .notMe {
+        background-color: #3cca94;
+        color: #000;
+        border-radius: 15px;
+        padding: 10px;
+        max-width: 50%;
+        position: relative;
+        margin-right: auto; /* Alinha mensagens 'notMe' à esquerda */
+      }
+      .me img,
+      .notMe img {
+        margin-top: 5px;
+        border-radius: 5px;
+      }
+      .delete-btn {
+        background-color: #ff3860;
+        border: none;
+        color: white;
+        padding: 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: 0.3s ease-in-out;
+      }
+      .delete-btn:hover {
+        background-color: #ff1744;
+      }
     </style>
-        <script src = auth.js></script>
-</head>
-<body>
-    <div class="box"> 
-      <li>
-        <a href="#" class="botao" onclick="showSection('bairro', this)">
-            <i class="fa-solid fa-house"></i> <span>Bairro</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="#" class="botao" onclick="showSection('prefeitura', this)">
-            <i class="fa-solid fa-landmark"></i> <span>Prefeitura</span>
-        </a>
-      </li>
+    <script src="auth.js"></script>
+    <script>
+      let sender = ""; // Variável global para o nome do usuário
 
-      <li>
-        <a href="#" class="botao" onclick="showSection('chat', this)">
-            <i class="fa-solid fa-message"></i> <span>Chat</span>
-        </a>
-      </li>
+      function showSection(sectionId, element) {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => section.classList.remove("active"));
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.add("active");
 
-      <li>
-        <a href="#" class="botao" onclick="showSection('empresas', this)">
-            <i class="fas fa-building"></i> <span>Empresas</span>
-        </a>
-      </li>
-    </div>
-    <div class="cubao">
-        <div id="bairro" class="active"> <!-- Mantém a seção Bairro visível -->
-            <div class="post"><i class="fas fa-person"></i>
-                <span>Lucas dos Santos</span>
-                <div class="msg">
-                    <span>A fiação ta paia hein cemig</span>
-                </div>
-            </div>
-        </div>
-        <div id="prefeitura">
-            <div class="post"><i class="fas fa-person"></i>
-                <span>Prefeitura</span>
-                <div class="msg">
-                    <span>ATENÇÃO!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-                      <li>
-                    <span>obrigado pela atenção</span>
-                    </li>
-                </div>
-            </div>
-        </div>
-        <div id="chat">
-            <div class="post"><i class="fas fa-person"></i>
-                <span>Lucas dos Santos</span>
-                <div class="msg">
-                    <span>A fiação perto do mercadinho deve ser arrumada o quanto antes!</span>
-                </div>
-            </div>
+        const links = document.querySelectorAll(".sidebar ul li a");
+        links.forEach((link) => link.classList.remove("selected"));
+        element.classList.add("selected");
 
-            <div class="post"><i class="fas fa-person"></i>
-              <span>Davi Reis</span>
-              <div class="msg">
-                  <span>Também acho!</span>
-              </div>
+        // Exibir prompt para inserir nome apenas quando a aba "Chat" for acessada
+        if (sectionId === "chat-section" && !sender) {
+          sender = prompt("Digite o nome de usuário que deseja usar no chat:");
+          if (!sender) {
+            sender = "Usuário Anônimo"; // Define um nome padrão se o campo estiver vazio
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h2>Comunidade</h2>
+        <ul>
+          <li>
+            <a
+              href="#"
+              id="bairro-tab"
+              onclick="showSection('bairro-section', this)"
+            >
+              <i class="fa-solid fa-house"></i> Bairro
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="prefeitura-tab"
+              onclick="showSection('prefeitura-section', this)"
+            >
+              <i class="fa-solid fa-landmark"></i> Prefeitura
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="chat-tab"
+              onclick="showSection('chat-section', this)"
+            >
+              <i class="fa-solid fa-message"></i> Chat
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="empresas-tab"
+              onclick="showSection('empresas-section', this)"
+            >
+              <i class="fas fa-building"></i> Empresas
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div id="bairro-section" class="section active">
+          <div class="post">
+            <h3>Lucas Santos</h3>
+            <p>A fiação elétrica da Santa Bárbara está horrível!</p>
           </div>
-          <div id="sendMsg">
-            <button id="attachBtn" class="attach_btn">
-              <i class="fas fa-paperclip"></i>
-            </button>
+
+          <div class="post">
+            <h3>Davi</h3>
+            <p>
+              Voltamos para a época da pedra? Cadê a energia elétrica na Santa
+              Bárbara?
+            </p>
+          </div>
+
+          <div class="post">
+            <h3>Vinícius</h3>
+            <p>
+              Meu computador não funciona com manivela não! Onde está a energia
+              da Santa Bárbara?
+            </p>
+          </div>
+        </div>
+        <div id="prefeitura-section" class="section">
+          <div class="announcement">
+            <h3>Prefeitura de Santa Rita do Sapucaí</h3>
+            <p>
+              A Prefeitura de Santa Rita do Sapucaí tem o prazer de convidar
+              toda a população para a comemoração do Dia das Crianças! Venha se
+              divertir com muitas atrações e atividades para toda a família.
+              🎈✨
+            </p>
+            <p><strong>🗓 Data:</strong> 12 de Outubro</p>
+            <p><strong>📍 Local:</strong> Praça Central</p>
+            <p><strong>⏰ Horário:</strong> 14h às 18h</p>
+            <p>
+              Teremos brinquedos infláveis, apresentações teatrais, distribuição
+              de pipoca e algodão doce, além de muitas outras surpresas. Não
+              perca! 🎊🎁
+            </p>
+            <img
+              src="https://i.ytimg.com/vi/b6z7qE9nBhI/maxresdefault.jpg"
+              alt="Evento Dia das Crianças"
+            />
+          </div>
+        </div>
+        <div id="chat-section" class="section">
+          <h2>Chat:</h2>
+          <div id="messages" class="chat-messages"></div>
+          <div class="chat-input">
+            <i id="attachBtn" class="fas fa-paperclip attach-icon"></i>
             <input
               type="text"
               id="msgTxt"
               placeholder="Digite sua mensagem..."
             />
-            <button id="msgBtn" class="send_btn">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
-        </div>
-        <div id="empresas">
-            <div class="post"><i class="fas fa-person"></i>
-                <span>Empresa</span>
-                <div class="msg">
-                    <span>A fiação ta paia hein cemig</span>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer">
-          <div class="tooltip">
+            <i id="msgBtn" class="fas fa-paper-plane send-icon"></i>
             <input type="file" id="fileInput" style="display: none" />
-            <span class="input-group-text attach_btn">
-              <i class="fas fa-paperclip"></i>
-            </span>
-            <span class="tooltiptext">Enviar arquivo ou imagem</span>
           </div>
         </div>
+        <div id="empresas-section" class="section">
+          <div class="announcement">
+            <h3>Cemig - Companhia Energética de Minas Gerais</h3>
+            <p>
+              A Cemig informa que há instabilidades na energia elétrica em
+              alguns bairros de Santa Rita do Sapucaí. Nossas equipes já estão
+              mobilizadas para identificar e solucionar os problemas.
+            </p>
+            <p>
+              Pedimos a compreensão de todos e informamos que a previsão para a
+              normalização do serviço é até o final do dia.
+            </p>
+            <p>
+              <strong
+                >⚠️ Se você estiver enfrentando problemas, por favor, entre em
+                contato com o nosso atendimento ao cliente.</strong
+              >
+              <img
+                src="https://eixos.com.br/wp-content/plugins/seox-image-magick/imagick_convert.php?width=904&height=508&format=.jpeg&quality=91&imagick=uploads.eixos.com.br/2023/07/eletricistas-trabalho-scaled-cemig-1140x570.jpeg"
+                alt="Cemig trabalhando"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <script>
-        module = {};
-      </script>
-      <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import {
-          getDatabase,
-          ref,
-          set,
-          remove,
-          onChildAdded,
-          onChildRemoved,
-        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-  
-        const firebaseConfig = {
-          apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
-          authDomain: "mescla-f9d00.firebaseapp.com",
-          projectId: "mescla-f9d00",
-          storageBucket: "mescla-f9d00.appspot.com",
-          messagingSenderId: "442057041731",
-          appId: "1:442057041731:web:a5d7208555136ba97531f6",
-        };
-  
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-  
-        var msgTxt = document.getElementById("msgTxt");
-        var sender;
-        if (sessionStorage.getItem("sender")) {
-          sender = sessionStorage.getItem("sender");
-        } else {
-          sender = prompt("Entre com o seu usuário: ");
-          sessionStorage.setItem("sender", sender);
-        }
-  
-        module.sendMsg = function sendMsg() {
-          var msg = msgTxt.value;
-          var timestamp = new Date().getTime();
-          set(ref(db, "messages/" + timestamp), {
-            msg: msg,
-            sender: sender,
-          });
-  
-          msgTxt.value = "";
-  
-          var companyName = document.getElementById("company_name").textContent;
-          ContatosLateral(companyName);
-        };
-  
-        function ContatosLateral(companyName) {
-          var contactItem = document.querySelector(
-            `.contact-item[data-company="${companyName}"]`
-          );
-  
-          if (contactItem) {
-            contactItem.classList.remove("hidden");
-  
-            let savedContacts =
-              JSON.parse(localStorage.getItem("savedContacts")) || [];
-            if (!savedContacts.includes(companyName)) {
-              savedContacts.push(companyName);
-              localStorage.setItem(
-                "savedContacts",
-                JSON.stringify(savedContacts)
-              );
-            }
-          } else {
-            console.log("Empresa não encontrada.");
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onChildAdded,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+      import {
+        getStorage,
+        ref as storageRef,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
+        authDomain: "mescla-f9d00.firebaseapp.com",
+        projectId: "mescla-f9d00",
+        storageBucket: "mescla-f9d00.appspot.com",
+        messagingSenderId: "442057041731",
+        appId: "1:442057041731:web:a5d7208555136ba97531f6",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const storage = getStorage(app);
+
+      const msgTxt = document.getElementById("msgTxt");
+      const msgBtn = document.getElementById("msgBtn");
+      const attachBtn = document.getElementById("attachBtn");
+      const fileInput = document.getElementById("fileInput");
+      const messagesContainer = document.getElementById("messages");
+
+      const sendMsg = (msg, imageUrl = null) => {
+        const timestamp = new Date().getTime();
+        set(ref(db, "messages/" + timestamp), {
+          msg: msg || "",
+          imageUrl: imageUrl || "",
+          sender: sender,
+        });
+        msgTxt.value = "";
+      };
+
+      window.deleteMsg = (id) => {
+        remove(ref(db, "messages/" + id)).then(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.remove();
           }
-        }
-  
-        function restoreContacts() {
-          let savedContacts =
-            JSON.parse(localStorage.getItem("savedContacts")) || [];
-          savedContacts.forEach((companyName) => {
-            var contactItem = document.querySelector(
-              `.contact-item[data-company="${companyName}"]`
-            );
-            if (contactItem) {
-              contactItem.classList.remove("hidden");
-            }
-          });
-        }
-  
-        document.addEventListener("DOMContentLoaded", restoreContacts);
-  
-        onChildAdded(ref(db, "messages"), (data) => {
-          let messageClass = data.val().sender === sender ? "me" : "notMe";
-          document.getElementById("messages").innerHTML += `
-              <div class="outer" id="${data.key}">
-                <div id="inner" class="${messageClass}">
-                  ${
-                    data.val().sender === sender
-                      ? "Você: "
-                      : data.val().sender + ": "
-                  }${data.val().msg}
-                  ${
-                    data.val().sender === sender
-                      ? `<button class="button-delete" onclick="module.dltMsg('${data.key}')">Excluir</button>`
-                      : ""
-                  }
-                </div>
-              </div>`;
         });
-  
-        module.dltMsg = function dltMsg(key) {
-          remove(ref(db, "messages/" + key));
-        };
-  
-        onChildRemoved(ref(db, "messages"), (data) => {
-          var msgBox = document.getElementById(data.key);
-          document.getElementById("messages").removeChild(msgBox);
-        });
-  
-        document
-          .getElementById("msgBtn")
-          .addEventListener("click", module.sendMsg);
-  
-        document
-          .getElementById("attachBtn")
-          .addEventListener("click", function () {
-            document.getElementById("fileInput").click();
+      };
+
+      onChildAdded(ref(db, "messages"), (data) => {
+        const messageClass = data.val().sender === sender ? "me" : "notMe";
+        const deleteButton =
+          data.val().sender === sender
+            ? `<button class="delete-btn" onclick="deleteMsg('${data.key}')">&times;</button>`
+            : "";
+        const messageHtml = `
+                <div class="outer" id="${data.key}">
+                    <div class="${messageClass}">
+                        ${
+                          data.val().sender === sender
+                            ? "Você: "
+                            : data.val().sender + ": "
+                        }
+                        ${data.val().msg}
+                        ${
+                          data.val().imageUrl
+                            ? `<img src="${
+                                data.val().imageUrl
+                              }" style="max-width: 200px;" />`
+                            : ""
+                        }
+                    </div>
+                    ${deleteButton}
+                </div>`;
+        messagesContainer.innerHTML += messageHtml;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      });
+
+      msgBtn.addEventListener("click", () => sendMsg(msgTxt.value));
+      attachBtn.addEventListener("click", () => fileInput.click());
+
+      fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const timestamp = new Date().getTime();
+          const storagePath = storageRef(
+            storage,
+            "images/" + timestamp + "_" + file.name
+          );
+          uploadBytes(storagePath, file).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => sendMsg(null, url));
           });
-  
-        document
-          .getElementById("fileInput")
-          .addEventListener("change", function (event) {
-            var file = event.target.files[0];
-            if (file) {
-              console.log("Arquivo selecionado:", file.name);
-              //Criar a lógica de como salvar o arquivo ou imagem no database do firebase depois;
-            }
-          });
-      </script>
-</body>
+        }
+      });
+    </script>
+  </body>
 </html>
