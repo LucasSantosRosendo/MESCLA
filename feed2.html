@@ -1,133 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
-  <link href="/styles/feed2.css" rel="stylesheet" />
-  <link href="/styles/fonts.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
-  <title>Feed de Publicações - MESCLA</title>
-  <script src="auth.js"></script>
-  <style>
-        .main {
-      display: flex;
-      flex: 1;
-    }
-    .scroll-container {
-      flex: 1;
-      overflow-y: auto; /* Permite o scroll vertical */
-      padding: 10px;
-      height: calc(100vh - 60px); /* Ajusta a altura para considerar o cabeçalho */
-    }
-    .publicacao {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/styles/feed2.css" rel="stylesheet" />
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/b432763f75.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Feed de Publicações - MESCLA</title>
+    <script src="auth.js"></script>
+    <style>
+      .main {
+        display: flex;
+        flex: 1;
+      }
+      .scroll-container {
+        flex: 1;
+        overflow-y: auto; /* Permite o scroll vertical */
+        padding: 10px;
+        height: calc(
+          100vh - 60px
+        ); /* Ajusta a altura para considerar o cabeçalho */
+      }
+      .publicacao {
         margin-bottom: 20px;
-    }
-    .publicacao img, .publicacao video {
+      }
+      .publicacao img,
+      .publicacao video {
         max-width: 100%;
         height: auto;
         display: block;
-    }
-    .publicacao p {
+      }
+      .publicacao p {
         font-size: 16px;
         margin-top: 10px;
-    }
-  </style>
-</head>
+      }
 
-<body>
-  <header>
-    <div id="title">
-      <article>
-        <img class="image" src="components/images/mesclado.png" alt="MESCLA" />
-      </article>
-    </div>
-    <div>
-      <button class="notification-button" id="notificacao">
-        <span><i class="fas fa-bell"></i></span>
-      </button>
-    </div>
+      .curtidas-button {
+        background-color: #e74c3c; /* Cor do botão */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 25px; /* Botão mais arredondado */
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease, transform 0.2s; /* Adiciona transições */
+      }
 
-    <div class="notification-dropdown" id="notificationDropdown">
-      <div class="notification-header">
-        <strong>Notificações</strong>
+      .curtidas-button:hover {
+        background-color: #c0392b; /* Tom mais escuro no hover */
+        transform: scale(1.05); /* Efeito de crescimento no hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="title">
+        <article>
+          <img
+            class="image"
+            src="components/images/mesclado.png"
+            alt="MESCLA"
+          />
+        </article>
       </div>
-      <ul class="notification-list">
-        <li class="notification-item">Cemig atualizou o status</li>
-        <li class="notification-item">Seu post recebeu 5 curtidas</li>
-        <li class="notification-item">Davi comentou em sua foto</li>
-      </ul>
-      <div class="notification-footer">
-        <a href="#">Ver todas as notificações</a>
+      <div>
+        <button class="notification-button" id="notificacao">
+          <span><i class="fas fa-bell"></i></span>
+        </button>
       </div>
-    </div>
 
-    <div class="search-container">
-      <input type="text" placeholder=" Procure amigos no MESCLA..." />
-      <button class="search-button"><i class="fas fa-search"></i></button>
-    </div>
-  </header>
+      <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+          <strong>Notificações</strong>
+        </div>
+        <ul class="notification-list">
+          <li class="notification-item">Cemig atualizou o status</li>
+          <li class="notification-item">Seu post recebeu 5 curtidas</li>
+          <li class="notification-item">Davi comentou em sua foto</li>
+        </ul>
+        <div class="notification-footer">
+          <a href="#">Ver todas as notificações</a>
+        </div>
+      </div>
 
-  <main class="main">
-    <div class="sidebar">
-      <a href="comunidade.html" class="menu-item">
-        <span><i class="fas fa-users"></i></span>
-        <h2>Comunidade</h2>
-      </a>
-      <a href="chat.html" class="menu-item">
-        <span><i class="fas fa-comment"></i></span>
-        <h2>Mensagens</h2>
-      </a>
+      <div class="search-container">
+        <input type="text" placeholder=" Procure amigos no MESCLA..." />
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </div>
+    </header>
 
-      <a href="popupPublicacao.html" class="menu-item">
-        <span><i class="fas fa-plus"></i></span>
-        <h2>Publicar</h2>
-      </a>
-      <a href="profile.html" class="menu-item">
-        <span><i class="fa-solid fa-user"></i></span>
-        <h2>Perfil</h2>
-      </a>
+    <main class="main">
+      <div class="sidebar">
+        <a href="comunidade.html" class="menu-item">
+          <span><i class="fas fa-users"></i></span>
+          <h2>Comunidade</h2>
+        </a>
+        <a href="chat.html" class="menu-item">
+          <span><i class="fas fa-comment"></i></span>
+          <h2>Mensagens</h2>
+        </a>
 
-      <a href="pet.html" class="menu-item">
-        <button class="publish-button" href="pet.html">Pet's Community <i class="fa-solid fa-paw"></i> </button>
-      </a>
-    </div>
+        <a href="popupPublicacao.html" class="menu-item">
+          <span><i class="fas fa-plus"></i></span>
+          <h2>Publicar</h2>
+        </a>
+        <a href="profile.html" class="menu-item">
+          <span><i class="fa-solid fa-user"></i></span>
+          <h2>Perfil</h2>
+        </a>
 
-    <div class="scroll-container" id="publicacoes">
-    </div>
+        <a href="pet.html" class="menu-item">
+          <button class="publish-button" href="pet.html">
+            Pet's Community <i class="fa-solid fa-paw"></i>
+          </button>
+        </a>
+      </div>
 
-    <div id="userInfo"></div>
-  </main>
+      <div class="scroll-container" id="publicacoes"></div>
 
-  <script>
-    // Exibe informações do usuário
-    document.addEventListener("DOMContentLoaded", function () {
-      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      const userInfoDiv = document.getElementById('userInfo');
-      if (userInfo) {
+      <div id="userInfo"></div>
+    </main>
+
+    <script>
+      // Exibe informações do usuário
+      document.addEventListener("DOMContentLoaded", function () {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        const userInfoDiv = document.getElementById("userInfo");
+        if (userInfo) {
           userInfoDiv.innerHTML = `<p>Nome: ${userInfo.nome}</p><p>Cidade: ${userInfo.cidade}</p>`;
-      } else {
+        } else {
           userInfoDiv.innerHTML = `<p>Nenhuma informação disponível.</p>`;
-      }
-    });
-  </script>
+        }
+      });
+    </script>
 
-  <script>
-    const notificationButton = document.getElementById("notificacao");
-    const notificationDropdown = document.getElementById("notificationDropdown");
+    <script>
+      const notificationButton = document.getElementById("notificacao");
+      const notificationDropdown = document.getElementById(
+        "notificationDropdown"
+      );
 
-    notificationButton.addEventListener("click", () => {
-      notificationDropdown.style.display = notificationDropdown.classList.toggle("show") ? "block" : "none";
-    });
+      notificationButton.addEventListener("click", () => {
+        notificationDropdown.style.display =
+          notificationDropdown.classList.toggle("show") ? "block" : "none";
+      });
 
-    document.addEventListener("click", (event) => {
-      if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
-        notificationDropdown.classList.remove("show");
-        notificationDropdown.style.display = "none";
-      }
-    });
-  </script>
+      document.addEventListener("click", (event) => {
+        if (
+          !notificationButton.contains(event.target) &&
+          !notificationDropdown.contains(event.target)
+        ) {
+          notificationDropdown.classList.remove("show");
+          notificationDropdown.style.display = "none";
+        }
+      });
+    </script>
 
-  <script type="module" src="feed.js"></script>
-</body>
+    <script type="module" src="feed.js"></script>
+  </body>
 </html>
