@@ -109,7 +109,7 @@
                     type="text"
                     id="address"
                     name="address"
-                    placeholder="Rua, Bairro, Cidade"
+                    placeholder="Bairro e Cidade"
                   />
                 </div>
 
@@ -315,5 +315,40 @@
         });
       });
     </script>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function () {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    if (userInfo) {
+      document.getElementById("nome").textContent = `Nome: ${userInfo.nome}`;
+      document.getElementById("cidade").textContent = `Cidade: ${userInfo.cidade}`;
+      document.getElementById("bairro").textContent = `Bairro: ${userInfo.bairro}`;
+    } else {
+      alert("Nenhum dado de usuário encontrado.");
+    }
+  });
+</script>
+
+<script>
+  // Função para carregar informações de perfil ao iniciar a página
+  document.addEventListener("DOMContentLoaded", function () {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    if (userInfo) {
+      // Preenche os campos com as informações do usuário
+      document.getElementById("name").value = userInfo.nome || "";
+      document.getElementById("email").value = userInfo.email || "";
+      
+      // Concatenar bairro e cidade no campo de endereço
+      const endereco = `${userInfo.bairro || ""}, ${userInfo.cidade || ""}`.trim();
+      document.getElementById("address").value = endereco || "";
+      
+      document.getElementById("phone").value = userInfo.telefone || "";
+      document.getElementById("cidades").value = userInfo.cidades || "";
+    }
+  });
+</script>
+
   </body>
 </html>
