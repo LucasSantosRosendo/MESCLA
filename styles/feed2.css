@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -97,6 +98,13 @@ header {
   gap: 10px;
   padding: 10px;
   border-radius: 25px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.menu-item:hover {
+  background: #3cca94;
+  color: #fff;
+  transform: scale(1.05);
 }
 
 .menu-item h2 {
@@ -461,7 +469,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 .publicacaoVideo,
 .publicacao {
   display: flex;
-  flex-direction: column; /* Imagem e texto ficam em coluna */
+  flex-direction: line; /* Imagem e texto ficam em coluna */
   align-items: flex-start;    /* Centraliza imagem e texto */
   margin: 20px;           /* Espaçamento entre as publicações */
   padding: 20px;
@@ -569,3 +577,44 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   text-decoration: underline;
 }
 
+/* Estilo do contêiner de publicações */
+.publicacao {
+  width: 80%;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #181818;
+  border-radius: 8px;
+  background-color: #1e1e1e22;
+}
+
+/* Estilo para o contêiner flex */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para o nome do usuário */
+.user {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0;
+  width: 500px;
+
+}
+
+/* Estilo para a descrição */
+.description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  width: 700px;
+  height: 800px;
+}
+
+/* Estilo para imagem e vídeo */
+img, video {
+  max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
+  height: auto;    /* Mantém a proporção da imagem */
+  margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
