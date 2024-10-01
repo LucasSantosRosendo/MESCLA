@@ -12,45 +12,51 @@
   <script src="auth.js"></script>
   <style>
     .publicacoes-container {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-}
+      display: flex;
+      flex-direction: column;
+      margin: 20px;
+    }
 
-.publicacao {
-    display: flex;          /* Usa flexbox */
-    flex-direction: column; /* Coloca os elementos em coluna */
-    align-items: center;    /* Centraliza os itens horizontalmente */
-    margin: 20px 0;        /* Adiciona uma margem ao contêiner */
-}
-
-
-.publicacao:hover {
-    transform: scale(1.02);
-}
-
-.nome-usuario {
-    font-weight: bold;
-    color: #333;
-    margin: 5px 0; /* Espaçamento para o nome do usuário */
-}
-
-.descricao-publicacao {
-    color: #555;
-    margin: 30px 0 5px 0; /* Aumente o espaço superior para a descrição */
-}
+    .publicacao {
+      display: flex;
+      /* Usa flexbox */
+      flex-direction: column;
+      /* Coloca os elementos em coluna */
+      align-items: center;
+      /* Centraliza os itens horizontalmente */
+      margin: 20px 0;
+      /* Adiciona uma margem ao contêiner */
+    }
 
 
-.curtidas-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #e63946;
-    font-size: 16px;
-    margin-top: 10px;
-    display: block;
-    margin: 10px auto;
-}
+    .publicacao:hover {
+      transform: scale(1.02);
+    }
+
+    .nome-usuario {
+      font-weight: bold;
+      color: #333;
+      margin: 5px 0;
+      /* Espaçamento para o nome do usuário */
+    }
+
+    .descricao-publicacao {
+      color: #555;
+      margin: 30px 0 5px 0;
+      /* Aumente o espaço superior para a descrição */
+    }
+
+
+    .curtidas-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #e63946;
+      font-size: 16px;
+      margin-top: 10px;
+      display: block;
+      margin: 10px auto;
+    }
 
 
     #penMapBtn:hover {
@@ -71,7 +77,6 @@
       margin: 0;
       padding: 0;
     }
-
   </style>
 </head>
 
@@ -189,8 +194,6 @@
   <script type="module" src="feed.js"></script>
 
   <script>
-
-
 document.getElementById('openMapBtn').addEventListener('click', function () {
   const mapDiv = document.getElementById('map');
   mapDiv.style.display = 'block';  // Mostra o mapa
@@ -201,31 +204,49 @@ document.getElementById('openMapBtn').addEventListener('click', function () {
 
   async function initMap() {
     console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-    
+
     if (!isNaN(lat) && !isNaN(lng)) {
       let position = { lat: lat, lng: lng };
 
       // Carregar as bibliotecas necessárias do Google Maps
-      const { Map } = await google.maps.importLibrary("maps");
-      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+      const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+      const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
 
       // Inicializar o mapa, centralizado nas coordenadas especificadas
       map = new Map(document.getElementById("map"), {
-        zoom: 12,
+        zoom: 15,
         center: position,
-        mapId: "DEMO_MAP_ID",
+        mapId: "DEMO_MAP_ID", // Substitua pelo seu ID de mapa
       });
 
-        // Adiciona um marcador avançado
-        const marker = new AdvancedMarkerElement({
-            map: map,
-            position: { lat, lng },  // Usa as coordenadas armazenadas
-            title: "Localização Atual",
-          });
-        } else {
-          console.error('Coordenadas inválidas:', lat, lng);
-        }
-      }
+      // Criar uma info window que será usada pelo marcador
+      const infoWindow = new InfoWindow();
+
+      // Criar o conteúdo do marcador (Pin personalizado)
+      const pin = new PinElement({
+        glyph: "1",  // Defina um ícone ou número, como no exemplo fornecido
+        scale: 1.5,
+      });
+
+      // Adicionar o marcador avançado
+      const marker = new AdvancedMarkerElement({
+        map: map,
+        position: { lat, lng },  // Usa as coordenadas armazenadas
+        title: "Sua Publicação",
+        content: pin.element,  // Usa o pin como conteúdo visual do marcador
+        gmpClickable: true,    // Permitir cliques no marcador
+      });
+
+      // Adicionar um listener para clique no marcador e exibir a info window
+      marker.content.addEventListener("click", () => {
+        infoWindow.close();
+        infoWindow.setContent(`<div><strong>Você clicou no marcador!</strong></div>`);
+        infoWindow.open(map, marker);
+      });
+    } else {
+      console.error('Coordenadas inválidas:', lat, lng);
+    }
+  }
 
   initMap();
 });
