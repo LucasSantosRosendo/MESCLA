@@ -11,73 +11,47 @@
   <title>Feed de Publicações - MESCLA</title>
   <script src="auth.js"></script>
   <style>
-    .main {
-      display: flex;
-      flex: 1;
-    }
+    .publicacoes-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
 
-    .scroll-container {
-      flex: 1;
-      overflow-y: auto;
-      /* Permite o scroll vertical */
-      padding: 10px;
-      height: calc(100vh - 60px);
-      /* Ajusta a altura para considerar o cabeçalho */
-    }
+.publicacao {
+    display: flex;          /* Usa flexbox */
+    flex-direction: column; /* Coloca os elementos em coluna */
+    align-items: center;    /* Centraliza os itens horizontalmente */
+    margin: 20px 0;        /* Adiciona uma margem ao contêiner */
+}
 
-    .publicacao {
-      margin-bottom: 20px;
-    }
 
-    .publicacao img,
-    .publicacao video {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
+.publicacao:hover {
+    transform: scale(1.02);
+}
 
-    .publicacao p {
-      font-size: 16px;
-      margin-top: 10px;
-    }
+.nome-usuario {
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0; /* Espaçamento para o nome do usuário */
+}
 
-    .curtidas-button {
-      background-color: #e74c3c;
-      /* Cor do botão */
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 25px;
-      /* Botão mais arredondado */
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease, transform 0.2s;
-      /* Adiciona transições */
-    }
+.descricao-publicacao {
+    color: #555;
+    margin: 30px 0 5px 0; /* Aumente o espaço superior para a descrição */
+}
 
-    .curtidas-button:hover {
-      background-color: #c0392b;
-      /* Tom mais escuro no hover */
-      transform: scale(1.05);
-      /* Efeito de crescimento no hover */
-    }
 
-    #openMapBtn {
-      background-color: #439a76;
-      /* Cor azul do Google */
-      color: white;
-      border: none;
-      padding: 5px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease, transform 0.2s;
-    }
+.curtidas-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #e63946;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    margin: 10px auto;
+}
 
-    #penMapBtn:hover {
-      background-color: #3fff65;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 

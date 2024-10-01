@@ -98,13 +98,6 @@ header {
   gap: 10px;
   padding: 10px;
   border-radius: 25px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.menu-item:hover {
-  background: #3cca94;
-  color: #fff;
-  transform: scale(1.05);
 }
 
 .menu-item h2 {

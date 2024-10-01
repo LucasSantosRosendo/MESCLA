@@ -137,9 +137,12 @@ function publish(posts) {
 
     // Cria os elementos de descrição e nome do usuário
     const usuario = document.createElement("p");
+    usuario.classList.add("nome-usuario"); // Adiciona uma classe para o nome do usuário
     usuario.textContent = name;
+
     const descricao = document.createElement("p");
-    descricao.textContent = notice;
+descricao.classList.add("descricao-publicacao"); // Adiciona uma classe para a descrição
+descricao.textContent = notice;
 
     // Cria o elemento apropriado (imagem ou vídeo)
     if (postItem.type === "video") {
@@ -159,16 +162,15 @@ function publish(posts) {
       container.appendChild(img);
     }
 
-    // Botão de curtidas
     const likeButton = document.createElement("button");
-    likeButton.classList.add("curtidas-button");
-    likeButton.innerHTML = "❤️ 0 Curtidas"; // Adiciona o emoji de coração
+likeButton.classList.add("curtidas-button");
+likeButton.innerHTML = "❤️ 0 Curtidas"; // Adiciona o emoji de coração
 
-    let likeCount = 0; // Contador de curtidas
-    likeButton.onclick = function () {
-      likeCount++;
-      likeButton.innerHTML = `❤️ ${likeCount} Curtidas`; // Atualiza o texto do botão
-    };
+let likeCount = 0; // Contador de curtidas
+likeButton.onclick = function () {
+    likeCount++;
+    likeButton.innerHTML = `❤️ ${likeCount} Curtidas`; // Atualiza o texto do botão
+};
 
     // Adiciona os elementos ao contêiner da publicação
     container.appendChild(usuario);
