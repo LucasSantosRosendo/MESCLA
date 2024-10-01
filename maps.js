@@ -1,73 +1,68 @@
-
-
-/*
-Preciso receber as variaveis latUser e lngUser,
-pois cada rua tem lng e lat, definindo assim, onde o icone estará
-receberei elas do feed, pois armazenarei na publicacao as coordenadas por meio do banco de dados 
-*/
-
-
-
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+import { getDatabase, ref as databaseRef, get } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"; // Importa o método 'get'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
-    authDomain: "mescla-f9d00.firebaseapp.com",
-    databaseURL: "https://mescla-f9d00-default-rtdb.firebaseio.com",
-    projectId: "mescla-f9d00",
-    storageBucket: "mescla-f9d00.appspot.com",
-    messagingSenderId: "442057041731",
-    appId: "1:442057041731:web:a5d7208555136ba97531f6",
-  };
+  apiKey: "AIzaSyCBzItoPtnnZL3qZzaugxDwnzja2g_ddas",
+  authDomain: "mescla-f9d00.firebaseapp.com",
+  databaseURL: "https://mescla-f9d00-default-rtdb.firebaseio.com",
+  projectId: "mescla-f9d00",
+  storageBucket: "mescla-f9d00.appspot.com",
+  messagingSenderId: "442057041731",
+  appId: "1:442057041731:web:a5d7208555136ba97531f6",
+};
 
-  let latUser = null;
-  let lngUser = null;
-  
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const database = getDatabase(app);
 
-    function getCoordinates(cidade, callback) {
-      const geocoder = new google.maps.Geocoder();
+let latitude = null;
+let longitude = null;
 
-      geocoder.geocode({ address: cidade }, function (results, status) {
-        if (status === 'OK') {
-          const location = results[0].geometry.location;
-          // Imprime latitude e longitude no console
-          console.log("Latitude: " + location.lat());
-          console.log("Longitude: " + location.lng());
-          console.log("Deu certo receber: " + latUser);
+// Função para obter a localização do usuário
+function obterCoordenadas() {
+  // Verifica se a geolocalização é suportada
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    console.log("Geolocalização não é suportada neste navegador.");
+  }
+}
 
-          callback(location.lat(), location.lng());
-        } else {
-          console.error('Geocode falhou: ' + status);
-        }
-      });
-    }
-    let map; // Variável global para o mapa
+// Função que exibe as coordenadas e as salva no localStorage
+function showPosition(position) {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
 
-    function initMap(lat, lng) {
-      // Inicializa o mapa com a posição recebida
-      const initialPosition = { lat: lat, lng: lng }; // Usar as coordenadas recebidas
-      map = new google.maps.Map(document.getElementById("mapContainer"), {
-        center: initialPosition,
-        zoom: 12,
-      });
-    }
+  console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
-    document.getElementById("openMapBtn").addEventListener("click", function () {
-      document.getElementById("mapContainer").style.display = "block";
+  // Armazena as coordenadas no localStorage
+  localStorage.setItem('latitude', latitude);
+  localStorage.setItem('longitude', longitude);
+}
 
-      // Pega a cidade do localStorage
-      const cidade = localStorage.getItem('cidade');
-      // Verifica se a cidade foi recuperada e, em seguida, chama a função para obter as coordenadas
-      if (cidade) {
-        console.log("Cidade recuperada do localStorage:", cidade);
+// Função para lidar com erros
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("Usuário negou a solicitação de Geolocalização.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Informações de localização não estão disponíveis.");
+      break;
+    case error.TIMEOUT:
+      console.log("A solicitação de localização expirou.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("Um erro desconhecido ocorreu.");
+      break;
+  }
+}
 
-        // Chama a função getCoordinates passando a cidade
-        getCoordinates(cidade, (lat, lng) => {
-          console.log("Coordenadas recebidas:", lat, lng);
-
-          // Chama initMap passando as coordenadas recebidas
-          initMap(lat, lng);
-        });
-      } else {
-        console.error('Cidade não está disponível no localStorage.');
-      }
-    });
+document.getElementById("openMapBtn").addEventListener("click", function () {
+  document.getElementById("map").style.display = "block";
+  // Chame a função para obter as coordenadas
+  obterCoordenadas();
+});

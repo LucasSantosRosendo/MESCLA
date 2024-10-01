@@ -52,6 +52,26 @@
     margin: 10px auto;
 }
 
+
+    #penMapBtn:hover {
+      background-color: #3fff65;
+      transform: scale(1.05);
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      display: none;
+      /* O mapa é escondido inicialmente */
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
   </style>
 </head>
 
@@ -118,7 +138,7 @@
       <button id="openMapBtn">Abrir Mapa</button>
 
       <!-- Container para o mapa -->
-      <div id="mapContainer" style="width: 100%; height: 300px; width: 300px; display: none;"></div>
+      <div id="map" style="width: 100%; height: 300px; width: 300px; display: none;"></div>
 
     </div>
 
@@ -164,12 +184,62 @@
     });
   </script>
 
- 
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpdk5IvaP_sjeaHp3PoOjE1zKjDGsFot4&callback=initMap"></script>
+
 
   <script type="module" src="feed.js"></script>
+
+  <script>
+
+
+document.getElementById('openMapBtn').addEventListener('click', function () {
+  const mapDiv = document.getElementById('map');
+  mapDiv.style.display = 'block';  // Mostra o mapa
+
+  let map;
+  let lat = parseFloat(localStorage.getItem('latitude'));
+  let lng = parseFloat(localStorage.getItem('longitude'));
+
+  async function initMap() {
+    console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+    
+    if (!isNaN(lat) && !isNaN(lng)) {
+      let position = { lat: lat, lng: lng };
+
+      // Carregar as bibliotecas necessárias do Google Maps
+      const { Map } = await google.maps.importLibrary("maps");
+      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+      // Inicializar o mapa, centralizado nas coordenadas especificadas
+      map = new Map(document.getElementById("map"), {
+        zoom: 12,
+        center: position,
+        mapId: "DEMO_MAP_ID",
+      });
+
+        // Adiciona um marcador avançado
+        const marker = new AdvancedMarkerElement({
+            map: map,
+            position: { lat, lng },  // Usa as coordenadas armazenadas
+            title: "Localização Atual",
+          });
+        } else {
+          console.error('Coordenadas inválidas:', lat, lng);
+        }
+      }
+
+  initMap();
+});
+
+  </script>
+
+  <script>
+    (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+      key: "AIzaSyDpdk5IvaP_sjeaHp3PoOjE1zKjDGsFot4",
+      v: "weekly"
+    });
+  </script>
   <script type="module" src="maps.js"></script>
+
 </body>
 
 </html>

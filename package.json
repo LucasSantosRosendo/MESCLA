@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "firebase": "^10.13.2"
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "firebase": "^10.13.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
   },
   "name": "mescla",
   "version": "1.0.0",
@@ -12,5 +15,8 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/google.maps": "^3.58.1"
+  }
 }
