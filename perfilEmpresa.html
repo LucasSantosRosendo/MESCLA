@@ -23,6 +23,62 @@
         background-color: #3cca94;
         color: #333;
       }
+
+      .status-buttons {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.status-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Estilos para cada status */
+.registrado {
+  background-color: #3498db;
+  color: white;
+}
+
+.registrado:hover {
+  transform: scale(1.05);
+  background-color: #2980b9;
+}
+
+.caminho {
+  background-color: #f39c12;
+  color: white;
+}
+
+.caminho:hover {
+  transform: scale(1.05);
+  background-color: #e67e22;
+}
+
+.resolvendo {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.resolvendo:hover {
+  transform: scale(1.05);
+  background-color: #c0392b;
+}
+
+.concluido {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.concluido:hover {
+  transform: scale(1.05);
+  background-color: #27ae60;
+}
+
     </style>
     <script src="auth.js"></script>
   </head>
@@ -244,6 +300,14 @@
                 A fiação elétrica do bairro Santa Bárbara está com muitos
                 defeitos.
               </p>
+
+              <div class="status-buttons">
+                <button class="status-button registrado">Registrado</button>
+                <button class="status-button caminho">A caminho</button>
+                <button class="status-button resolvendo">Resolvendo</button>
+                <button class="status-button concluido">Concluído</button>
+              </div>
+              
             </div>
             <div class="post-footer">
               <div class="like-count">
