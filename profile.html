@@ -7,7 +7,7 @@
     <link href="/styles/fonts.css" rel="stylesheet" />
     <link href="/styles/media.css" rel="stylesheet" />
     <link href="/styles/perfil.css" rel="stylesheet" />
-    <link rel="icon" href="components/images/mesclaM.png" type="image/x-icon">
+    <link rel="icon" href="components/images/mesclaM.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -55,7 +55,7 @@
               id="publicacoes-tab"
               onclick="showSection('publicacoes-section', this)"
             >
-              <i class="fa-solid fa-camera"></i> Minhas publicações
+              <i class="fa-solid fa-camera"></i> Publicações
             </a>
           </li>
           <div class="logout-section">
@@ -114,15 +114,6 @@
                   />
                 </div>
 
-                <div class="form-group">
-                  <label for="phone">Número de Telefone:</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="(00) 0000-0000"
-                  />
-                </div>
                 <div class="form-group">
                   <label for="cidades">Cidades para acompanhar:</label>
                   <input
@@ -225,7 +216,9 @@
             </div>
 
             <div class="form-buttons">
-              <button type="submit" class="save-btn" id="save-btn">Salvar alterações</button>
+              <button type="submit" class="save-btn" id="save-btn">
+                Salvar alterações
+              </button>
               <button type="button" class="cancel-btn">Cancelar</button>
             </div>
           </form>
@@ -305,51 +298,68 @@
         }
       }
     </script>
-    
+
     <script>
-      document.getElementById('sair-btn').addEventListener('click', function() {
-        firebase.auth().signOut().then(() => {
-          console.log("Usuário deslogado.");
-          window.location.href = 'index.html';
-        }).catch((error) => {
-          console.error("Erro ao deslogar:", error.message);
+      document
+        .getElementById("sair-btn")
+        .addEventListener("click", function () {
+          firebase
+            .auth()
+            .signOut()
+            .then(() => {
+              console.log("Usuário deslogado.");
+              window.location.href = "index.html";
+            })
+            .catch((error) => {
+              console.error("Erro ao deslogar:", error.message);
+            });
         });
+    </script>
+
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", function () {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+        if (userInfo) {
+          document.getElementById(
+            "nome"
+          ).textContent = `Nome: ${userInfo.nome}`;
+          document.getElementById(
+            "cidade"
+          ).textContent = `Cidade: ${userInfo.cidade}`;
+          document.getElementById(
+            "bairro"
+          ).textContent = `Bairro: ${userInfo.bairro}`;
+        } else {
+          alert("Nenhum dado de usuário encontrado.");
+        }
       });
     </script>
 
-<script type="module">
-  document.addEventListener("DOMContentLoaded", function () {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    <script>
+      // Função para carregar informações de perfil ao iniciar a página
+      document.addEventListener("DOMContentLoaded", function () {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (userInfo) {
-      document.getElementById("nome").textContent = `Nome: ${userInfo.nome}`;
-      document.getElementById("cidade").textContent = `Cidade: ${userInfo.cidade}`;
-      document.getElementById("bairro").textContent = `Bairro: ${userInfo.bairro}`;
-    } else {
-      alert("Nenhum dado de usuário encontrado.");
-    }
-  });
-</script>
+        if (userInfo) {
+          // Preenche os campos com as informações do usuário
+          document.getElementById("name").value = userInfo.nome || "";
+          document.getElementById("email").value = userInfo.email || "";
 
-<script>
-  // Função para carregar informações de perfil ao iniciar a página
-  document.addEventListener("DOMContentLoaded", function () {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+          // Concatenar bairro e cidade no campo de endereço
+          const endereco = `${userInfo.bairro || ""}, ${
+            userInfo.cidade || ""
+          }`.trim();
+          document.getElementById("address").value = endereco || "";
 
-    if (userInfo) {
-      // Preenche os campos com as informações do usuário
-      document.getElementById("name").value = userInfo.nome || "";
-      document.getElementById("email").value = userInfo.email || "";
-      
-      // Concatenar bairro e cidade no campo de endereço
-      const endereco = `${userInfo.bairro || ""}, ${userInfo.cidade || ""}`.trim();
-      document.getElementById("address").value = endereco || "";
-      
-      document.getElementById("phone").value = userInfo.telefone || "";
-      document.getElementById("cidades").value = userInfo.cidades || "";
-    }
-  });
-</script>
-
+          // Se o campo de cidades estiver vazio, preenche com a cidade cadastrada do usuário
+          if (!userInfo.cidades || userInfo.cidades.trim() === "") {
+            document.getElementById("cidades").value = userInfo.cidade || "";
+          } else {
+            document.getElementById("cidades").value = userInfo.cidades || "";
+          }
+        }
+      });
+    </script>
   </body>
 </html>

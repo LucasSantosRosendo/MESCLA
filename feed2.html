@@ -1,266 +1,222 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/styles/feed2.css" rel="stylesheet" />
+    <link href="/styles/fonts.css" rel="stylesheet" />
+    <link rel="icon" href="components/images/mesclaM.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/b432763f75.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Feed / MESCLA</title>
+    <script src="auth.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
-  <link href="/styles/feed2.css" rel="stylesheet" />
-  <link href="/styles/fonts.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/b432763f75.js" crossorigin="anonymous"></script>
-  <title>Feed de Publicações - MESCLA</title>
-  <script src="auth.js"></script>
-  <style>
-    .publicacoes-container {
-      display: flex;
-      flex-direction: column;
-      margin: 20px;
-    }
-
-    .publicacao {
-      display: flex;
-      /* Usa flexbox */
-      flex-direction: column;
-      /* Coloca os elementos em coluna */
-      align-items: center;
-      /* Centraliza os itens horizontalmente */
-      margin: 20px 0;
-      /* Adiciona uma margem ao contêiner */
-    }
-
-
-    .publicacao:hover {
-      transform: scale(1.02);
-    }
-
-    .nome-usuario {
-      font-weight: bold;
-      color: #333;
-      margin: 5px 0;
-      /* Espaçamento para o nome do usuário */
-    }
-
-    .descricao-publicacao {
-      color: #555;
-      margin: 30px 0 5px 0;
-      /* Aumente o espaço superior para a descrição */
-    }
-
-
-    .curtidas-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #e63946;
-      font-size: 16px;
-      margin-top: 10px;
-      display: block;
-      margin: 10px auto;
-    }
-
-
-    #penMapBtn:hover {
-      background-color: #3fff65;
-      transform: scale(1.05);
-    }
-
-    #map {
-      height: 400px;
-      width: 100%;
-      display: none;
-      /* O mapa é escondido inicialmente */
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div id="title">
-      <article>
-        <img class="image" src="components/images/mesclado.png" alt="MESCLA" />
-      </article>
-    </div>
-    <div>
-      <button class="notification-button" id="notificacao">
-        <span><i class="fas fa-bell"></i></span>
-      </button>
-    </div>
-
-    <div class="notification-dropdown" id="notificationDropdown">
-      <div class="notification-header">
-        <strong>Notificações</strong>
+  <body>
+    <header>
+      <div id="title">
+        <article>
+          <img
+            class="image"
+            src="components/images/mesclado.png"
+            alt="MESCLA"
+          />
+        </article>
       </div>
-      <ul class="notification-list">
-        <li class="notification-item">Cemig atualizou o status</li>
-        <li class="notification-item">Seu post recebeu 5 curtidas</li>
-        <li class="notification-item">Davi comentou em sua foto</li>
-      </ul>
-      <div class="notification-footer">
-        <a href="#">Ver todas as notificações</a>
-      </div>
-    </div>
-
-    <div class="search-container">
-      <input type="text" placeholder=" Procure amigos no MESCLA..." />
-      <button class="search-button"><i class="fas fa-search"></i></button>
-    </div>
-  </header>
-
-  <main class="main">
-    <div class="sidebar">
-      <a href="comunidade.html" class="menu-item">
-        <span><i class="fas fa-users"></i></span>
-        <h2>Comunidade</h2>
-      </a>
-      <a href="chat.html" class="menu-item">
-        <span><i class="fas fa-comment"></i></span>
-        <h2>Mensagens</h2>
-      </a>
-
-      <a href="popupPublicacao.html" class="menu-item">
-        <span><i class="fas fa-plus"></i></span>
-        <h2>Publicar</h2>
-      </a>
-      <a href="profile.html" class="menu-item">
-        <span><i class="fa-solid fa-user"></i></span>
-        <h2>Perfil</h2>
-      </a>
-
-      <a href="pet.html" class="menu-item">
-        <button class="publish-button" href="pet.html">
-          Pet's Community <i class="fa-solid fa-paw"></i>
+      <div>
+        <button class="notification-button" id="notificacao">
+          <span><i class="fas fa-bell"></i></span>
         </button>
-      </a>
+      </div>
 
-      <!-- Botão para abrir o mapa -->
-      <button id="openMapBtn">Abrir Mapa</button>
+      <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notification-header">
+          <strong>Notificações</strong>
+        </div>
+        <ul class="notification-list">
+          <li class="notification-item">Cemig atualizou o status</li>
+          <li class="notification-item">Seu post recebeu 5 curtidas</li>
+          <li class="notification-item">Davi comentou em sua foto</li>
+        </ul>
+        <div class="notification-footer">
+          <a href="#">Ver todas as notificações</a>
+        </div>
+      </div>
 
-      <!-- Container para o mapa -->
-      <div id="map" style="width: 100%; height: 300px; width: 300px; display: none;"></div>
+      <div class="search-container">
+        <input type="text" placeholder=" Procure amigos no MESCLA..." />
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </div>
+    </header>
 
-    </div>
+    <main class="main">
+      <div class="sidebar">
+        <a href="comunidade.html" class="menu-item">
+          <span><i class="fas fa-users"></i></span>
+          <h2>Comunidade</h2>
+        </a>
+        <a href="chat.html" class="menu-item">
+          <span><i class="fas fa-comment"></i></span>
+          <h2>Mensagens</h2>
+        </a>
 
-    <div class="scroll-container" id="publicacoes"></div>
+        <a href="popupPublicacao.html" class="menu-item">
+          <span><i class="fas fa-plus"></i></span>
+          <h2>Publicar</h2>
+        </a>
+        <a href="profile.html" class="menu-item">
+          <span><i class="fa-solid fa-user"></i></span>
+          <h2>Perfil</h2>
+        </a>
 
-    <div id="userInfo"></div>
-  </main>
+        <a href="pet.html" class="menu-item">
+          <span><i class="fa-solid fa-paw"></i></span>
+          <h2>Pet's Community</h2>
+        </a>
 
+        <!-- Botão para abrir o mapa -->
+        <button id="openMapBtn">Abrir Mapa</button>
 
+        <!-- Container para o mapa -->
+        <div
+          id="map"
+          style="width: 100%; height: 300px; width: 300px; display: none"
+        ></div>
+      </div>
 
-  <script>
-    // Exibe informações do usuário
-    document.addEventListener("DOMContentLoaded", function () {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      const userInfoDiv = document.getElementById("userInfo");
-      if (userInfo) {
-        userInfoDiv.innerHTML = `<p>Nome: ${userInfo.nome}</p><p>Cidade: ${userInfo.cidade}</p>`;
-      } else {
-        userInfoDiv.innerHTML = `<p>Nenhuma informação disponível.</p>`;
-      }
-    });
-  </script>
+      <div class="scroll-container" id="publicacoes"></div>
 
-  <script>
-    const notificationButton = document.getElementById("notificacao");
-    const notificationDropdown = document.getElementById(
-      "notificationDropdown"
-    );
+      <div id="userInfo"></div>
+    </main>
 
-    notificationButton.addEventListener("click", () => {
-      notificationDropdown.style.display =
-        notificationDropdown.classList.toggle("show") ? "block" : "none";
-    });
+    <script>
+      // Exibe informações do usuário
+      document.addEventListener("DOMContentLoaded", function () {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        const userInfoDiv = document.getElementById("userInfo");
+        if (userInfo) {
+          userInfoDiv.innerHTML = `<p>Nome: ${userInfo.nome}</p><p>Cidade: ${userInfo.cidade}</p>`;
+        } else {
+          userInfoDiv.innerHTML = `<p>Nenhuma informação disponível.</p>`;
+        }
+      });
+    </script>
 
-    document.addEventListener("click", (event) => {
-      if (
-        !notificationButton.contains(event.target) &&
-        !notificationDropdown.contains(event.target)
-      ) {
-        notificationDropdown.classList.remove("show");
-        notificationDropdown.style.display = "none";
-      }
-    });
-  </script>
+    <script>
+      const notificationButton = document.getElementById("notificacao");
+      const notificationDropdown = document.getElementById(
+        "notificationDropdown"
+      );
 
-
-
-  <script type="module" src="feed.js"></script>
-
-  <script>
-document.getElementById('openMapBtn').addEventListener('click', function () {
-  const mapDiv = document.getElementById('map');
-  mapDiv.style.display = 'block';  // Mostra o mapa
-
-  let map;
-  let lat = parseFloat(localStorage.getItem('latitude'));
-  let lng = parseFloat(localStorage.getItem('longitude'));
-
-  async function initMap() {
-    console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-
-    if (!isNaN(lat) && !isNaN(lng)) {
-      let position = { lat: lat, lng: lng };
-
-      // Carregar as bibliotecas necessárias do Google Maps
-      const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-      const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
-
-      // Inicializar o mapa, centralizado nas coordenadas especificadas
-      map = new Map(document.getElementById("map"), {
-        zoom: 15,
-        center: position,
-        mapId: "DEMO_MAP_ID", // Substitua pelo seu ID de mapa
+      notificationButton.addEventListener("click", () => {
+        notificationDropdown.style.display =
+          notificationDropdown.classList.toggle("show") ? "block" : "none";
       });
 
-      // Criar uma info window que será usada pelo marcador
-      const infoWindow = new InfoWindow();
-
-      // Criar o conteúdo do marcador (Pin personalizado)
-      const pin = new PinElement({
-        glyph: "1",  // Defina um ícone ou número, como no exemplo fornecido
-        scale: 1.5,
+      document.addEventListener("click", (event) => {
+        if (
+          !notificationButton.contains(event.target) &&
+          !notificationDropdown.contains(event.target)
+        ) {
+          notificationDropdown.classList.remove("show");
+          notificationDropdown.style.display = "none";
+        }
       });
+    </script>
 
-      // Adicionar o marcador avançado
-      const marker = new AdvancedMarkerElement({
-        map: map,
-        position: { lat, lng },  // Usa as coordenadas armazenadas
-        title: "Sua Publicação",
-        content: pin.element,  // Usa o pin como conteúdo visual do marcador
-        gmpClickable: true,    // Permitir cliques no marcador
+    <script type="module" src="feed.js"></script>
+
+    <script>
+      document
+        .getElementById("openMapBtn")
+        .addEventListener("click", function () {
+          const mapDiv = document.getElementById("map");
+          mapDiv.style.display = "block"; // Mostra o mapa
+
+          let map;
+          let lat = parseFloat(localStorage.getItem("latitude"));
+          let lng = parseFloat(localStorage.getItem("longitude"));
+
+          async function initMap() {
+            console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+              let position = { lat: lat, lng: lng };
+
+              // Carregar as bibliotecas necessárias do Google Maps
+              const { Map } = await google.maps.importLibrary("maps");
+              const { AdvancedMarkerElement } = await google.maps.importLibrary(
+                "marker"
+              );
+
+              // Inicializar o mapa, centralizado nas coordenadas especificadas
+              map = new Map(document.getElementById("map"), {
+                zoom: 12,
+                center: position,
+                mapId: "DEMO_MAP_ID",
+              });
+
+              // Adiciona um marcador avançado
+              const marker = new AdvancedMarkerElement({
+                map: map,
+                position: { lat, lng }, // Usa as coordenadas armazenadas
+                title: "Localização Atual",
+              });
+            } else {
+              console.error("Coordenadas inválidas:", lat, lng);
+            }
+          }
+
+          initMap();
+        });
+    </script>
+
+    <script>
+      ((g) => {
+        var h,
+          a,
+          k,
+          p = "The Google Maps JavaScript API",
+          c = "google",
+          l = "importLibrary",
+          q = "__ib__",
+          m = document,
+          b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+          r = new Set(),
+          e = new URLSearchParams(),
+          u = () =>
+            h ||
+            (h = new Promise(async (f, n) => {
+              await (a = m.createElement("script"));
+              e.set("libraries", [...r] + "");
+              for (k in g)
+                e.set(
+                  k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                  g[k]
+                );
+              e.set("callback", c + ".maps." + q);
+              a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+              d[q] = f;
+              a.onerror = () => (h = n(Error(p + " could not load.")));
+              a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+              m.head.append(a);
+            }));
+        d[l]
+          ? console.warn(p + " only loads once. Ignoring:", g)
+          : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+      })({
+        key: "AIzaSyDpdk5IvaP_sjeaHp3PoOjE1zKjDGsFot4",
+        v: "weekly",
       });
-
-      // Adicionar um listener para clique no marcador e exibir a info window
-      marker.content.addEventListener("click", () => {
-        infoWindow.close();
-        infoWindow.setContent(`<div><strong>Você clicou no marcador!</strong></div>`);
-        infoWindow.open(map, marker);
-      });
-    } else {
-      console.error('Coordenadas inválidas:', lat, lng);
-    }
-  }
-
-  initMap();
-});
-
-  </script>
-
-  <script>
-    (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
-      key: "AIzaSyDpdk5IvaP_sjeaHp3PoOjE1zKjDGsFot4",
-      v: "weekly"
-    });
-  </script>
-  <script type="module" src="maps.js"></script>
-
-</body>
-
+    </script>
+    <script type="module" src="maps.js"></script>
+  </body>
 </html>

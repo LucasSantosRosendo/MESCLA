@@ -107,7 +107,6 @@ function obterCoordenadasUsuario(callback) {
       // Erro
       function (error) {
         console.error("Erro ao obter a localização: ", error);
-        alert("Não foi possível obter sua localização. Verifique as permissões.");
         // Se ocorrer erro, você pode usar uma localização padrão (ex: Brasília)
         callback(-15.8267, -47.9218);
       }

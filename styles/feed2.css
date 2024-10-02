@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -45,6 +44,7 @@ header {
   align-items: center;
   gap: 10px;
   width: 100%;
+  margin-top: 7px;
   justify-content: space-between;
 }
 
@@ -160,247 +160,6 @@ header {
   cursor: pointer;
 }
 
-div.newPost {
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-  margin: 20px 0;
-  padding: 25px;
-  background: #1d1d1d;
-  border-radius: 10px;
-  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-}
-
-div.newPost div.infoUser {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-div.newPost div.infoUser div.imgUser {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #ffff;
-}
-
-div.newPost div.infoUser strong {
-  font-size: 18px;
-  color: #3cca94;
-  margin-left: 10px;
-}
-
-div.newPost form.formPost {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-div.newPost form.formPost textarea {
-  background: #222222;
-  margin: 15px 0;
-  padding: 25px;
-  border-radius: 10px;
-  resize: none;
-  border: 2px solid #141313;
-  height: 120px;
-  outline: none;
-  font-weight: bold;
-  color: #ffffff;
-  font-family: poppinslight;
-}
-
-div.newPost form.formPost textarea:focus {
-  border: 2px solid #3cca94;
-}
-
-div.newPost form.formPost div.iconsAndButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-div.newPost form.formPost div.iconsAndButton div.icons {
-  width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-div.newPost form.formPost div.iconsAndButton div.icons button {
-  outline: none;
-  margin-right: 15px;
-  border: 0;
-  background: #222222;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-div.newPost form.formPost div.iconsAndButton button.btnSubmitForm {
-  background: #3cca94;
-  padding: 10px 60px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border: 0;
-  border-radius: 10px;
-  transition: background 0.3s, transform 0.3s;
-}
-
-div.newPost form.formPost div.iconsAndButton button.btnSubmitForm:hover {
-  background: rgb(60, 202, 148);
-  transform: scale(1.05);
-}
-
-ul.posts {
-  padding: 0;
-  margin: 0;
-}
-
-ul.posts li.post {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto 30px;
-  background: #1d1d1d;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.05);
-}
-
-ul.posts li.post div.infoUserPost {
-  display: flex;
-  align-items: center;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour {
-  margin-left: 12px;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour > strong {
-  color: #3cca94;
-}
-
-ul.posts li.post div.infoUserPost div.nameAndHour > p {
-  color: #d1d1d1;
-  font-size: 15px;
-  height: 50px;
-}
-
-ul.posts li.post > p {
-  width: 100%;
-  margin: 20px 0;
-  font-weight: bold;
-  color: #727272;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-
-ul.posts li.post div.actionBtnPost {
-  display: flex;
-  align-items: center;
-}
-
-ul.posts li.post div.actionBtnPost button.filesPost {
-  padding: 10px 25px;
-  border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  margin-right: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-
-ul.posts li.post div.actionBtnPost button.filesPost img {
-  margin-right: 5px;
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-.close {
-  color: #f44336;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: -15px;
-  margin-right: -15px;
-}
-
-.close:hover,
-.close:focus {
-  color: #d32f2f;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -441,35 +200,32 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   background-color: #ddd;
 }
 
-
-
 /* Centralizar o contêiner das publicações */
 #publicacoes {
   position: absolute; /* ou fixed, dependendo da necessidade */
-  top: 100%;  /* Move o contêiner 50% a partir do topo da janela */
+  top: 100%; /* Move o contêiner 50% a partir do topo da janela */
   left: 50%; /* Move o contêiner 50% a partir da esquerda da janela */
   transform: translate(-50%, -50%); /* Centraliza corrigindo a posição */
-  width: 800px;  /* Largura do contêiner */
-  height: auto;  /* Altura automática */
-  background-color: #2b2b2b; /* Cor de fundo */
-  padding: 20px;  /* Espaçamento interno */
+  width: 800px; /* Largura do contêiner */
+  height: auto; /* Altura automática */
+  background-color: #222222;
+  padding: 20px; /* Espaçamento interno */
   border-radius: 10px; /* Canto arredondado */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
-
 
 /* Estilizar cada publicação */
 .publicacaoVideo,
 .publicacao {
   display: flex;
   flex-direction: line; /* Imagem e texto ficam em coluna */
-  align-items: flex-start;    /* Centraliza imagem e texto */
-  margin: 20px;           /* Espaçamento entre as publicações */
+  align-items: flex-start; /* Centraliza imagem e texto */
+  margin: 20px; /* Espaçamento entre as publicações */
   padding: 20px;
   border: 1px solid #222222; /* Borda ao redor do contêiner */
-  border-radius: 10px;    /* Canto arredondado */
+  border-radius: 10px; /* Canto arredondado */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  width: 720px;           /* Largura máxima do contêiner da publicação */
+  width: 720px; /* Largura máxima do contêiner da publicação */
   background-color: #222222;
 }
 
@@ -477,7 +233,7 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 .publicacaoVideo video,
 .publicacao img {
   max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
-  height: auto;    /* Mantém a proporção da imagem */
+  height: auto; /* Mantém a proporção da imagem */
   margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
 }
 
@@ -566,6 +322,23 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   font-weight: bold;
 }
 
+.menu-item {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.menu-item:hover {
+  background: #3cca94;
+  color: #fff;
+  transform: scale(1.05);
+}
+
 .notification-footer a:hover {
   text-decoration: underline;
 }
@@ -593,7 +366,6 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
   font-size: 16px;
   margin: 10px 0;
   width: 500px;
-
 }
 
 /* Estilo para a descrição */
@@ -606,8 +378,94 @@ ul.posts li.post div.actionBtnPost button.filesPost img {
 }
 
 /* Estilo para imagem e vídeo */
-img, video {
+img,
+video {
   max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
-  height: auto;    /* Mantém a proporção da imagem */
+  height: auto; /* Mantém a proporção da imagem */
   margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
+
+.publicacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0; /* Reduz o espaço entre publicações */
+  min-height: 20px; /* Defina uma altura mínima para cada publicação */
+  padding: 10px; /* Adicione espaçamento interno */
+  border-radius: 8px; /* Borda arredondada */
+  height: 100%;
+  width: 600px;
+  margin-top: 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.nome-usuario {
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0; /* Margem menor para o nome do usuário */
+}
+
+.descricao-publicacao {
+  color: #555;
+  margin: 10px 0 5px 0; /* Reduz o espaçamento para a descrição */
+}
+
+.curtidas-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #e63946;
+  font-size: 14px;
+  margin-top: 5px; /* Menor margem superior */
+  display: block;
+  margin: 5px auto;
+}
+
+#penMapBtn:hover {
+  background-color: #3fff65;
+  transform: scale(1.05);
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  display: none;
+  /* O mapa é escondido inicialmente */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar publicações no container */
+}
+
+#openMapBtn {
+  background-color: #ffffff00; /* Cor de fundo branca */
+  color: white; /* Cor do texto */
+  border: 2px solid #3cca94;
+  border-radius: 30px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor como ponteiro */
+  display: flex; /* Para alinhar o ícone e o texto */
+  align-items: center; /* Alinhamento vertical */
+  gap: 10px; /* Espaçamento entre o ícone e o texto */
+  transition: background-color 0.3s, transform 0.3s; /* Efeitos de transição */
+}
+
+#openMapBtn:hover {
+  background-color: #f0f0f000; /* Cor de fundo ao passar o mouse */
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+#openMapBtn:before {
+  content: "🗺️"; /* Ícone de mapa */
+  font-size: 20px; /* Tamanho do ícone */
 }
