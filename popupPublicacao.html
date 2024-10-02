@@ -9,6 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link href="/styles/popupPublicacao.css" rel="stylesheet" />
+    <link href="/styles/pet.css" rel="stylesheet" />
     <link rel="icon" href="components/images/mesclaM.png" type="image/x-icon">
     <style>
       body,
@@ -254,6 +255,26 @@
       <!-- Pré-visualização da imagem -->
       <div id="imagePreview"></div>
     </div>
+
+    <!-- Botão de seleção de empresa -->
+<!-- Botão de seleção de empresa -->
+<div class="empresa-select-container">
+  <label for="empresaSelect">Selecionar Empresa:</label>
+  <select id="empresaSelect" class="empresa-select">
+    <option value="" disabled selected>Escolha uma empresa</option>
+    <option value="Cemig">Cemig</option>
+    <option value="Vivavox">Vivavox</option>
+    <option value="Copasa">Copasa</option>
+    <option value="Petrobras">Petrobras</option>
+    <option value="Connect">Connect</option>
+    <option value="Prefeitura">Prefeitura</option>
+  </select>
+</div>
+
+<!-- Adicione um contêiner onde o nome da empresa selecionada será exibido -->
+<div id="selectedCompany" class="empresa-display"></div>
+
+
   </div>
   
   <!-- Pop-up de publicação de vídeo -->
@@ -279,6 +300,19 @@
   
       <!-- Botão Enviar -->
       <button id="buttonAPPVideo" type="button" onclick="handlePopupVideo(false)">Enviar</button>
+    </div>
+
+    <div class="empresa-select-container">
+      <label for="empresaSelect">Selecionar Empresa:</label>
+      <select id="empresaSelect" class="empresa-select">
+        <option value="" disabled selected>Escolha uma empresa</option>
+        <option value="empresa1">Cemig</option>
+        <option value="empresa2">Vivavox</option>
+        <option value="empresa3">Copasa</option>
+        <option value="empresa4">Petrobras</option>
+        <option value="empresa5">Connect</option>
+        <option value="empresa6">Prefeitura</option>
+      </select>
     </div>
   </div>  
     </div>

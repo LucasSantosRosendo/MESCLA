@@ -654,7 +654,6 @@
   font-size: 16px;
   margin: 10px 0;
   width: 500px;
-
 }
 
 /* Estilo para a descrição */
@@ -667,8 +666,58 @@
 }
 
 /* Estilo para imagem e vídeo */
-img, video {
+img,
+video {
   max-width: 100%; /* A imagem ocupa 100% da largura do contêiner */
-  height: auto;    /* Mantém a proporção da imagem */
+  height: auto; /* Mantém a proporção da imagem */
   margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
+
+.publicacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0; /* Reduz o espaço entre publicações */
+  min-height: 20px; /* Defina uma altura mínima para cada publicação */
+  padding: 10px; /* Adicione espaçamento interno */
+  border-radius: 8px; /* Borda arredondada */
+  height: 100%;
+  width: 600px;
+  margin-top: 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.nome-usuario {
+  font-weight: bold;
+  color: white;
+  margin: 5px 0; /* Margem menor para o nome do usuário */
+}
+
+.descricao-publicacao {
+  color: white;
+  margin: 10px 0 5px 0; /* Reduz o espaçamento para a descrição */
+}
+
+.curtidas-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #e63946;
+  font-size: 14px;
+  margin-top: 5px; /* Menor margem superior */
+  display: block;
+  margin: 5px auto;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar publicações no container */
 }
