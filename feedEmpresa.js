@@ -60,8 +60,8 @@ let posts = []; // deixou de ser uma variável vazia e virou um vetor
 
 // Função para buscar vídeos e imagens
 function getPosts(userCity) {
-  const videosRef = databaseRef(database, "videosPet");
-  const imagesRef = databaseRef(database, "descriptionPet");
+  const videosRef = databaseRef(database, "videosEmpresa");
+  const imagesRef = databaseRef(database, "descriptionEmpresa");
 
   // Busca vídeos
   get(videosRef)

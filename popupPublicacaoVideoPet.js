@@ -47,7 +47,7 @@ inputFile.addEventListener("change", function (e) {
     const reader = new FileReader();
 
     reader.onload = function (e) {
-      const video= document.createElement("video");
+      const video = document.createElement("video");
       video.src = e.target.result;
       video.controls = true;
       video.classList.add("video__preview-video");
@@ -65,7 +65,7 @@ inputFile.addEventListener("change", function (e) {
 // Função para fazer o upload do vídeo para o Firebase Storage
 function uploadVideo() {
   return new Promise((resolve, reject) => {
-    const uniqueVideoName = `videosPet/${Date.now()}_${selectedFile.name}`;
+    const uniqueVideoName = `videos/${Date.now()}_${selectedFile.name}`;
     const videoRef = storageRef(storage, uniqueVideoName);
 
     // Upload do arquivo
@@ -92,7 +92,7 @@ function writeUserData(description, videoUrl) {
   })
   .then(() => {
     console.log("Dados enviados com sucesso");
-    window.location.href = "feedPet.html";
+    window.location.href = "pet.html";
   })
   .catch((error) => {
     console.error("Erro ao enviar dados:", error);

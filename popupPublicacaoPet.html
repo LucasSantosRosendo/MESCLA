@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publicar - MESCLA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="/styles/popupPublicacaoPet.css" rel="stylesheet" />
+    <link rel="icon" href="components/images/mesclaM.png" type="image/x-icon">
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: #222222; /* Fundo da página */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff;
+      }
+
+      /* Botão de voltar */
+      .back-button {
+        margin: 20px;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: rgba(252, 95, 17, 0.979);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .back-button i {
+        margin-right: 8px; /* Espaço entre a seta e o texto */
+        font-size: 20px;
+      }
+
+      .back-button:hover {
+        color: rgba(252, 95, 17, 0.979); /* Muda a cor no hover */
+      }
+
+      /* Container de publicação */
+      .containerIndex {
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        width: 400px;
+        margin: 80px auto;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      .containerIndex:hover {
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+      }
+
+      .containerIndex h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: rgba(252, 95, 17, 0.979);
+      }
+
+      .containerIndex p {
+        font-size: 18px;
+        margin-top: 5px;
+        color: #cccccc;
+      }
+
+      .popup-button,
+      .popup-buttonVideo {
+        display: inline-block;
+        width: 40%;
+        margin: 15px 5px; /* Ajuste de margem para espaçamento entre os botões */
+        background-color: rgba(175, 65, 10, 0.979);
+        border: none;
+        padding: 15px 0;
+        border-radius: 8px;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+
+      .popup-button:hover,
+      .popup-buttonVideo:hover {
+        background-color: rgba(252, 95, 17, 0.979);
+        transform: scale(1.05);
+        box-shadow: 0px 0px 15px rgba(252, 95, 17, 0.979);
+      }
+
+      /* Pop-up de publicação de imagem e vídeo */
+      .popup,
+      .popupVideo {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.4);
+        background-color: #333333;
+        padding: 20px 40px; /* Ajuste de padding para um tamanho mais compacto */
+        border-radius: 10px; /* Bordas levemente mais arredondadas */
+        text-align: center;
+        width: 500px; /* Tamanho do popup reduzido */
+        box-sizing: border-box;
+        transition: all 0.4s;
+        z-index: -1;
+        opacity: 0;
+      }
+
+      .popup.opened,
+      .popupVideo.opened {
+        z-index: 1;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      .popup h2.title,
+      .popupVideo h2.title {
+        color: rgba(252, 95, 17, 0.979);
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .popup p.desc,
+      .popupVideo p.desc {
+        color: #ffffff;
+        margin-bottom: 15px; /* Ajuste para reduzir o espaçamento */
+      }
+
+      /* Campo de descrição e upload */
+      .description-block textarea {
+        width: 90%; /* Ajuste de largura para centralizar melhor */
+        height: 80px; /* Altura reduzida para um tamanho mais compacto */
+        padding: 12px; /* Reduzido para melhor estética */
+        border: 2px solid #141313;
+        border-radius: 10px;
+        background: #222222;
+        color: #ffffff;
+        font-size: 16px;
+        resize: none;
+        outline: none;
+        margin-bottom: 15px;
+      }
+
+      .description-block textarea:focus {
+        border-color: rgba(252, 95, 17, 0.979);
+      }
+
+      /* Botões dentro do pop-up */
+      .popup .content,
+      .popupVideo .content {
+        display: flex;
+        justify-content: center; /* Centraliza os elementos */
+        align-items: center;
+        flex-direction: column;
+      }
+
+      /* Botão enviar no pop-up */
+      #buttonAPP,
+      #buttonAPPVideo {
+        background-color: rgba(252, 95, 17, 0.979);
+        border: none;
+        padding: 10px 30px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s;
+        margin: 10px 0;
+        width: 40%; /* Largura ajustada para centralizar */
+        display: flex; /* Usar flexbox */
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+      }
+      #buttonAPP:hover,
+      #buttonAPPVideo:hover {
+        background-color: rgba(252, 95, 17, 0.979);
+      }
+
+      .close-popup {
+  position: absolute; /* Posiciona o "X" de forma absoluta */
+  top: 10px; /* Distância do topo */
+  right: 10px; /* Distância da direita */
+  font-size: 24px; /* Tamanho do "X" */
+  color: #ff1900; /* Cor vermelha */
+  cursor: pointer; /* Muda o cursor ao passar por cima */
+  transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.close-popup:hover {
+  color: #7f1a0f; /* Tom mais escuro no hover */
+}
+
+    </style>
+
+    <script src="auth.js"></script>
+  </head>
+
+  <body>
+    <!-- Botão de voltar -->
+    <a href="feed2.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="containerIndex">
+      <h2>Publicar</h2>
+      <p>Vamos melhorar sua região?</p>
+
+      <!-- Botões de imagem e vídeo dentro do container -->
+      <button
+        class="popup-button"
+        id="addbutton"
+        type="button"
+        onclick="handlePopup(true)"
+      >
+        Adicionar Imagem
+      </button>
+
+      <button
+        class="popup-buttonVideo"
+        id="addbuttonVideo"
+        type="button"
+        onclick="handlePopupVideo(true)"
+      >
+        Adicionar Vídeo
+      </button>
+    </div>
+
+    <!-- Pop-up de publicação imagem -->
+<div class="popup" id="popup">
+    <span class="close-popup" onclick="handlePopup(false)">✖</span> <!-- X vermelho -->
+    <h2 class="title">Publicar</h2>
+    <p class="desc">Adicione aqui a imagem e a descrição do problema!</p>
+  
+    <!-- Botão de upload de imagem dentro do pop-up -->
+    <label class="picture" for="picture__input" tabindex="0">
+      <span class="picture__image">Clique aqui para adicionar uma imagem</span>
+    </label>
+    <input type="file" name="picture__input" id="picture__input" style="display: none" />
+  
+    <div class="content">
+      <!-- Bloco de Texto para Inserção de Descrição -->
+      <div class="description-block">
+        <textarea id="description_input_pet" placeholder="Escreva sua descrição aqui..."></textarea>
+      </div>
+      <!-- Botão enviar -->
+      <button id="buttonAPP" type="button" onclick="handlePopup(false)">Enviar</button>
+      <!-- Pré-visualização da imagem -->
+      <div id="imagePreview"></div>
+    </div>
+  </div>
+  
+  <!-- Pop-up de publicação de vídeo -->
+  <div class="popupVideo" id="popupVideo">
+    <span class="close-popup" onclick="handlePopupVideo(false)">✖</span> <!-- X vermelho -->
+    <h2 class="title">Publicar Vídeo</h2>
+    <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
+  
+    <!-- Botão de upload de vídeo dentro do pop-up -->
+    <label class="pictureVideo" for="video__input" tabindex="0">
+      <span class="picture__image">Clique aqui para adicionar um vídeo</span>
+    </label>
+    <input type="file" name="video__input" id="video__input" style="display: none" />
+  
+    <div class="content">
+      <!-- Bloco de Texto para Inserção de Descrição -->
+      <div class="description-block">
+        <textarea id="description_input_videoPet" placeholder="Escreva sua descrição aqui..."></textarea>
+      </div>
+  
+      <!-- Pré-visualização do vídeo -->
+      <div class="video__preview"></div>
+  
+      <!-- Botão Enviar -->
+      <button id="buttonAPPVideo" type="button" onclick="handlePopupVideo(false)">Enviar</button>
+    </div>
+  </div>  
+    </div>
+
+    <!-- Pop-up de publicação de vídeo -->
+    <div class="popupVideo" id="popupVideo">
+      <h2 class="title">Publicar Vídeo</h2>
+      <p class="desc">Adicione aqui o vídeo e a descrição do problema!</p>
+
+      <!-- Botão de upload de vídeo dentro do pop-up -->
+      <label class="pictureVideo" for="video__input" tabindex="0">
+        <span class="picture__image">Clique aqui para adicionar um vídeo</span>
+      </label>
+      <input
+        type="file"
+        name="video__input"
+        id="video__input"
+        style="display: none"
+      />
+
+      <div class="content">
+        <!-- Bloco de Texto para Inserção de Descrição -->
+        <div class="description-block">
+          <textarea
+            id="description_input_videoPet"
+            placeholder="Escreva sua descrição aqui..."
+          ></textarea>
+        </div>
+
+        <!-- Pré-visualização do vídeo -->
+        <div class="video__preview"></div>
+
+        <!-- Botão Enviar -->
+        <button id="buttonAPPVideo" type="button" onclick="handlePopup(false)">
+          Enviar
+        </button>
+
+        <!-- Botão para fechar o pop-up -->
+        <button
+          class="close-popup-button"
+          type="button"
+          onclick="handlePopupVideo(false)"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- Script para manipulação do pop-up -->
+    <script>
+      const popup = document.getElementById("popup");
+      function handlePopup(open) {
+        popup.classList[open ? "add" : "remove"]("opened");
+      }
+    </script>
+
+    <script>
+      const popupVideo = document.getElementById("popupVideo");
+      function handlePopupVideo(open) {
+        popupVideo.classList[open ? "add" : "remove"]("opened");
+      }
+    </script>
+    <script type="module" src="popupPublicacaoVideoPet.js"></script>
+    <script type="module" src="popupPublicacaoPet.js"></script>
+  </body>
+</html>
