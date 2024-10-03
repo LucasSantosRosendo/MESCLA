@@ -114,8 +114,9 @@ function publish(posts) {
 
   publicacoesDiv.innerHTML = ""; // Limpa a área de exibição
 
-  // Ordenar os posts por posição (ou qualquer outro critério)
-  posts.sort((a, b) => b.position - a.position);
+// Ordenar os posts por posição (ou qualquer outro critério) - mais recentes em cima
+posts.sort((a, b) => a.position - b.position);
+
 
   // Exibe cada post, seja imagem ou vídeo
   for (const postItem of posts) {
