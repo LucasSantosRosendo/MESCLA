@@ -16,6 +16,33 @@
     ></script>
     <title>Feed / MESCLA</title>
     <script src="auth.js"></script>
+    <style>
+      /* Estilo do botão de curtidas */
+      .curtidas-button {
+        display: grid; /* Define o layout como grid */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Definindo colunas automáticas */
+        gap: 20px; /* Espaço entre as publicações */
+        padding: 20px; /* Espaço ao redor do container */
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      /* Estilo para os botões do mapa */
+      .map-buttons {
+        display: flex; /* Usar flexbox para alinhar os botões lado a lado */
+        gap: 10px; /* Espaçamento entre os botões */
+      }
+      #closeMapBnt {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 25px;
+        background-color: transparent;
+        color:rgb(255, 0, 0);
+        border: 1px solid #3cca94;
+  border-radius: 12px; /* Bordas arredondadas */
+  width: 30px;
+      }
+    </style>
   </head>
 
   <body>
@@ -80,8 +107,15 @@
           <h2>Pet's Community</h2>
         </a>
 
-        <!-- Botão para abrir o mapa -->
-        <button id="openMapBtn">Abrir Mapa</button>
+        <!-- Container para os botões do mapa -->
+        <div class="map-buttons">
+          <!-- Botão para abrir o mapa -->
+          <button id="openMapBtn">Abrir Mapa</button>
+          
+          <!-- Botão para fechar o mapa -->
+          <button id="closeMapBnt">X</button>
+        </div>
+        
 
         <!-- Container para o mapa -->
         <div
@@ -130,8 +164,6 @@
       });
     </script>
 
-    <script type="module" src="feed.js"></script>
-
     <script>
       document
         .getElementById("openMapBtn")
@@ -175,6 +207,13 @@
 
           initMap();
         });
+
+      document
+        .getElementById("closeMapBnt")
+        .addEventListener("click", function () {
+          const mapDiv = document.getElementById("map");
+          mapDiv.style.display = "none"; // Esconde o mapa
+        });
     </script>
 
     <script>
@@ -217,6 +256,6 @@
         v: "weekly",
       });
     </script>
-    <script type="module" src="maps.js"></script>
+    <script type="module" src="feed2.js"></script>
   </body>
 </html>

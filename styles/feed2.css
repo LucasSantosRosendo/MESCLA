@@ -446,6 +446,19 @@ body {
   align-items: center; /* Centralizar publicações no container */
 }
 
+#map{
+  background-color: #ffffff00; /* Cor de fundo branca */
+  border: 3px solid #3cca94;
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 12px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor como ponteiro */
+  display: flex; /* Para alinhar o ícone e o texto */
+  align-items: center; /* Alinhamento vertical */
+  gap: 10px; /* Espaçamento entre o ícone e o texto */
+  transition: background-color 0.3s, transform 0.3s; /* Efeitos de transição */
+}
+
 #openMapBtn {
   background-color: #ffffff00; /* Cor de fundo branca */
   color: white; /* Cor do texto */
@@ -460,6 +473,7 @@ body {
   transition: background-color 0.3s, transform 0.3s; /* Efeitos de transição */
 }
 
+#closeMapBnt:hover,
 #openMapBtn:hover {
   background-color: #f0f0f000; /* Cor de fundo ao passar o mouse */
   transform: scale(1.05); /* Leve aumento ao passar o mouse */
@@ -469,3 +483,14 @@ body {
   content: "🗺️"; /* Ícone de mapa */
   font-size: 20px; /* Tamanho do ícone */
 }
+
+/* Define o estilo da publicacaoDiv usando flexbox */
+.publicacaoDiv {
+  display: flex;
+  justify-content: space-between; /* Posiciona os itens */
+  align-items: center; /* Alinha verticalmente */
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+

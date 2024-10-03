@@ -326,9 +326,20 @@ document.getElementById('openMapBtn').addEventListener('click', function () {
         urlImagem = img.src;
       }
 
+      const likeButton = document.createElement("button");
+      likeButton.classList.add("curtidas-button");
+      likeButton.innerHTML = "❤️ 0 Curtidas"; // Adiciona o emoji de coração
+      
+      let likeCount = 0; // Contador de curtidas
+      likeButton.onclick = function () {
+          likeCount++;
+          likeButton.innerHTML = `❤️ ${likeCount} Curtidas`; // Atualiza o texto do botão
+      };
       container.appendChild(usuario);
       container.appendChild(descricao);
       publicacoesDiv.appendChild(container);
+      container.appendChild(likeButton);
+
 
       const uni = `${Date.now()}-${Math.random()}`; // Combine com Math.random() para garantir unicidade
 
@@ -417,7 +428,18 @@ function publish(posts) {
       container.appendChild(img);
     }
 
+    const likeButton = document.createElement("button");
+    likeButton.classList.add("curtidas-button");
+    likeButton.innerHTML = "❤️ 0 Curtidas"; // Adiciona o emoji de coração
+    
+    let likeCount = 0; // Contador de curtidas
+    likeButton.onclick = function () {
+        likeCount++;
+        likeButton.innerHTML = `❤️ ${likeCount} Curtidas`; // Atualiza o texto do botão
+    };
     // Adiciona os elementos ao contêiner da publicação
+    container.appendChild(likeButton);
+
     container.appendChild(usuario);
     container.appendChild(descricao);
 
@@ -425,4 +447,3 @@ function publish(posts) {
     publicacoesDiv.appendChild(container);
   }
 }
-
